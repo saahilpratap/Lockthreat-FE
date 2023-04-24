@@ -1,0 +1,111 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Authoratative Document Section" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Authoratative Document" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Parent Citation" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{" Citation Type" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Citation Section" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Citation ID" | localize}}</label>
+                    <input type="text" class="form-control" disabled placeholder="System Generator">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Citation Title" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Citation Title">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Control Requirements" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Control Requirements">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Citation (Origin ID)" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Citation (Origin ID)">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Custom Applicability" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Custom Applicability">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"UCF CID" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"CIT LV" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Framework Objectives" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Framework Objectives">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Icon" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Icon">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Citation Class" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Citation Class">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Related Content Image" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Related Content Image">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Control Objective" | localize}}</label>
+                    <textarea class="form-control" placeholder="Control Objective Description" style="height:100px !important" type="text"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Citation Description" | localize}}</label>
+                    <p-editor [(ngModel)]="text" [style]="{'height':'100px'}"></p-editor>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,309 @@
+<div class="kt-section kt-section--first">
+  <div class="kt-section__body">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Content Data" | localize}}
+        </h5>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <span class="pull-right" (click)="show()"
+          ><button type="submit" class="btn btn-sm btn-submit">
+            <span><i class="fa fa-plus"></i> {{"Add New" | localize}}</span>
+          </button></span
+        >
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="primeng-datatable-container">
+          <p-table
+            [value]="policyList"
+            #dataTable
+            [lazy]="true"
+            [scrollable]="true"
+            ScrollWidth="100%"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 150px;">Policy ID</th>
+                <th style="width: 200px;">Policy Area</th>
+                <th style="width: 200px;">Section Title</th>
+                <th style="width: 200px;">Sub Section</th>
+                <th style="width: 200px;">Policy Title</th>
+                <th style="width: 200px;">Policy Statement</th>
+                <th style="width: 200px;">Policy Control</th>
+                <th style="width: 200px;">Target Audience</th>
+                <th style="width: 200px;">Security Environments</th>
+                <th style="width: 200px;">Related Policies</th>
+                <th style="width: 100px;">Actions</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-policy let-ri="rowIndex">
+              <tr>
+                <td style="width: 150px;">{{policy.policyID}}</td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="policy.policyArea"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.policyArea !== null ? policy.policyArea : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="policy.sectionTitle"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.sectionTitle !== null ? policy.sectionTitle : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="policy.subSection"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.subSection !== null ? policy.subSection : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="policy.policyTitle"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.policyTitle !== null ? policy.policyTitle : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="stripHtml(policy.policyStatement)"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.policyStatement !== null ? policy.policyStatement : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="policy.policyControl"
+                    tooltipPosition="bottom"
+                    [innerHTML]="policy.policyControl !== null ? policy.policyControl : '--'"
+                  ></div>
+                </td>
+                <td
+                  style="width: 200px;"
+                  [innerHTML]="policy.targetAudience !== null ? policy.targetAudience : '--'"
+                ></td>
+                <td
+                  style="width: 200px;"
+                  [innerHTML]="policy.securityEnvironments !== null ? policy.securityEnvironments : '--'"
+                ></td>
+                <td
+                  style="width: 200px;"
+                  [innerHTML]="policy.relatedPolicies !== null ? policy.relatedPolicies : '--'"
+                ></td>
+                <td style="width: 100px;">
+                  <i
+                    class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info"
+                    (click)="editPolicyContentData(policy)"
+                    title="Edit"
+                  ></i>
+                  <i
+                    class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"
+                    title="Delete"
+                    (click)="deletePolicyContentData(ri)"
+                  ></i>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <div class="primeng-no-data" *ngIf="policyList.length == 0">
+            No policies content data added
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  appBsModal
+  #AddPolicyContentDataModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="AddPolicyContentDataModal"
+  aria-hidden="true"
+  [config]="{backdrop: 'static'}"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form
+        #PolicyContentDataForm="ngForm"
+        (ngSubmit)="savePolicy(PolicyContentDataForm)"
+      >
+        <div class="modal-header">
+          <h4 class="modal-title">
+            {{'Policy Content Data' | localize}}
+          </h4>
+        </div>
+        <div class="modal-body" style="min-height: 350px;">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="required">{{"Policy ID" | localize}}</label>
+                <input required
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.policyID"
+                  name="policyIdField"
+                  placeholder="Policy ID"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="required">{{"Policy Area" | localize}}</label>
+                <input required
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.policyArea"
+                  name="PolicyArea"
+                  placeholder="Policy Area"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Section Title" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.sectionTitle"
+                  name="SectionTitle"
+                  placeholder="Section Title"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Sub Section" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.subSection"
+                  name="SubSection"
+                  placeholder="Sub Section"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Policy Title" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.policyTitle"
+                  name="PolicyTitle"
+                  placeholder="Policy Title"
+                />
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>{{"Policy Statement" | localize}}</label>
+                <p-editor
+                  id="PolicyStatementEditor"
+                  name="PolicyStatementEditor"
+                  #PolicyStatementEditor="ngModel"
+                  [(ngModel)]="policy.policyStatement"
+                  [style]="{'height':'200px'}"
+                ></p-editor>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Policy Control" | localize}}</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="policy.policyControl"
+                  placeholder="Policy Control"
+                  name="policyControl"
+                  #policyControl="ngModel"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="required">{{"Target Audience" | localize}}</label>
+                <p-multiSelect required
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [maxSelectedLabels]="1"
+                  [filter]="true"
+                  placeholder="Select Target Audience"
+                  optionLabel="TargetAudience"
+                  [(ngModel)]="policy.targetAudience"
+                  name="TargetAudience"
+                  #TargetAudience="ngModel"
+                ></p-multiSelect>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Security Environments" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Security Environments"
+                  optionLabel="value"
+                  [(ngModel)]="policy.securityEnvironments"
+                  name="SecurityEnvironments"
+                  #SecurityEnvironments="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Related Policies" | localize}}</label>
+                <p-multiSelect
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [maxSelectedLabels]="1"
+                  [filter]="true"
+                  placeholder="Select Related Policies"
+                  optionLabel="businessServiceName"
+                  [(ngModel)]="policy.relatedPolicies"
+                  name="RelatedPolicies"
+                  #RelatedPolicies="ngModel"
+                ></p-multiSelect>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-cancel"
+            (click)="close(PolicyContentDataForm)"
+          >
+            {{"Cancel" | localize}}
+          </button>
+          <button type="submit" class="btn btn-sm btn-submit">
+            <span>{{"Save" | localize}}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

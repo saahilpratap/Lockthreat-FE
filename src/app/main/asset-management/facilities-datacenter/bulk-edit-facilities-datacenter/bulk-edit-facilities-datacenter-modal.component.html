@@ -1,0 +1,112 @@
+<div appBsModal #bulkEditFacilitiesDatacenterModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditFacilitiesDatacenterModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #bulkEditFacilitiesForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Facilities Datacenter' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="facilitiesDatacenter" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Facility Type" | localize}}</label>
+                                <p-dropdown [showClear]="true" [options]="bulkEditFacilitiesDatacenter" filter="true" [style]="{'width': '100%'}"></p-dropdown>                          
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Facility Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Facility Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Address" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="Address">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"City / District" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="City / District">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"State / Province" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="State / Province">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Postal Code" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="Postal Code">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Country" | localize}}</label>
+                                        <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Service ID">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit - Owner" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Units (Dependent)">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit - Gaurdian" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Services" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Process" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Service Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"IT Services" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>               
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

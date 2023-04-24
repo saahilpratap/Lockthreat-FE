@@ -1,0 +1,198 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Vendor Information" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor ID" | localize}}</label>
+                    <input type="text" disabled class="form-control" [(ngModel)]="vendor.vendorId" name="vendorId" placeholder="System Generated">                  
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor Name" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="vendor.vendorName" placeholder="Vendor Name">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor Type" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="vendorType" [filter]="true" placeholder="Select Vendor Type" optionLabel="value"  [(ngModel)]="selectedVendorType" name="vendortype" (onChange)="vendorTypeChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Contact Name" | localize}}</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="vendor.contactFirstName" name="firstname" placeholder="First Name">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" [(ngModel)]="vendor.contactLastName" name="lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Email" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input class="form-control" type="text" [(ngModel)]="vendor.email" placeholder="Email" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="fa fa-envelope"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Direct Phone" | localize}}</label>
+                    <intl-tel-input [phoneNumber]="vendor.phoneNumber" (getNumber)="getPhone($event)"></intl-tel-input>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Cell Phone" | localize}}</label>
+                    <intl-tel-input [phoneNumber]="vendor.cellPhoneNumber" (getNumber)="getCellPhone($event)"></intl-tel-input>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Fax" | localize}}</label>
+                    <intl-tel-input [phoneNumber]="vendor.faxNumber" (getNumber)="getfaxnumber($event)"></intl-tel-input>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Website" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="vendor.website" name="website" placeholder="https://">
+                </div>
+            </div>
+           
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Registration Date" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input id="startDatePicker"
+                               type="text"
+                               #startDatePicker
+                               name="startDatePicker"
+                               class="form-control"
+                               bsDatepicker
+                               datePickerMomentModifier
+                               [(date)]="vendor.registrationDate"
+                               [bsConfig]="{ adaptivePosition: true }" />                                
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-calendar-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Industry" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="industrys" [filter]="true" placeholder="Select Industry" optionLabel="value" [(ngModel)]="selectedIndustrys" name="Industry" (onChange)="industryChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Description / Notes" | localize}}</label>
+                    <textarea type="text" class="form-control" [(ngModel)]="vendor.description"  placeholder="Description / Notes" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Address" | localize}}</label>
+                    <input type="text" [(ngModel)]="vendor.address"  name="address" class="form-control" placeholder="Address">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"City / District" | localize}}</label>
+                    <input type="text" name="city" [(ngModel)]="vendor.city" class="form-control" placeholder="City / District">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"State / Province" | localize}}</label>
+                    <input type="text" name="state" [(ngModel)]="vendor.state" class="form-control" placeholder="State / Province">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Postal Code" | localize}}</label>
+                    <input type="text" name="code" [(ngModel)]="vendor.postalCode"  class="form-control" placeholder="Postal Code">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Country" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="country" [filter]="true" placeholder="Select Coutry" optionLabel="name" required=true [(ngModel)]="selectedCountry" name="Country" (onChange)="CountryChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Intial Vendor Classification" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor Critical Rating (Initial)" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="vendorCriticalRatings" [filter]="true" placeholder="Select Facility" optionLabel="value"  [(ngModel)]="selectedVendorCriticalRating" name="VendorCritical" (onChange)="vendorCriticalChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor Initial Confidentiality Rating" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="vendorInitialRatings" [filter]="true" placeholder="Select" optionLabel="value"  [(ngModel)]="selectedVendorInitialRating" name="VendorInitial" (onChange)="vendorInitialChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Service Information" | localize}}</h5>
+
+    </div>
+</div>
+<hr/>
+<div class="row">
+
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Services & Solutions" }}</h5>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 co-sm-12">
+            <label>{{"Security Services & Solutions - Service Title" | localize}}</label>
+            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+        </div>
+
+        <div class="col-lg-4 col-md-4 co-sm-12">
+            <div class="form-group">
+                <label>{{"Vendor Products & Services Type" | localize}}</label>
+                <p-multiSelect [style]="{'width': '100%'}" [options]="vendorProductType" [maxSelectedLabels]="1" [filter]="true"placeholder="Select Vendor Products & Services" optionLabel="value" [(ngModel)]="selectedVendorProductType" name="vendorproducttype" ></p-multiSelect>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+

@@ -1,0 +1,749 @@
+<p-tabView>
+  <p-tabPanel header="Step 1">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Information" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident ID" | localize}}</label>
+              <input
+                type="text"
+                disabled
+                class="form-control"
+                [(ngModel)]="incident.incidentId"
+                name="incidentId"
+                placeholder="System Generated"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Technology ID" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.technologyId"
+                name="technologyId"
+                placeholder="Technology ID"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Category" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Category"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentCategory"
+                name="incidentCategory"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Related Risk(s)" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Related Risk"
+                optionLabel="businessServiceName"
+                [(ngModel)]="incident.relatedRisk"
+                name="businessServices"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Types" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Category"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentTypes"
+                name="incidentTypes"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Related Findings" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Related Findings"
+                optionLabel="businessServiceName"
+                [(ngModel)]="incident.relatedFindings"
+                name="relatedFindings"
+              ></p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Title" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.incidentTitle"
+                name="incidentTitle"
+                placeholder="Incident Title"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Description" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.description"
+                placeholder="Description"
+                name="descriptions"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Classification" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Priority" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Priority"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentPriority"
+                name="incidentPriority"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Severity" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Severity"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentSeverity"
+                name="incidentSeverity"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 2">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Reporting Details" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Date-Time (Occured)" | localize}}</label>
+              <div id="dateTime" class="kt-input-icon">
+                <input
+                  id="dateTime"
+                  type="text"
+                  #dateTimePicker
+                  name="dateTimePicker"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="incident.startDate"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Adversary" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Category"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.adversary"
+                name="adversary"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Reported Date & Time" | localize}}</label>
+              <div id="reportedDateTime" class="kt-input-icon">
+                <input
+                  id="reportedDateTime"
+                  type="text"
+                  #reportedDateTimePicker
+                  name="reportedDateTimePicker"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="incident.startDate"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Reporter Name (If outsider)" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.reporterName"
+                name="reporterName"
+                placeholder="Reporter Name"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Employees (Reported By)" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Employees"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.employees"
+                name="employees"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Phone" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.phone"
+                name="phone"
+                placeholder="Phone"
+                [maxLength]="10"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Email" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.email"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Notification(s)" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Notification(s)" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Incident Notification(s)"
+                optionLabel="incidentNotifications"
+                [(ngModel)]="incident.incidentNotification"
+                name="incidentNotifications"
+              ></p-multiSelect>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 3">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Detection Details" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Detection Date & Time" | localize}}</label>
+              <div id="dateTime" class="kt-input-icon">
+                <input
+                  id="dateTime"
+                  type="text"
+                  #detectionDate
+                  name="detectionDate"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="incident.detectionDate"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Notifier Name (If External)" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.notifierName"
+                name="NotifierName"
+                placeholder="Notifier Name"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Detected By" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Detected By"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.detectedBy"
+                name="adversary"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Phone" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.phone"
+                name="phone"
+                placeholder="Phone"
+                [maxLength]="10"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Email" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.email"
+                name="email"
+                placeholder="Email"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"More Details" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Voilation Details" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.voilationDetails"
+                placeholder="Voilation Details"
+                name="voilationDetails"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Vulnerability ID" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Vulnerability ID"
+                optionLabel="vulnerabilityID"
+                [(ngModel)]="incident.vulnerabilityID"
+                name="vulnerabilityIDs"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Related Vendors" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Related Vendors"
+                optionLabel="relatedVendors"
+                [(ngModel)]="incident.relatedVendors"
+                name="relatedVendors"
+              ></p-multiSelect>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label
+                >Attachments &nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Please attach any evidence or reports related to incident"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                multiple="multiple"
+                (onUpload)="uploadAttachment($event)"
+                accept=".docx, .doc, .txt, .pdf, .jpg, .jpeg, .bmp, .gif, .png"
+                maxFileSize="1000000"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="incidentDocuments.length !== 0">
+                    <li *ngFor="let item of incidentDocuments; let i=index">
+                      {{item.name}} - {{item.size}} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 4">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Analysis & Remediation" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Detected by (Internal Controls)" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Detected"
+                optionLabel="Detected"
+                [(ngModel)]="incident.detected"
+                name="Detected"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Repeat Incident" | localize}}</label> <br />
+              <div class="p-field-checkbox">
+                <p-checkbox
+                  name="repeatIncidentCheck"
+                  value="true"
+                  label="Yes"
+                  [(ngModel)]="incident.repeatIncident"
+                ></p-checkbox>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Criticality" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Criticality"
+                optionLabel="Criticality"
+                [(ngModel)]="incident.criticality"
+                name="criticality"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Impact/Effect" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Impact"
+                optionLabel="Impact"
+                [(ngModel)]="incident.impact"
+                name="Impact"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Identification (Root Cause)" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.identification"
+                placeholder="Identification (Root Cause)"
+                name="Identification"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Correction" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.correction"
+                placeholder="Correction"
+                name="correction"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Eradication" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.eradication"
+                placeholder="Eradication"
+                name="Eradication"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Prevention/Recovery Measures" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.prevention"
+                placeholder="Prevention"
+                name="Prevention"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Incident Impact" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Impact" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Incident Impact"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentImpact"
+                name="IncidentImpact"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Reviewed By" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Team Info" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                [maxSelectedLabels]="1"
+                placeholder="Select Team Info"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.teamInfo"
+                name="TeamInfo"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Reviewer(s)" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                [maxSelectedLabels]="1"
+                placeholder="Select Reviewer"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.reviewer"
+                name="Reviewer"
+              ></p-multiSelect>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 5">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Follow Up & Closure" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Follow Up Action" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="incident.followUpAction"
+                placeholder="Follow Up Action"
+                name="FollowUpAction"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Closed By" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Incident"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentClosedBy"
+                name="IncidentClosedBy"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Follow Up Completed By" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Follow Up"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.followUpCompletedBy"
+                name="FollowUpCompletedBy"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Incident Status" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Incident Status"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="incident.incidentStatus"
+                name="IncidentStatus"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

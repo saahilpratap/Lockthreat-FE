@@ -1,0 +1,135 @@
+<div appBsModal #bulkEditItServicesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditItServicesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit IT Services' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditItServices" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"IT Service Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="IT Service Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Service Type" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Service Classification" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Address" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"City / District" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="City / District">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"State / Province" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="State / Province">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Postal Code" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Postal Code">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Country" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"IT Service Owner" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit (Owner)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"IT Service Manager" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Units (Dependent)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Services (Dependent)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Government / Regulatory Mandate" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Integrity" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Others" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

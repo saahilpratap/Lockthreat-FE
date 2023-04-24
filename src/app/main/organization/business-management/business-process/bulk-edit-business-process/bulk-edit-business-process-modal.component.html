@@ -1,0 +1,206 @@
+<div appBsModal #bulkEditBusinessProcessModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditBusinessProcessModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Business Process' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditBusinessProcess" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Process ID" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Process ID">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Process Type" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Process / Activity Cycle" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Process Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Process Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Status" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"SLA Applicable" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Description" | localize}}</label>
+                                <textarea type="text" class="form-control" placeholder="Description..." style="height:100px !important"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 co-sm-12">
+                            <div class="form-group">
+                                <label>{{"Address" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Address">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 co-sm-12">
+                            <div class="form-group">
+                                <label>{{"City / District" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="City / District">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 co-sm-12">
+                            <div class="form-group">
+                                <label>{{"State / Province" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="State / Province">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 co-sm-12">
+                            <div class="form-group">
+                                <label>{{"Postal Code" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Postal Code">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 co-sm-12">
+                            <div class="form-group">
+                                <label>{{"Country" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Process Manager" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit Owner" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Government / Regulatory Mandater" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"BU Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="BU Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Authoratative Source(s)" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Authoratative Source(s)">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Process Owner" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit(s) Dependent" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Unit(s) Dependent">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Related Business Service(s)" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Related Business Service(s)e">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Process Priority (Critcality)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Others" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Review Period (BIA)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Intergrity" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Availibility" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"File upload" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

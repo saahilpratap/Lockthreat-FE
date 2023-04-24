@@ -1,0 +1,937 @@
+<common-header
+  [title]="title"
+  [subTitle]="subTitle"
+  [pageTitle]="pageTitle"
+  [pageMenuOrg]="true"
+></common-header>
+<div
+  class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor"
+  id="kt_content"
+>
+  <div
+    class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid"
+  >
+    <div class="kt-portlet">
+      <div class="kt-portlet__body kt-portlet__body--fit">
+        <form #organizationEntityForm="ngForm" novalidate (ngSubmit)="save()">
+          <div class="kt-portlet__head kt-portlet__head--lg">
+            <div class="kt-portlet__head-label">
+              <span class="kt-portlet__head-icon"></span>
+              <h3 *ngIf="!recordId" class="kt-portlet__head-title">
+                {{'Add Organization Entities' | localize}}
+              </h3>
+              <h3 *ngIf="recordId" class="kt-portlet__head-title">
+                {{'Edit Organization Entities' | localize}}
+              </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+              <div class="kt-portlet__head-wrapper">
+                <div class="kt-portlet__head-actions">
+                  <div class="dropdown dropdown-inline">
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      style="background-color white;border none;color gray;"
+                      (click)="backToOrgSetup()"
+                    >
+                      <i class="fa fa-arrow-left"></i>
+                      {{'Back' | localize}}
+                    </button>
+                  </div>
+                  &nbsp;
+                  <button
+                    *ngIf="!isEdit"
+                    type="submit"
+                    [disabled]="!organizationEntityForm.form.valid"
+                    class="btn btn-primary btn-sm appThemeBgColor"
+                    style="border none;"
+                  >
+                    <i class="fa fa-check"></i>
+                    {{'Save' | localize}}
+                  </button>
+                  <button
+                    *ngIf="isEdit"
+                    type="submit"
+                    [disabled]="!organizationEntityForm.form.valid"
+                    class="btn btn-primary btn-sm appThemeBgColor"
+                    style="border none;"
+                  >
+                    <i class="fa fa-check"></i>
+                    {{'Update' | localize}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="kt-section kt-section--first kt-padding-t-10 kt-padding-l-35 kt-padding-r-35"
+          >
+            <div class="kt-section__body">
+              <h5 class="kt-section__title kt-section__title-sm">
+                {{"Organization Information" | localize}}
+              </h5>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'CompanyId' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      disabled
+                      name="CompanyId"
+                      placeholder="System Generated"
+                      [(ngModel)]="organizationItem.companyId"
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'IndustrySector'| localize}}* </label>
+                    <ng-select
+                      [items]="industrySectors"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      bindLabel="name"
+                      bindValue="id"
+                      name="industrySector"
+                      [(ngModel)]="organizationItem.industrySectorId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label
+                      >{{'OrgLevel' | localize}} / {{'Type' | localize}} *
+                    </label>
+                    <ng-select
+                      [items]="organizationLevels"
+                      [searchable]="false"
+                      placeholder="Not Selected"
+                      bindLabel="name"
+                      bindValue="id"
+                      name="orgLevel"
+                      [(ngModel)]="organizationItem.leveltype"
+                      (change)="onOrgLevelChange($event)"
+                      [virtualScroll]="true"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'CompanyName' | localize}} *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #companyNameInput="ngModel"
+                      required
+                      name="companyName"
+                      [(ngModel)]="organizationItem.companyName"
+                    />
+                    <validation-messages
+                      [formCtrl]="companyNameInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'ParentOrg' | localize}}</label>
+                    <ng-select
+                      [items]="parentOrganizationList"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      bindLabel="displayName"
+                      bindValue="id"
+                      name="parentOrganization"
+                      [disabled]="organizationItem.leveltype==1"
+                      [(ngModel)]="organizationItem.parentOrganizationId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'AuditableEntity' | localize}} *</label>
+                    <div class="kt-radio-inline">
+                      <label class="kt-radio">
+                        <input
+                          type="radio"
+                          name="radio2"
+                          [value]="true"
+                          [checked]="true"
+                          [(ngModel)]="organizationItem.isAuditableEntity"
+                        />
+                        Yes
+                        <span></span>
+                      </label>
+                      <label class="kt-radio">
+                        <input
+                          type="radio"
+                          name="radio2"
+                          [value]="false"
+                          [(ngModel)]="organizationItem.isAuditableEntity"
+                        />
+                        No
+                        <span></span>
+                      </label>
+                    </div>
+                    <span class="form-text text-muted">
+                      Auditable entities become part of audit universe for
+                      individual entity audits and reviews.
+                    </span>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'Description' | localize}}</label>
+                    <textarea
+                      class="form-control"
+                      rows="3"
+                      name="desc"
+                      [(ngModel)]="organizationItem.description"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="kt-section kt-section--first kt-padding-l-35 kt-padding-r-35"
+          >
+            <div class="kt-section__body">
+              <h5 class="kt-section__title kt-section__title-sm">
+                {{"Organization Details" | localize}}
+              </h5>
+              <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label
+                      >{{'RegisteredLegalEntityCountry' | localize}} *</label
+                    >
+                    <ng-select
+                      [items]="country"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      bindLabel="name"
+                      bindValue="id"
+                      name="country"
+                      [(ngModel)]="organizationItem.countryId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'EmployeeSize' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #employeeSizeInput="ngModel"
+                      required
+                      name="empSize"
+                      [(ngModel)]="organizationItem.employeeSize"
+                    />
+                    <validation-messages
+                      [formCtrl]="employeeSizeInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'Website' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="website"
+                      placeholder="https//"
+                      #websiteNameInput="ngModel"
+                      required
+                      [(ngModel)]="organizationItem.companyWebsite"
+                    />
+                    <validation-messages
+                      [formCtrl]="websiteNameInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'AddressLine' | localize}} 1</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #addressline1Input="ngModel"
+                      required
+                      name="addressLine1"
+                      [(ngModel)]="organizationItem.addressLine1"
+                    />
+                    <validation-messages
+                      [formCtrl]="addressline1Input"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'AddressLine' | localize}} 2</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #addressline2Input="ngModel"
+                      required
+                      name="addressLine2"
+                      [(ngModel)]="organizationItem.addressLine2"
+                    />
+                    <validation-messages
+                      [formCtrl]="addressline2Input"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                  <div class="form-group">
+                    <label
+                      >{{'City' | localize}} / {{'District' | localize}}</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      #cityNameInput="ngModel"
+                      required
+                      name="city"
+                      [(ngModel)]="organizationItem.city"
+                    />
+                    <validation-messages
+                      [formCtrl]="cityNameInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                  <div class="form-group">
+                    <label
+                      >{{'State' | localize}} / {{'Province' | localize}}</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      #stateNameInput="ngModel"
+                      required
+                      name="state"
+                      [(ngModel)]="organizationItem.state"
+                    />
+                    <validation-messages
+                      [formCtrl]="stateNameInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'PostalCode' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #postalCodeInput="ngModel"
+                      required
+                      name="postalCode"
+                      [(ngModel)]="organizationItem.postalCode"
+                    />
+                    <validation-messages
+                      [formCtrl]="postalCodeInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'Country' | localize}}</label>
+                    <ng-select
+                      [items]="addressCountry"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      bindLabel="name"
+                      bindValue="id"
+                      name="countrys"
+                      [(ngModel)]="organizationItem.addressCountryId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="kt-section kt-section--first kt-padding-l-35 kt-padding-r-35"
+            *ngIf="isEdit"
+          >
+            <div class="kt-section__body">
+              <h5 class="kt-section__title kt-section__title-sm">
+                {{"Primary Contact" | localize}}
+              </h5>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'PrimaryContactName' | localize}}</label>
+                    <ng-select
+                      [items]="employee"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      (change)="PrimaryContactNameChange($event)"
+                      bindLabel="employeeName"
+                      bindValue="id"
+                      name="primaryContact"
+                      [(ngModel)]="organizationItem.primaryContactId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'CompanyAdmin' | localize}}</label>
+                    <ng-select
+                      [items]="employee"
+                      [searchable]="true"
+                      placeholder="Not Selected"
+                      (change)="CompanyAdminChange($event)"
+                      bindLabel="employeeName"
+                      bindValue="id"
+                      name="comapnyAdmin"
+                      [(ngModel)]="organizationItem.companyAdministratorId"
+                    >
+                    </ng-select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="kt-section kt-section--first kt-padding-l-35 kt-padding-r-35"
+          >
+            <div class="kt-section__body">
+              <h5 class="kt-section__title kt-section__title-sm">
+                {{"ExternalNotificationContacts" | localize}}
+              </h5>
+              <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12">
+                  <div class="form-group">
+                    <label>{{'ContactName' | localize}}</label>
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="First Name"
+                          #firstNameInput="ngModel"
+                          required
+                          name="firstname"
+                          [(ngModel)]="organizationItem.contactFirstName"
+                        />
+                        <validation-messages
+                          [formCtrl]="firstNameInput"
+                        ></validation-messages>
+                      </div>
+                      <div class="col-lg-6 col-md-6 col-sm-12">
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Last Name"
+                          #lastNameInput="ngModel"
+                          required
+                          name="lastname"
+                          [(ngModel)]="organizationItem.contactLastName"
+                        />
+                        <validation-messages
+                          [formCtrl]="lastNameInput"
+                        ></validation-messages>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'Phone' | localize}}</label>
+                    <intl-tel-input
+                      [phoneNumber]="organizationItem.phone"
+                      (messageToEmit)="getMessage($event)"
+                    ></intl-tel-input>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'JobTitle' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #jobTitleInput="ngModel"
+                      required
+                      name="jobTitle"
+                      [(ngModel)]="organizationItem.jobTitle"
+                    />
+                    <validation-messages
+                      [formCtrl]="jobTitleInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'Email' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #emailInput="ngModel"
+                      required
+                      name="email"
+                      [(ngModel)]="organizationItem.email"
+                    />
+                    <validation-messages
+                      [formCtrl]="emailInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                    <label>{{'Fax' | localize}}</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      #faxInput="ngModel"
+                      required
+                      name="fax"
+                      [(ngModel)]="organizationItem.fax"
+                    />
+                    <validation-messages
+                      [formCtrl]="faxInput"
+                    ></validation-messages>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!--<grid-view-company-employees [editOrgID]="recordId" [showPopup]="true"></grid-view-company-employees>-->
+
+        <!-- <div class="row" *ngIf="recordId">
+                    <div class="col-12">
+                        <div class="kt-section kt-section--first kt-padding-l-35 kt-padding-r-35">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-padding-b-10">{{"Related Information" | localize}}</h5>
+                                <p-accordion>
+                                    <p-accordionTab>
+                                        <p-header (click)="companyObjectives=!companyObjectives">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Company Objectives" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-company-objectives  [editOrgID]="recordId" [showPopup]="true"></grid-view-company-objectives>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="businessUnits=!businessUnits">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Business Units" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-business-units-view *ngIf="businessUnits" [editOrgID]="recordId" [showPopup]="true"></grid-view-business-units-view>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="businessServices=!businessServices">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Business Services" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-business-services *ngIf="businessServices" [editOrgID]="recordId" [showPopup]="true"></grid-view-business-services>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="iTServices=!iTServices">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"IT Services" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-it-services *ngIf="iTServices" [editOrgID]="recordId" [showPopup]="true"></grid-view-it-services>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="associatedPrograms=!associatedPrograms">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Associated Programs" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-associated-pograms *ngIf="associatedPrograms" [editOrgID]="recordId" [showPopup]="true"></grid-view-associated-pograms>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="associatedProjects=!associatedProjects">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Associated Projects" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-associated-projects *ngIf="associatedProjects" [editOrgID]="recordId" [showPopup]="true"></grid-view-associated-projects>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="companyEmployees=!companyEmployees">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Company Employees" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="companyContacts=!companyContacts">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Company Contacts" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-company-contacts *ngIf="companyContacts" [editOrgID]="recordId" [showPopup]="true"></grid-view-company-contacts>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="facilitiesDatacenters=!facilitiesDatacenters">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Facilities and Datacenters" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-facilities-datacenters *ngIf="facilitiesDatacenters" [editOrgID]="recordId" [showPopup]="true"></grid-view-facilities-datacenters>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="systemsApplications=!systemsApplications">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Systems and Applications" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-information-assets *ngIf="systemsApplications" [editOrgID]="recordId" [showPopup]="true"></grid-view-information-assets>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="companyObjectives=!companyObjectives">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Information Assets" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-information-assets *ngIf="companyObjectives" [editOrgID]="recordId" [showPopup]="true"></grid-view-information-assets>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="businessProcess=!businessProcess">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Business Process" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-business-process *ngIf="businessProcess" [editOrgID]="recordId" [showPopup]="true"></grid-view-business-process>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="businessRisks=!businessRisks">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Business Risks" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-business-risks *ngIf="businessRisks" [editOrgID]="recordId" [showPopup]="true"></grid-view-business-risks>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="relatedAuthoratativeSources=!relatedAuthoratativeSources">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Related Authoratative Sources" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-related-authoratative-sources *ngIf="relatedAuthoratativeSources" [editOrgID]="recordId" [showPopup]="true"></grid-view-related-authoratative-sources>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="relatedContracts=!relatedContracts">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Related Contracts" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-related-contracts *ngIf="relatedContracts" [editOrgID]="recordId" [showPopup]="true"></grid-view-related-contracts>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="reviews=!reviews">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Reviews" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <div *ngIf="reviews">
+                                            Reviews
+                                        </div>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="reviewData=!reviewData">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Review Data" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-review-data *ngIf="reviewData" [editOrgID]="recordId" [showPopup]="true"></grid-view-review-data>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="keyPerformanceIndicators=!keyPerformanceIndicators">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"KPI" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-key-performance-indicators *ngIf="keyPerformanceIndicators" [editOrgID]="recordId" [showPopup]="true"></grid-view-key-performance-indicators>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="keyRiskIndicators=!keyRiskIndicators">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"KRI" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-key-risk-indicators *ngIf="keyRiskIndicators" [editOrgID]="recordId" [showPopup]="true"></grid-view-key-risk-indicators>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="companyObjectives=!companyObjectives">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Related Findings" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-related-findings *ngIf="companyObjectives" [profilePic]="false" [editOrgID]="recordId" [showPopup]="true"></grid-view-related-findings>
+                                    </p-accordionTab>
+                                    <p-accordionTab>
+                                        <p-header (click)="relatedIncidents=!relatedIncidents">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    {{"Related Incidents" | localize}}
+                                                </div>
+                                                <div class="col-5">
+                                                    <span class="kt-padding-r-10">{{"Company Name" | localize}} </span>
+                                                    <span>{{organizationItem.companyName}}</span>
+                                                </div>
+                                            </div>
+                                        </p-header>
+                                        <grid-view-related-incidents *ngIf="relatedIncidents" [editOrgID]="recordId" [showPopup]="true"></grid-view-related-incidents>
+                                    </p-accordionTab>
+                                </p-accordion>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+        <div
+          class="kt-section kt-section--first kt-padding-t-10 kt-padding-l-35 kt-padding-r-35 related-information"
+        >
+          <div class="kt-section__body">
+            <div class="row">
+              <div class="col-lg-3 col-md-3 col-sm-12">
+                <h5 class="kt-section__title kt-padding-b-10 pull-left">
+                  {{"Related Information" | localize}}
+                </h5>
+              </div>
+              <div class="col-lg-9 col-md-9 col-sm-12">
+                <button
+                  class="btn btn-sm pull-right ml-1"
+                  style="border: none;"
+                  [class.btn-primary]="selectedRelatedInfo === 'Compliance Management'"
+                  [class.appThemeBgColor]="selectedRelatedInfo === 'Compliance Management'"
+                  (click)="selectedRelatedInfo = 'Compliance Management'"
+                >
+                  {{"Compliance Management" | localize}}
+                </button>
+                <button
+                  class="btn btn-sm pull-right"
+                  style="border: none;"
+                  [class.btn-primary]="selectedRelatedInfo === 'Risk Management'"
+                  [class.appThemeBgColor]="selectedRelatedInfo === 'Risk Management'"
+                  (click)="selectedRelatedInfo = 'Risk Management'"
+                >
+                  {{"Risk Management" | localize}}
+                </button>
+                <button
+                  class="btn btn-sm pull-right"
+                  style="border: none;"
+                  [class.btn-primary]="selectedRelatedInfo === 'IRM Operations'"
+                  [class.appThemeBgColor]="selectedRelatedInfo === 'IRM Operations'"
+                  (click)="selectedRelatedInfo = 'IRM Operations'"
+                >
+                  {{"IRM Operations" | localize}}
+                </button>
+                <button
+                  class="btn btn-sm pull-right"
+                  [class.btn-primary]="selectedRelatedInfo === 'Audit Management'"
+                  [class.appThemeBgColor]="selectedRelatedInfo === 'Audit Management'"
+                  style="border: none;"
+                  (click)="selectedRelatedInfo = 'Audit Management'"
+                >
+                  {{"Audit Management" | localize}}
+                </button>
+                <button
+                  class="btn btn-sm pull-right"
+                  [class.btn-primary]="selectedRelatedInfo === 'Business Management'"
+                  [class.appThemeBgColor]="selectedRelatedInfo === 'Business Management'"
+                  style="border: none;"
+                  (click)="selectedRelatedInfo = 'Business Management'"
+                >
+                  {{"Business Management" | localize}}
+                </button>
+              </div>
+            </div>
+            <hr />
+            <div class="row related-info-view">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <p-tabView
+                  [activeIndex]="index"
+                  class="justify-content-center"
+                  *ngIf="selectedRelatedInfo === 'Business Management'"
+                >
+                  <p-tabPanel header="Business Unit"
+                    ><app-business-unit></app-business-unit
+                  ></p-tabPanel>
+                  <p-tabPanel header="Business Service">
+                    <business-services></business-services>
+                  </p-tabPanel>
+                  <p-tabPanel header="IT Service">
+                    <it-services></it-services>
+                  </p-tabPanel>
+                  <p-tabPanel header="Programs & Projects">
+                    <grid-view-associated-pograms
+                      [editOrgID]="recordId"
+                      [showPopup]="true"
+                    ></grid-view-associated-pograms>
+                  </p-tabPanel>
+                  <p-tabPanel header="Employees">
+                    <app-employees></app-employees>
+                  </p-tabPanel>
+                </p-tabView>
+                <p-tabView
+                  [activeIndex]="index"
+                  class="justify-content-center"
+                  *ngIf="selectedRelatedInfo === 'Audit Management'"
+                >
+                  <p-tabPanel header="Audit Management"
+                    ><active-audits></active-audits
+                  ></p-tabPanel>
+                </p-tabView>
+                <p-tabView
+                  [activeIndex]="index"
+                  class="justify-content-center"
+                  *ngIf="selectedRelatedInfo === 'Risk Management'"
+                >
+                  <p-tabPanel header="Risk Management"
+                    ><risk-management></risk-management
+                  ></p-tabPanel>
+                  <p-tabPanel header="Risk Treatment Plans"
+                    ><risk-treatment-plans></risk-treatment-plans
+                  ></p-tabPanel>
+                </p-tabView>
+                <p-tabView
+                  [activeIndex]="index"
+                  class="justify-content-center"
+                  *ngIf="selectedRelatedInfo === 'Compliance Management'"
+                >
+                  <p-tabPanel header="Citations Reports"
+                    ><citations-reports></citations-reports
+                  ></p-tabPanel>
+                </p-tabView>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

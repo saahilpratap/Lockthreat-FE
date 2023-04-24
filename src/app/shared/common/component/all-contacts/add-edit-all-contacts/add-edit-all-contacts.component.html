@@ -1,0 +1,136 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Contact Info" | localize}}</h5>
+        <hr />
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Contact ID" | localize}}</label>
+                    <input type="text" disabled class="form-control" [(ngModel)]="contact.contactId" name="vendorId" placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Type" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="contactType" [filter]="true" placeholder="Select Type" optionLabel="value" [(ngModel)]="selectedContactType" name="contacttype" (onChange)="contactTypeChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Name" | localize}}</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <input type="text" name="firstName" class="form-control" [(ngModel)]="contact.firstName" placeholder="First Name">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" name="lastName" class="form-control" [(ngModel)]="contact.lastName" placeholder="Last Name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Job Title" | localize}}</label>
+                    <input type="text"  class="form-control" [(ngModel)]="contact.jobTitle" name="vendorId" placeholder="Job Title">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Direct" | localize}}</label>
+                    <intl-tel-input [phoneNumber]="contact.phoneNumber" (getNumber)="getPhone($event)"></intl-tel-input>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Phone" | localize}}</label>
+                    <intl-tel-input [phoneNumber]="contact.mobileNo" (getNumber)="getMobile($event)"></intl-tel-input>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Email" | localize}}</label>
+                    <input type="email" class="form-control" [(ngModel)]="contact.email" placeholder="Email">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Login User" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="user" [filter]="true" placeholder="Select Type" optionLabel="employeeName" [(ngModel)]="selectedUser" name="user" (onChange)="userChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Contact Owner" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="organization" [filter]="true" placeholder="Select Contact Owner " optionLabel="companyName" [(ngModel)]="selectedOrganization" name="contactowner" (onChange)="contactOwnerChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendors" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="vendor" [filter]="true" placeholder="Select Vendor " optionLabel="vendorName" [(ngModel)]="selectedVendor" name="vendor" (onChange)="vendorChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+        <hr />
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Address" | localize}}</label>
+                    <input type="text" name="address" [(ngModel)]="contact.addressOne" class="form-control" placeholder="Address">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+
+                    <label>{{"City / District" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="contact.city" name="city" placeholder="City / District">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"State / Province" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="contact.state" name="state" placeholder="State / Province">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Postal Code" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="contact.postalCode" name="postal" placeholder="Postal Code">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Country" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="country" [filter]="true" placeholder="Select Coutry" optionLabel="name" required=true [(ngModel)]="selectedCountry" name="Country" (onChange)="countryChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Profile" | localize}}</h5>
+        <hr />
+        <div class="col-lg-4 col-md-4 co-sm-12">
+            <div class="form-group">
+                <label>{{"Contact Profile" | localize}}</label>
+                <div class="col-2">
+                    <div class="form-group">
+                        <div class="form-group m-form__group" (click)="fileimageUpload()">
+                            <div class="input-group m-input-group imgBorder">
+                                <img [src]="contactlogo" id="contactlogo" class="ImageOnDialog imgUpload" height="100" width="150" onError="this.src='../../../../../assets/common/images/upload.svg';" alt="..." />
+                                <input hidden type="file" id="fileimageUpload" name="fileimageUpload" accept="{{accept}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

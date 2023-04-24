@@ -1,0 +1,104 @@
+<div appBsModal #bulkEditKeyRiskIndicatorsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditKeyRiskIndicatorsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Key Risk Indicators' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditKeyRiskIndicators" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">          
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Units (Dependent)" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Units (Dependent)">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Service Owner" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Service Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Business Service Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Service Manager" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Service Type" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Related IT Service(s)" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Related IT Service(s)">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit (Primary)" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Intergrity" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Availibility" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Others" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

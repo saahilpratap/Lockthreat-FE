@@ -1,0 +1,107 @@
+<div class="kt-portlet__body kt-portlet__body--fit kt-padding-20">
+    <form #businessUnitForm="ngForm" novalidate (ngSubmit)="saveBbusinessUnit()">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Business Unit Info" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'BUId' | localize}}</label>
+                            <input type="text" class="form-control" #nameInput="ngModel" required disabled placeholder="System Generated" name="BusinessUnitId" [(ngModel)]="businessItem.businessUnitId" />
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'UnitType' | localize}}*</label>
+                            <ng-select [items]="UnitTypeList"
+                                       [searchable]="true"
+                                       placeholder="Not Selected"
+                                       bindLabel="name"
+                                       bindValue="id"
+                                       name="UnitType"
+                                       (change)="onChange($event,'UnitType')"
+                                       [(ngModel)]="businessItem.unitTypeId">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'ParentOrganization' | localize}} * </label>
+                            <ng-select [items]="parentOrganizationLists"
+                                       [searchable]="true"
+                                       placeholder="Not Selected"
+                                       bindLabel="companyName"
+                                       bindValue="organizationUnitId"
+                                       name="orgLevel"
+                                       [(ngModel)]="tempOrganizationId"
+                                       (change)="onChange($event,'ParentOrg')"
+                                       [virtualScroll]="true">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12" *ngIf="isEdit">
+                        <div class="form-group">
+                            <label>{{'EntityHead' | localize}} *</label>
+                            <ng-select [items]="employee"
+                                       [searchable]="true"
+                                       placeholder="Not Selected"
+                                       bindLabel="employeeName"
+                                       bindValue="id"
+                                       (change)="onempChange($event)"
+                                       [(ngModel)]="businessItem.empId"
+                                       name="emp">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'ParentCompanyName' | localize}}</label>
+                            <input type="text" class="form-control" #companyNameInput="ngModel" required disabled name="companyName" [(ngModel)]="parentOrganizationName" />
+                            <validation-messages [formCtrl]="companyNameInput"></validation-messages>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'AuditableEntity' | localize}}</label>
+                            <div class="kt-radio-inline">
+                                <label class="kt-radio">
+                                    <input type="radio" name="radio2" [value]="true" [checked]="true" [(ngModel)]="businessItem.isAuditableEntity"> Yes
+                                    <span></span>
+                                </label>
+                                <label class="kt-radio">
+                                    <input type="radio" name="radio2" [value]="false" [(ngModel)]="businessItem.isAuditableEntity"> No
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="form-text text-muted">
+                                Auditable entities become part of audit universe for individual entity audits
+                                and reviews.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label>{{'BusinessUnitTitle' | localize}}*</label>
+                            <input type="text" class="form-control" #businessUnitNameInput="ngModel" required name="businessUnitName" [(ngModel)]="businessItem.businessUnitTitle" />
+                            <validation-messages [formCtrl]="businessUnitNameInput"></validation-messages>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 clo-md-4 col-sm-12">
+                        <div class="form-group" *ngIf="businessItem.unitTypeId!= unitId">
+                            <label>{{'ParentUnit'| localize}} </label>
+                            <ng-select [items]="parentUnit"
+                                       [searchable]="true"
+                                       placeholder="Not Selected"
+                                       bindLabel="businessUnitTitle"
+                                       bindValue="id"
+                                       name="oraganizationUnitName"
+                                       (change)="onparantChange($event)"
+                                       [(ngModel)]="businessItem.parentUnit">
+                            </ng-select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

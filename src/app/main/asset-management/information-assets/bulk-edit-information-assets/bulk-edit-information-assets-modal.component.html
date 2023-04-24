@@ -1,0 +1,136 @@
+<div appBsModal #bulkEditInformationAssetsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditInformationAssetsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Information Assets' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect (onChange)="setEventTypeLabel($event)" [maxSelectedLabels]="1" [options]="bulkEditInformationAssets" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset Title" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Asset Title">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset Type" | localize}}</label>
+                                <p-dropdown placeholder="Asset Type" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset Category" | localize}}</label>
+                                <p-dropdown placeholder="Asset Category" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset Label" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Asset Label">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset_ID_LV" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Address Line 1" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="Address Line 1">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Address Line 2" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="Address Line 2">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"City / District" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="City / District">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"State / Province" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="State / Province">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Postal Code" | localize}}</label>
+                                        <input type="text" class="form-control" placeholder="Postal Code">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>{{"Country" | localize}}</label>
+                                        <p-dropdown placeholder="" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Organization Owner" | localize}}</label>
+                                <p-dropdown placeholder="Organization Owner" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Asset Owner" | localize}}</label>
+                                <p-dropdown placeholder="Asset Owner" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown placeholder="Confidentiality" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Integrity" | localize}}</label>
+                                <p-dropdown placeholder="Integrity" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Availibility" | localize}}</label>
+                                <p-dropdown placeholder="Availibility" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Other" | localize}}</label>
+                                <p-dropdown placeholder="Other" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,229 @@
+<div>
+    <form #addEditBusinessProcessForm="ngForm" novalidate (ngSubmit)="saveBusinessProcess()">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Process Information" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Process ID" | localize}}</label>
+                            <input type="text" disabled class="form-control" [(ngModel)]="businessProcess.businessProcessId" name="businessid" placeholder="System Generated">                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Process Type" | localize}}</label>
+                            <p-dropdown  filter="true" [options]="ProcessType" placeholder="Select Process Type " optionLabel="value" [(ngModel)]="selectedProcessType" name="Process" (onChange)="processTypeChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Process / Activity Cycle" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [options]="activity" placeholder="Select Activity" optionLabel="value" [(ngModel)]="selectedActivity" name="activitys" (onChange)="activityChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Process Name" | localize}}</label>
+                            <input type="text"  name="processname" class="form-control" [(ngModel)]="businessProcess.businessProcessName" placeholder="Business Process Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Status" | localize}}</label>
+                            <p-dropdown  filter="true" [options]="status" placeholder="Select Status" optionLabel="value" [(ngModel)]="selectedStatus" name="status" (onChange)="statusChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"SLA Applicable" | localize}}</label>
+                            <p-dropdown filter="true" [options]="SLA" placeholder="Select " optionLabel="value" [(ngModel)]="selectedSLA"  name="SLA" (onChange)="selectslaChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Description" | localize}}</label>
+                            <textarea type="text" class="form-control" name="description"  [(ngModel)]="businessProcess.description" placeholder="Description" style="height:100px !important"></textarea>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Address" | localize}}</label>
+                            <input type="text" name="address"  [(ngModel)]="businessProcess.address" class="form-control" placeholder="Address">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"City / District" | localize}}</label>
+                            <input type="text" name="city" [(ngModel)]="businessProcess.city" class="form-control" placeholder="City / District">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"State / Province" | localize}}</label>
+                            <input type="text" name="state" class="form-control" [(ngModel)]="businessProcess.state"  placeholder="State / Province">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Postal Code" | localize}}</label>
+                            <input type="text" name="code" [(ngModel)]="businessProcess.postalCode"  class="form-control" placeholder="Postal Code">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Country" | localize}}</label>
+                            <p-dropdown  filter="true"    [options]="Country" placeholder="Select Country " optionLabel="name" [(ngModel)]="selectedCountry" name="country" (onChange)="countryChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Process Management" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Company Name" | localize}}</label>
+                            <p-dropdown  filter="true" [options]="organization" placeholder="Select Company" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="Companys" (onChange)="organizationChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Process Manager" | localize}}</label>
+                            <p-dropdown  filter="true" [options]="processManager" placeholder="Select Process Manager" optionLabel="employeeName" [(ngModel)]="selectedProcessManager" name="Manager" (onChange)="managerChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Unit Owner" | localize}}</label>
+                            <p-dropdown filter="true" [options]="businessUnit" placeholder="Select  Unit" optionLabel="businessUnitTitle" [(ngModel)]="SelectedBusinessUnit" name="businessunit" (onChange)="businessUnitChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Government / Regulatory Mandate" | localize}}</label>
+                            <p-dropdown filter="true" [options]="regulatory" placeholder="Select Regulatory" optionLabel="value" [(ngModel)]="selectedGetRegulatory" name="regulatory" (onChange)="regulatoryChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"BU Name" | localize}}</label>
+                            <input type="text" class="form-control" disabled [(ngModel)]="businessUnitName"   name="buname"    placeholder="BU Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Authoratative Source(s)" | localize}}</label>
+                            <p-multiSelect [options]="authoratativeSource" name="doc" [maxSelectedLabels]="1" placeholder="Select Authoritative Documents " optionLabel="authoratativeDocumentTitle" [(ngModel)]="selectedAuthoratativeSource" (onChange)="authoratativeDocumentChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Process Owner" | localize}}</label>
+                            <p-dropdown filter="true" [options]="processOwner" placeholder="Select Owner" optionLabel="employeeName" [(ngModel)]="selectedProcessOwner" name="ProcessOwner" (onChange)="processOwnerChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Unit(s) Dependent" | localize}}</label>
+                            <p-multiSelect  name="BusinessUnitDependent" [maxSelectedLabels]="1" [options]="businessUnitDependent" placeholder="Select Business Unit" optionLabel="businessUnitTitle" [(ngModel)]="selectedbusinessUnitDependent" (onChange)="businessUnitDependentChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Related Business Service(s)" | localize}}</label>
+                            <p-multiSelect  name="Service" [options]="businessService" [maxSelectedLabels]="1" placeholder="Select Business Service " optionLabel="businessServiceName" [(ngModel)]="selectedBusinessService" (onChange)="businessServiceDependentChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{" Process Assessment (Original)" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Process Priority (Critcality)" | localize}}</label>
+                            <p-dropdown filter="true" [options]="Priority" placeholder="Select Owner" optionLabel="value" [(ngModel)]="selectedPriority" name="Priority" (onChange)="priorityChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Others" | localize}}</label>
+                            <p-dropdown filter="true" [options]="Others" placeholder="Select Other" optionLabel="value" [(ngModel)]="selectedOthers" name="other" (onChange)="otherChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Confidentiality" | localize}}</label>
+                            <p-dropdown filter="true" [options]="Confidentiality" placeholder="Select Confidentiality" optionLabel="value" [(ngModel)]="selectedConfidentiality" name="confi" (onChange)="confidentialityChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Review Period (BIA)" | localize}}</label>
+                            <p-dropdown filter="true" [options]="reviewPeriod" placeholder="Select Review Period" optionLabel="value" [(ngModel)]="selectedReviewPeriod" name="Review" (onChange)="riviewChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Intergrity" | localize}}</label>
+                            <p-dropdown filter="true" [options]="integrity" placeholder="Select Integrity" optionLabel="value"  [(ngModel)]="selectedIntegrity" name="Intergrity" (onChange)="integrityChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Availibility" | localize}}</label>
+                            <p-dropdown filter="true" [options]="availibility" placeholder="Select Availibility" optionLabel="value" [(ngModel)]="selectedAvailibility" name="Availibility" (onChange)="availibilityChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"File upload" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Related Control Procedures" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 co-sm-12">
+                    <p-accordion>
+                        <p-accordionTab>
+                            <p-header>
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Related Control Procedures" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Process" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-control-procedures [showPopup]="true"></grid-view-control-procedures>
+                        </p-accordionTab>
+                    </p-accordion>
+                </div>           
+            </div>
+        </div>
+    </div>
+
+</div>

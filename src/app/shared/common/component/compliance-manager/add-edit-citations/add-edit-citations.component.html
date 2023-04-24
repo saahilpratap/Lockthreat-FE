@@ -1,0 +1,301 @@
+<p-tabView>
+  <p-tabPanel header="Step 1">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Authoratative Document Section" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Authoratative Document" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Authoratative Document"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="citationsReport.AuthoratativeDocument"
+                name="AuthoratativeDocumentField"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Parent Citation" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Parent Citation"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="citationsReport.ParentCitation"
+                name="ParentCitationField"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Citation Type" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Impacted Entities"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="citationsReport.CitationType"
+                name="CitationTypeField"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Citation Section" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Citation ID" | localize}}</label>
+              <input
+                type="text"
+                disabled
+                class="form-control"
+                [(ngModel)]="citationsReport.CitationID"
+                name="CitationIDField"
+                placeholder="System Generated"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Control Requirements" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.ControlRequirements"
+                placeholder="Control Requirements"
+                name="ControlRequirementsField"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label
+                >{{"Citation (Origin ID)" | localize}}&nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Imported from citation source"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.OriginID"
+                name="CitationOriginID"
+                placeholder="Citation (Origin ID)"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Framework Objectives" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Framework Objectives"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="citationsReport.FrameworkObjectives"
+                name="FrameworkObjectivesField"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Citation Title" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.CitationTitle"
+                name="CitationTitleField"
+                placeholder="Citation Title"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Custom Applicability" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.CustomApplicability"
+                name="CustomApplicabilityField"
+                placeholder="Custom Applicability"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Citation Class" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Citation Class"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="citationsReport.CitationClass"
+                name="CitationClassField"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label
+                >{{"UCF CID" | localize}}&nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="This is an imported value from UCF Sync or Import"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <input
+                type="text"
+                disabled
+                class="form-control"
+                [(ngModel)]="citationsReport.UCFCID"
+                name="UCFCIDField"
+                placeholder="UCF CID"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Control Objective" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.ControlObjective"
+                placeholder="Control Objective"
+                name="ControlObjectiveField"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"CIT LV" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="citationsReport.CITLV"
+                name="CITLVField"
+                placeholder="CIT LV"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label
+                >Icon &nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Please attach any evidence or reports related to incident"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                (onUpload)="onUpload($event)"
+                accept=".jpg, .jpeg,.png"
+                maxFileSize="1000000"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="citationsReport.attachmentDocument !== null">
+                    <li>
+                      {{citationsReport.attachmentDocument.name}} -
+                      {{citationsReport.attachmentDocument.size}} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label
+                >Related Content Image &nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Please attach any evidence or reports related to incident"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                (onUpload)="uploadContentImage($event)"
+                accept=".jpg, .jpeg,.png"
+                maxFileSize="1000000"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="citationsReport.OriginalPolicyDocument !== null">
+                    <li>
+                      {{citationsReport.OriginalPolicyDocument.name}} -
+                      {{citationsReport.OriginalPolicyDocument.size}} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="form-group">
+                  <label>{{"Citation Description" | localize}}</label>
+                  <p-editor
+                    id="PolicyContentEditor"
+                    name="PolicyContentEditor"
+                    #PolicyContentEditor="ngModel"
+                    [(ngModel)]="text"
+                    [style]="{'height':'200px'}"
+                  ></p-editor>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 2">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+       <app-control-standards-modal></app-control-standards-modal>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <!-- <h5 class="kt-section__title kt-section__title-sm">
+          {{"Questions Library" | localize}}
+        </h5>
+        <hr /> -->
+       <app-questions-library-modal></app-questions-library-modal>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

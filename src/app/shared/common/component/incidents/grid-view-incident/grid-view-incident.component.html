@@ -1,0 +1,126 @@
+<div class="row align-items-center no-margin">
+  <div
+    class="primeng-datatable-container"
+    [busyIf]="primengTableHelper.isLoading"
+  >
+    <p-table
+      #incidentDataTable
+      (onLazyLoad)="getAllIncidents($event)"
+      [value]="primengTableHelper.records"
+      [lazy]="true"
+      [scrollable]="true"
+      [selection]="selectedRowData"
+      (selectionChange)="onSelectionChange($event)"
+      ScrollWidth="100%"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 20px;" *ngIf="!showPopupBtn">
+            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+          </th>
+          <th style="width: 150px;" pSortableColumn="incidentId">
+            {{'Incident ID' |localize}}
+            <p-sortIcon field="incidentId"></p-sortIcon>
+          </th>
+          <th style="width: 150px;" pSortableColumn="incidentTitle">
+            {{'Incident Title' |localize}}
+            <p-sortIcon field="incidentTitle"></p-sortIcon>
+          </th>
+          <th style="width: 150px;" pSortableColumn="technologyID">
+            {{'Technology ID' |localize}}
+            <p-sortIcon field="technologyID"></p-sortIcon>
+          </th>
+          <th style="width: 250px;" pSortableColumn="description">
+            {{'Description' |localize}}
+            <p-sortIcon field="description"></p-sortIcon>
+          </th>
+          <th style="width: 200px;" pSortableColumn="reportedDateTime">
+            {{'Reported Date & Time' |localize}}
+            <p-sortIcon field="reportedDateTime"></p-sortIcon>
+          </th>
+          <th style="width: 200px;" pSortableColumn="incidentStatus">
+            {{'Incident Status' |localize}}
+            <p-sortIcon field="incidentStatus"></p-sortIcon>
+          </th>
+          <th style="width: 150px;" pSortableColumn="incidentImpact">
+            {{'Incident Impact' |localize}}
+            <p-sortIcon field="incidentImpact"></p-sortIcon>
+          </th>
+          <th style="width: 100px;" class="kt-align-center">
+            {{'Action' |localize}}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-record="$implicit">
+        <tr [pSelectableRow]="rowData">
+          <td style="width: 20px;" *ngIf="!showPopupBtn">
+            <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+          </td>
+          <td style="width: 150px;" (click)="incidentEdit(record.id)">
+            {{record.IncidentID}}
+          </td>
+          <td style="width: 150px;">
+            <div
+              class="table-text-wrap"
+              [pTooltip]="record.IncidentTitle"
+              tooltipPosition="bottom"
+            >
+              {{record.IncidentTitle}}
+            </div>
+          </td>
+          <td style="width: 150px;">
+            {{record.TechnologyId}}
+          </td>
+          <td style="width: 250px;">
+            <div
+              class="table-text-wrap"
+              [pTooltip]="record.IncidentTitle"
+              tooltipPosition="bottom"
+            >
+              {{record.Description}}
+            </div>
+          </td>
+          <td style="width: 200px;">
+            <span>{{record.ReportedDate}}</span>
+          </td>
+          <td style="width: 200px;">
+            <span>{{record.IncidentStatus}}</span>
+          </td>
+          <td style="width: 150px;">
+            <span>{{record.IncidentImpact}}</span>
+          </td>
+          <td style="width: 100px;" class="kt-align-center">
+            <i
+              class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info"
+              (click)="incidentEdit(record.id)"
+            ></i>
+            <i
+              class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"
+              (click)="incidentDelete(record.id)"
+            ></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div
+      class="primeng-no-data"
+      *ngIf="primengTableHelper.totalRecordsCount == 0"
+    >
+      {{'NoData' | localize}}
+    </div>
+    <div class="primeng-paging-container">
+      <p-paginator
+        [rows]="primengTableHelper.defaultRecordsCountPerPage"
+        #paginator
+        (onPageChange)="getAllIncidents($event)"
+        [totalRecords]="primengTableHelper.totalRecordsCount"
+        [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage"
+      >
+      </p-paginator>
+      <span class="total-records-count">
+        {{'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount}}
+      </span>
+    </div>
+  </div>
+</div>
+<!-- <app-incident-modal #incidentModal></app-incident-modal> -->

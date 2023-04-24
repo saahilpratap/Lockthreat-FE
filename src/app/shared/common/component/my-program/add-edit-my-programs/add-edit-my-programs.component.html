@@ -1,0 +1,125 @@
+
+<div class="container kt-content">
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Program Info" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Program ID" | localize}}</label>
+                        <input type="text" class="form-control" [(ngModel)]="program.programId" name="programid" disabled placeholder="System Generated">
+                    </div>
+                </div> 
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Company Name" | localize}}</label>
+                        <p-dropdown [showClear]="true" filter="true" [options]="company"  placeholder="Select Company" optionLabel="companyName"  [(ngModel)]="selectedcompany" name="Companys" (onChange)="companyChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                       
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Program Title" | localize}}</label>*
+                        <input type="text" name="title" class="form-control" [(ngModel)]="program.programTitle" placeholder=" Program Title">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Program Team Email (Distribution List)" | localize}}</label>
+                        <input type="text" class="form-control" name="Email" [(ngModel)]="program.programTeamEmail" placeholder="Program Team Email (Distribution List)">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Start Date" | localize}}</label>
+                        <div id="startDate" class="kt-input-icon">
+                            <input id="startDatePicker"
+                                   type="text"
+                                   #startDatePicker
+                                   name="startDatePicker"
+                                   class="form-control"
+                                   bsDatepicker
+                                   datePickerMomentModifier
+                                   [(date)]="program.startDate"                               
+                                   [bsConfig]="{ adaptivePosition: true }" />
+                            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                <span><i class="flaticon-calendar-1"></i></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Country" | localize}}</label>
+                        <p-multiSelect [options]="country" [maxSelectedLabels]="1" placeholder="Select Country" optionLabel="name" [(ngModel)]="selectedCountry" (onChange)="countryOnchange($event)" name="Countrys" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Description" | localize}}</label>
+                        <textarea type="text" name="description" class="form-control" [(ngModel)]="program.description" placeholder="Description" style="height:100px !important"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Program Logo (If Any)" | localize}}</label>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <div class="form-group m-form__group" (click)="uploadLogo()">
+                                    <div class="input-group m-input-group imgBorder">
+                                        <img [src]="logoUpload" id="PanImage" class="ImageOnDialog imgUpload" height="100" width="150" onError="this.src='../../../../../assets/common/images/upload.svg';" alt="..." />
+                                        <input hidden type="file" id="fileimageUpload" name="fileimageUpload" accept="{{accept}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Program Team" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{" Program Sponsor" | localize}}</label>*
+                        <p-dropdown [showClear]="true" filter="true" [options]="programSponsors" placeholder="Select  Sponsor" optionLabel="employeeName" [(ngModel)]="selectedprogramSponsors" (onChange)="programsponser($event)" [style]="{'width': '100%'}"></p-dropdown>                      
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">                    
+                    <div class="form-group">
+                        <label>{{"Program Team" | localize}}</label>
+                        <p-multiSelect [options]="programTeam" [maxSelectedLabels]="1" placeholder="Select  Team" optionLabel="employeeName" [(ngModel)]="SelectedProgramTeam" (onChange)="programteamChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Program Director" | localize}}</label>*
+                        <p-dropdown [showClear]="true" filter="true" [options]="programDirector" placeholder="Select  Director" optionLabel="employeeName" [(ngModel)]="selectedProgramDirector" (onChange)="programDirectorChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">                        
+                        <label>{{"Program Co-ordinator(s)" | localize}}</label>
+                        <p-multiSelect [options]="programCordinator" [maxSelectedLabels]="1" placeholder="Select  Co-ordinator" optionLabel="employeeName" [(ngModel)]="selectedprogramCordinator" (onChange)="programCordinators($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">        
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Associated Authoritative Documents" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <p-multiSelect [options]="authorativeDocument" [maxSelectedLabels]="1" placeholder="Select Authoritative Documents " optionLabel="authoratativeDocumentTitle" [(ngModel)]="selectedauthorativeDocument" (onChange)="programAuthoratativeDocument($event)" [style]="{'width': '100%'}"></p-multiSelect>                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

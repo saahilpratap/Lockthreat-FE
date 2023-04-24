@@ -1,0 +1,210 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Risk Treatment Information" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"RTP ID" | localize}}</label>
+                    <input type="text" class="form-control" disabled placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Risk Title" | localize}}</label>
+                    <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>                   
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"RTP Title" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="RTP Title">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Owner" | localize}}</label>
+                    <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Treatment Action" | localize}}</label>
+                    <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"MItigation Plan Section" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Mitigation Owner" | localize}}</label>
+                    <p-dropdown placeholder="Select Company Name" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Mitigation Activity" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Mitigation Activity">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Mitigation Status" | localize}}</label>
+                    <p-dropdown placeholder="Select Risk Owner" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Start Date" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input id="startDatePicker"
+                               type="text"
+                               #startDatePicker
+                               name="startDatePicker"
+                               class="form-control"
+                               bsDatepicker
+                               datePickerMomentModifier 
+                               [bsConfig]="{ adaptivePosition: true }" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-calendar-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Due Date" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input id="startDatePicker"
+                               type="text"
+                               #startDatePicker
+                               name="startDatePicker"
+                               class="form-control"
+                               bsDatepicker
+                               datePickerMomentModifier 
+                               [bsConfig]="{ adaptivePosition: true }" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-calendar-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Mitigation Cost" | localize}}</label>
+                    <div id="" class="kt-input-icon">
+                        <input id="" type="text" name="expectedLoss" class="form-control" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="fa fa-dollar-sign"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Risk Avoidance Section" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-8 col-md-8 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Risk Avoidance Plan" | localize}}</label>
+                    <p-editor [(ngModel)]="text" [style]="{'height':'200px'}"></p-editor>
+                </div>
+            </div>                    
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Risk Transfer Section" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendors" | localize}}</label>
+                    <p-multiSelect placeholder="Select Vendors" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Contracts" | localize}}</label>
+                    <p-multiSelect placeholder="Select Contracts" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Notes" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Notes" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Residual Risk Information" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Residual Impact Rating" | localize}}</label>
+                    <p-multiSelect placeholder="Select Vendors" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Residual Likelihood Rating" | localize}}</label>
+                    <p-multiSelect placeholder="Select Contracts" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Notes" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Notes" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Risk Treatment Attachments" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Title" | localize}}</label>
+                    <input type="text" class="form-control" placeholder="Title">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Owner" | localize}}</label>
+                    <p-dropdown placeholder="Select Risk Owner" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"File upload" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input type="text"                               
+                               class="form-control"/>
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-up-arrow-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Notes" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Notes" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

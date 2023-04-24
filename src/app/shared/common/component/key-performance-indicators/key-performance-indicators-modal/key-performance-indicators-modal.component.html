@@ -1,0 +1,26 @@
+<div appBsModal #keyPerformanceIndicatorsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="keyPerformanceIndicatorsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form #associatedPogramsForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Edit Key Performance Indicators' | localize}}
+                    </h4>
+
+                </div>
+                <div class="modal-body">
+                    <add-edit-key-performance-indicators></add-edit-key-performance-indicators>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><i class="fa fa-save"></i> <span>{{"Save" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+

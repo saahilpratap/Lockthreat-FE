@@ -1,0 +1,113 @@
+<div appBsModal #bulkEditBusinessServicesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditBusinessServicesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Business Services' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect (onChange)="handleData($event)" [maxSelectedLabels]="1" [options]="bulkEditBusinessServices" [(ngModel)]="selectedCars1" [style]="{'width': '100%'}"></p-multiSelect>                               
+                            </div>                          
+                        </div>                    
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" ></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Business Service Name" | localize}}</label>
+                                <input type="text" class="form-control" name="businessName" placeholder="Business Service Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group" *ngIf="processActivity">
+                                <label>{{"Service Type" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Business Unit (Primary)" | localize}}</label>
+                                <p-multiSelect name="Business" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Business Units (Dependent)" | localize}}</label>
+                                <p-dropdown name="BusinessUnit" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Business Service Owner" | localize}}</label>
+                                <p-dropdown name="BusinessService" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Business Service Manager" | localize}}</label>
+                                <p-dropdown name="BusinessService" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Related IT Service(s)" | localize}}</label>
+                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown 
+                                            placeholder="Select Confidentiality"
+                                            optionLabel="value" [filter]="true"
+                                            [style]="{'width': '100%'}">
+                                </p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Intergrity" | localize}}</label>
+                                <p-dropdown optionLabel="value" name="integ" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Availibility" | localize}}</label>
+                                <p-dropdown 
+                                            [filter]="true"
+                                            placeholder="Select Availibility"
+                                            optionLabel="value" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12" *ngIf="processActivity">
+                            <div class="form-group">
+                                <label>{{"Others" | localize}}</label>
+                                <p-dropdown 
+                                            [filter]="true"
+                                            placeholder="Select Others"
+                                            optionLabel="value" [showClear]="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,64 @@
+<common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuOrg]="true"></common-header>
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--mobile">
+
+            <div class="kt-portlet__head">
+                <!--<div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        {{"Add Upload  DynamicParameter File " | localize}}
+                    </h3>
+                </div>-->
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-subheader__wrapper">
+                        <div class="dropdown dropdown-inline">
+                            
+                    </div>
+                </div>
+            </div>
+
+            <div class="kt-portlet__body kt-padding-0">
+                <div class="container kt-content">
+                    <form #uploadClaimForm="ngForm" novalidate (ngSubmit)="uploadFileMaster()" autocomplete="off">
+                        <div class="input-group">
+                            <div class="col-md-6">
+                                <input type="file" class="custom-file-input" id="importFile" (change)="onFileChange($event.target.files)" accept=".xlsx">
+                                <label class="custom-file-label" #labelImport for="importFile">Choose file</label>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary btn-sm appThemeBgColor" style="height:38px;background-color: #32c5d2 !important">Upload</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <!--<form #employeeDetailsForm="ngForm" novalidate (ngSubmit)="uploadFileMaster()">
+        <div class="container kt-margin-t-20-desktop">
+            <div class="row align-items-center">
+
+                <div class="col-md-4">
+                    <fieldset class="scheduler-border">
+
+                        <div class="input-group">
+                            <div class="col-md-9" style="margin-left:-14px !important">
+                                <input type="file" class="custom-file-input" name="importFile" id="importFile" (change)="onFileChange($event.target.files)" accept=".xlsx">
+                                <label class="custom-file-label" #labelImport for="importFile">Choose file</label>
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-primary btn-sm appThemeBgColor">Upload</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+
+        </div>
+    </form>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

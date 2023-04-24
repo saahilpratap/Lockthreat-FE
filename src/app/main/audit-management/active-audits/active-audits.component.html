@@ -1,0 +1,163 @@
+<div [@routerTransition]>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader kt-grid__item">
+            <div [class]="containerClass">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">
+                        <span>{{"Audit Management " | localize}}</span>
+                    </h3>
+                    <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                    <span class="kt-subheader__desc">
+                        {{"Active Audits" | localize}}
+                    </span>
+
+                </div>
+                <div class="kt-subheader__toolbar">
+                    <div class="kt-subheader__wrapper">   
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{"Active Audits" | localize}}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <div id="generalSearch" class="kt-input-icon kt-input-icon--left kt-padding-r-5">
+                            <input type="text" class="form-control" placeholder="Search..." style="width:200px;">
+                            <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                <span><i class="flaticon2-search-1"></i></span>
+                            </span>
+                        </div>
+                        <button (click)="addNewProcess()"
+                                class="btn btn-widget btn-sm w-100">
+                            +{{"Add Audit" | localize}}
+                        </button>
+                        <button class="btn btn-sm border kt-margin-l-5">
+                            <i class="la la-filter no-padding"></i>
+                        </button>
+                        <button class="btn btn-sm border kt-margin-l-5">
+                            <i class="fa fa-bars no-padding"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="kt-portlet__body kt-padding-0">
+                    <div class="row align-items-center no-margin">
+                        <div class="primeng-datatable-container"
+                             [busyIf]="primengTableHelper.isLoading">
+                            <p-table #dataTable
+                                     (onLazyLoad)="getAllAudit($event)"
+                                     [value]="primengTableHelper.records"
+                                     [lazy]="true"
+                                     [scrollable]="true"
+                                     ScrollWidth="100%">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th style="width: 50px">
+                                            <p-checkbox></p-checkbox>
+                                        </th>
+                                        <th style="width: 150px">
+                                            {{'Audit ID' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>                                        
+                                        <th style="width: 250px">
+                                            {{'Audit Title' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 250px">
+                                            {{'Company Name' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 250px">
+                                            {{'Project' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 250px">
+                                            {{'Lead Auditor' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px">
+                                            {{'status' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px">
+                                            {{'Start Date' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 150px">
+                                            {{'End Date' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                        <th style="width: 100px">
+                                            {{'Audit Duration (Days)' |localize}}
+                                            <p-sortIcon></p-sortIcon>
+                                        </th>
+                                      
+                                        <th style="width: 150px" class="kt-align-center">
+                                            {{'Action' |localize}}
+                                        </th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-record="$implicit">
+                                    <tr>
+                                        <th style="width: 50px">
+                                            <p-checkbox></p-checkbox>
+                                        </th>
+                                        <td style="width: 150px">
+                                            {{record.auditId}}
+                                        </td>                                       
+                                        <td style="width: 250px">
+                                            {{record.auditTitle}}
+                                        </td>
+                                        <td style="width: 250px">
+                                            <span *ngIf="record.lockThreatOrganization">{{record.lockThreatOrganization.companyName}}</span>  
+                                        </td>
+                                        <td style="width: 250px">
+                                            <span *ngIf="record.projectName">{{record.projectName.projectName}}</span>  
+                                        </td>
+                                        <td style="width: 250px">
+                                            <span *ngIf="record.leadAuditor"> {{record.leadAuditor.employeeName}}</span>   
+                                        </td>
+                                        <td style="width: 150px">
+                                            <span *ngIf="record.status">{{record.status.value}}</span>      
+                                        </td>
+                                        <td style="width: 150px">
+                                            {{record.startDate | momentFormat:'L' }}
+                                        </td>
+                                        <td style="width: 150px">
+                                            {{record.endDate| momentFormat:'L' }}
+                                        </td>
+                                        <td style="width:100px">
+                                            {{record.auditDuration  }}
+                                        </td>                                      
+                                        <td style="width: 150px" class="kt-align-center">
+                                            <i class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="auditEdits(record.id)"></i>
+                                            <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google" (click)="auditDelete(record)"></i>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+
+                            <div class="primeng-paging-container">
+                                <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator
+                                             (onPageChange)="getAllAudit($event)"
+                                             [totalRecords]="primengTableHelper.totalRecordsCount"
+                                             [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+
+                                </p-paginator>
+                                <span class="total-records-count">
+                                    {{'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

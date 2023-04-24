@@ -1,0 +1,189 @@
+<style>
+    .my-drop-zone {
+        border: dotted 3px lightgray;
+    }
+    /* Default class applied to drop zones on over */
+    .invalid-drag {
+        border: dotted 3px red;
+    }
+
+    .valid-drag {
+        border: dotted 3px green;
+    }
+
+    html, body {
+        height: 100%;
+    }
+
+    .previewIcon {
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .inline-block {
+        display: inline-block;
+        margin: .2em;
+    }
+    
+</style>
+
+<ngfFormData [files]="files"
+             postName="file"
+              class="appThemeBgColor"
+             [(FormData)]="sendableFormData"></ngfFormData>
+
+<ngfUploadStatus [(percent)]="progress"
+                 [httpEvent]="httpEvent"></ngfUploadStatus>
+
+
+<div class="inline-block">
+    <div class="inline-block">
+        <input ngfSelect
+               multiple
+               type="file"              
+               [(files)]="files"
+               [accept]="accept"
+               [maxSize]="maxSize"
+               [(lastInvalids)]="lastInvalids"
+               (filesChange)="lastFileAt=getDate()" />
+    </div>
+
+
+</div>
+
+
+
+
+<!--<div class="bg-warning" *ngIf="lastInvalids?.length" style="margin-bottom: 40px">
+    <h3 style="color:red;">Last {{ lastInvalids.length }} Invalid Selected Files</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Error</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of lastInvalids;let i=index">
+                <td>
+                    <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.file.type)>=0">
+                        <div class="previewIcon" [ngfBackground]="item.File"></div>
+                    </div>
+                    <strong>{{ item.file.name }}</strong>
+                </td>
+                <td nowrap>
+                    {{ item.type }}
+                </td>
+                <td nowrap>
+                    {{ item.file.type }}
+                </td>
+                <td nowrap>
+                    {{ item.file.size/1024/1024 | number:'.2' }} MB
+                </td>
+                <td nowrap>
+                    <button type="button"
+                            class="btn btn-danger btn-xs"
+                            (click)="lastInvalids.splice(i,1)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>-->
+
+<div style="margin-bottom: 40px">
+    <!--<h3>{{ files.length }} Queued Files</h3>-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:32%">{{"Name" | localize}}</th>
+                <th style="width:32%">{{"Type" | localize}}</th>
+                <th style="width:32%">{{"Size" | localize}}</th>
+                <th style="width:5%">{{"Actions" | localize}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of files;let i=index">
+                <td style="width:32%">
+                    <div *ngIf="['image/gif','image/png','image/jpeg'].indexOf(item.type)>=0" style="height:60px; width:60px">
+                        <div class="previewIcon" [ngfBackground]="item" style="height:50px; width:50px"></div>
+                    </div>                   
+                    <i class="far fa-file-pdf kt-font-danger" *ngIf="item.type =='application/pdf'" style=" font-size:2rem !important;"></i>
+                    <i class="far fa-file-word kt-font-info" *ngIf="item.type =='application/vnd.openxmlformats-officedocument.wordprocessingml.document'" style=" font-size:2rem !important;"></i>
+                    <i class="far fa-file-excel kt-font-success" *ngIf="item.type =='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'" style=" font-size:2rem !important;"></i>
+                    <i class="far fa-file-excel kt-font-success" *ngIf="item.type =='application/vnd.ms-excel'" style=" font-size:2rem !important;"></i>
+                    <span class="kt-padding-l-10 kt-font-bold">{{ item.name }}</span>
+                </td>
+                <td nowrap style="width:32%">
+                    <span *ngIf="item.type =='application/pdf'">{{"PDF File" | localize}}</span>
+                    <span *ngIf="item.type =='image/gif'">{{"Gif Iamge" | localize}}</span>
+                    <span *ngIf="item.type =='image/png'">{{"Png Iamge" | localize}}</span>
+                    <span *ngIf="item.type =='image/jpeg'">{{"Jpeg Iamge" | localize}}</span>
+                    <span *ngIf="item.type =='image/svg'">{{"Svg Iamge" | localize}}</span>
+                    <span *ngIf="item.type =='application/vnd.openxmlformats-officedocument.wordprocessingml.document'">{{"Word File" | localize}}</span>
+                    <span *ngIf="item.type =='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'">{{"Excel File" | localize}}</span>
+                    <span *ngIf="item.type =='application/vnd.ms-excel'">{{"Excel File" | localize}}</span>
+                    <span *ngIf="item.type =='application/image/svg'">{{"Excel File" | localize}}</span>
+                    
+                      <!--{{ item.type }}-->
+                </td>
+                <td nowrap style="width:32%">
+                    {{ item.size/1024/1024 | number:'.2' }} MB
+                </td>
+                <td nowrap style="width:5%">
+                    <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google" (click)="files.splice(i,1)">
+                    </i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="display:none">
+        <div>
+            Queue progress:
+            <div class="progress" style="">
+                <div class="progress-bar"
+                     role="progressbar"
+                     [ngStyle]="{ 'width': progress + '%' }"></div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="lastFileAt">
+            <p>
+                <strong>Last file(s) selected At:</strong> {{ lastFileAt | date : 'longTime' }}
+            </p>
+        </ng-container>
+
+        <ng-container *ngIf="progress==100">
+            <i class="glyphicon glyphicon-ok"></i>
+            &nbsp;Upload Complete
+        </ng-container>
+
+        <button type="button"
+                class="btn btn-success btn-s"
+                (click)="uploadFiles()"
+                [disabled]="!files.length">
+            <span class="glyphicon glyphicon-upload"></span> Upload all
+        </button>
+
+        <button type="button"
+                class="btn btn-warning btn-s"
+                (click)="cancel()"
+                [disabled]="!httpEmitter">
+            <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+        </button>
+        <button type="button"
+                class="btn btn-danger btn-s"
+                (click)="files.length=0"
+                [disabled]="!files.length">
+            <span class="glyphicon glyphicon-trash"></span> Remove all
+        </button>
+    </div>
+</div>

@@ -1,0 +1,209 @@
+<div>
+    <form #addEditBusinessServiceForm="ngForm" novalidate (ngSubmit)="saveBusinessService()">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Business Services Info" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Service ID" | localize}}</label>
+                            <input type="text" disabled class="form-control"   [(ngModel)]="businessService.businessServiceId" name="businessid"  placeholder="System Generated">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Company Name" | localize}}</label>
+                            <p-dropdown [style]="{'width': '100%'}"  [options]="company"   [filter]="true"   placeholder="Select Company" optionLabel="companyName" required=true [(ngModel)]="selectedCompany" name="Companys" (onChange)="onChangeCompany($event)"></p-dropdown>                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Service Name" | localize}}</label>
+                            <input type="text" class="form-control"   [(ngModel)]="businessService.businessServiceName" name="businessName" required  placeholder="Business Service Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Service Type" | localize}}</label>
+                            <p-dropdown  name="Service" [options]="serviceType" optionLabel="value"    [filter]="true"  placeholder="Select Service Type" [(ngModel)]="selectedServiceType" (onChange)="servicetypeChnage($event)"  [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            
+                            <label>{{"Business Unit (Dependent)" | localize}}</label>
+                            <p-multiSelect name="Business" [options]="businessUnitDependent"  [maxSelectedLabels]="1" [filter]="true"   placeholder="Select Business Unit"  optionLabel="businessUnitTitle" [(ngModel)]="selectdbusinessUnitDependent" (onChange)="selectedbusinessUnitDependentChange($event)"   [style]="{'width': '100%'}"></p-multiSelect>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Units (Primary)" | localize}}</label>
+                            <p-dropdown name="BusinessUnit" [options]="businessUnitPrimary"  [filter]="true"   placeholder="Select Business Unit" optionLabel="businessUnitTitle" [(ngModel)]="selectedBusinessUnitPrimary" (onChange)="businessunitChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Service Owner" | localize}}</label>
+                            <p-dropdown  name="BusinessServiceOwner"    [filter]="true"  placeholder="Business Service Owner"  [options]="businessServiceOwners" optionLabel="employeeName" [(ngModel)]="selectedBusinessServiceOwner" (onChange)="businessserviceownerChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Service Manager" | localize}}</label>
+                            <p-dropdown  name="BusinessServiceManager"   [filter]="true"  [options]="businessServiceManager" optionLabel="employeeName" [(ngModel)]="selectedbusinessServiceManager" placeholder="Business Service Manager" (onChange)="businessservicemanagerChange($event)"  [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Related IT Service(s)" | localize}}</label>
+                            <p-multiSelect name="RelatedIt" [options]="itService"  [maxSelectedLabels]="1"  [filter]="true"  placeholder="Select  IT Service" optionLabel="itServiceName" [(ngModel)]="selectedITservice" (onChange)="selectedITserviceChange($event)"  [style]="{'width': '100%'}"></p-multiSelect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Classification" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Confidentiality" | localize}}</label>
+                            <p-dropdown  [options]="confidentiality" 
+                                        placeholder="Select Confidentiality" name="Confidentialityes" (onChange)="confidilityChange($event)"  [(ngModel)]="selectedConfidentiality"
+                                        optionLabel="value" [filter]="true"                                       
+                                        [style]="{'width': '100%'}">
+                            </p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">                       
+                        <div class="form-group">
+                            <label>{{"integrity" | localize}}</label>
+                            <p-dropdown [options]="intergrity" optionLabel="value"   [filter]="true"  (onChange)="integrityChange($event)"  placeholder="Select integrity" name="integ" [(ngModel)]="selectedIntegrity" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Availibility" | localize}}</label>
+                            <p-dropdown [options]="availibility" name="Availibilitys"
+                                        [filter]="true"
+                                        placeholder="Select Availibility" (onChange)="availibilityChange($event)" [(ngModel)]="selectAvailibility"
+                                        optionLabel="value" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Others" | localize}}</label>
+                            <p-dropdown [options]="others" 
+                                        [filter]="true"  
+                                        placeholder="Select Others"   name="oh" (onChange)="otherChange($event)" [(ngModel)]="selectedOthers" 
+                                        optionLabel="value"  [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="kt-section kt-section--first" *ngIf="isEdit">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Related Control Procedures" | localize}}</h5>
+            <div class="row"> 
+                <div class="col-lg-12 col-md-12 co-sm-12">
+                    <p-accordion>
+                        <p-accordionTab>
+                            <p-header (click)="iTServices=!iTServices">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"IT Services" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-it-services *ngIf="iTServices" [showPopup]="true"></grid-view-it-services>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="facilitiesDatacenters=!facilitiesDatacenters">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Facilities & Datacenters" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-facilities-datacenters *ngIf="facilitiesDatacenters" [showPopup]="true"></grid-view-facilities-datacenters>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="systemsApplications=!systemsApplications">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Systems and Applications" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-systems-applications *ngIf="systemsApplications" [showPopup]="true"></grid-view-systems-applications>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="informationAssets=!informationAssets">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Information Assets" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-information-assets *ngIf="informationAssets" [showPopup]="true"></grid-view-information-assets>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="vendors=!vendors">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Vendors" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-all-vendors *ngIf="vendors" [showPopup]="true"></grid-view-all-vendors>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="contracts=!contracts">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Contracts" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-all-contracts *ngIf="contracts" [showPopup]="true"></grid-view-all-contracts>
+                        </p-accordionTab>
+                        <p-accordionTab>
+                            <p-header (click)="relatedProcess=!relatedProcess">
+                                <div class="row">
+                                    <div class="col-3">
+                                        {{"Related Process" | localize}}
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="kt-padding-r-10">{{"Business Service" | localize}} </span>
+                                    </div>
+                                </div>
+                            </p-header>
+                            <grid-view-business-process *ngIf="relatedProcess" [showPopup]="true"></grid-view-business-process>
+                        </p-accordionTab>
+                    </p-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

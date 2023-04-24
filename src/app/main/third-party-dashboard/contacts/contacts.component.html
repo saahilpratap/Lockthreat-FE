@@ -1,0 +1,46 @@
+<div id="form_business_management" class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader kt-grid__item">     
+        <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [thirdPartyDashoard]="true"></common-header>
+    </div>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">     
+        <div class="row">          
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                {{"All Contacts" | localize}}
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <div id="generalSearch" class="kt-input-icon kt-input-icon--left kt-padding-r-5">
+                                <input type="text" class="form-control" placeholder="Search..." style="width:200px;">
+                                <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                    <span><i class="flaticon2-search-1"></i></span>
+                                </span>
+                            </div>
+                            <button *ngIf="bulkedit" (click)="bulkEditVendorModals.show()"
+                                    class="btn btn-widget btn-sm">
+                                {{"Edit" | localize}}
+                            </button>
+                            <button (click)="addNewVendors()"
+                                    class="btn btn-widget btn-sm w-100">
+                                <i class="flaticon2-add-1"></i>
+                                {{"Contacts" | localize}}
+                            </button>
+                            <button class="btn btn-sm border kt-margin-l-5">
+                                <i class="la la-filter no-padding"></i>
+                            </button>
+                            <button class="btn btn-sm border kt-margin-l-5">
+                                <i class="fa fa-bars no-padding"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <grid-view-all-contacts (bulkEditEvent)="getBulkEdit($event)"></grid-view-all-contacts>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

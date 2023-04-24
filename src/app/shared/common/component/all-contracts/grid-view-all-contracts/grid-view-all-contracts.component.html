@@ -1,0 +1,189 @@
+
+                <form class="m-form" autocomplete="off">
+                    <div class="row align-items-center mb-4">
+                        <div class="col-xl-12">
+                            <div class="form-group m-form__group align-items-center">
+                                <div class="input-group">
+                                    <input [(ngModel)]="Filter" name="filterText" autoFocus
+                                           class="form-control m-input" [placeholder]="l('SearchWithThreeDot')"
+                                           type="text">
+                                    <span class="input-group-btn">
+                                        <button (click)="getAllContract()" class="btn btn-primary" type="submit">
+                                            <i class="flaticon-search-1"
+                                               [attr.aria-label]="l('Search')"></i>
+                                        </button>
+                                    </span>
+                                    <button (click)="exportToExcel()" class="btn btn-outline-success" style="margin-left:5px !important"><i class="fa fa-file-excel"></i> {{l("ExportToExcel")}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" [hidden]="!advancedFiltersAreShown">
+                        <div class="col-md-12">
+                            <div class="m-separator m-separator--border-dashed"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="OfficeAddressFilter">{{l("Contract ID ")}}</label>
+                                <input type="text" class="form-control" id="ContractID " name="ContractiD " [(ngModel)]="ContractId">
+                            </div>
+                        </div>                      
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="EmailId1Filter">{{l("Type")}}</label>
+                                <input type="text" class="form-control" id="Type" name="Type" [(ngModel)]="ContractType">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="EmailId2Filter">{{l("Contract Category ")}}</label>
+                                <input type="text" class="form-control" id="Category" name="Category" [(ngModel)]="ContractCategory">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="EmailId3Filter">{{l("Contract Title ")}}</label>
+                                <input type="text" class="form-control" id="Title" name="Title" [(ngModel)]="ContractTitle">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TelephoneNumber1Filter">{{l("Contract Reference  ")}}</label>
+                                <input type="text" class="form-control" id="ContractReference " name="ContractReference" [(ngModel)]="ContractReference">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TelephoneNumber2Filter">{{l("Company Name")}}</label>
+                                <input type="text" class="form-control" id="LockThreatOrganization" name="LockThreatOrganization" [(ngModel)]="LockThreatOrganization">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="TelephoneNumber3Filter">{{l("Vendor")}}</label>
+                                <input type="text" class="form-control" id="Vendor" name="Vendor" [(ngModel)]="Vendor">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <span class="clickable-item text-muted" *ngIf="!advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-down"></i> {{l("ShowAdvancedFilters")}}</span>
+                            <span class="clickable-item text-muted" *ngIf="advancedFiltersAreShown" (click)="advancedFiltersAreShown=!advancedFiltersAreShown"><i class="fa fa-angle-up"></i> {{l("HideAdvancedFilters")}}</span>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row align-items-center no-margin">
+                    <div class="primeng-datatable-container"
+                         [busyIf]="primengTableHelper.isLoading">
+                        <p-table #dataTable
+                                 (onLazyLoad)="getAllContract($event)"
+                                 [value]="primengTableHelper.records"
+                                 [lazy]="true"
+                                 [scrollable]="true"
+                                 [selection]="selectedRowData" (selectionChange)="onSelectionChange($event)"
+                                 ScrollWidth="100%">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th style="width: 20px" *ngIf="!showPopupBtn">
+                                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                                    </th>
+                                    <th style="width: 150px">
+                                        {{'Contract ID' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px">
+                                        {{'Vendor Name' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 200px">
+                                        {{'Type' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 200px">
+                                        {{'Contract Category' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 200px">
+                                        {{'Contract Title' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 200px">
+                                        {{'Contract Reference' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px">
+                                        {{'Start Date' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px">
+                                        {{'End Date' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 150px">
+                                        {{'Contract Value' |localize}}
+                                        <p-sortIcon></p-sortIcon>
+                                    </th>
+                                    <th style="width: 100px" class="kt-align-center">
+                                        {{'Action' |localize}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-record="$implicit">
+                                <tr [pSelectableRow]="rowData">
+                                    <td style="width: 20px" *ngIf="!showPopupBtn">
+                                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                                    </td>
+                                    <td style="width: 150px">
+                                        {{record.contractId}}
+                                    </td>
+                                    <td style="width: 150px">
+                                        {{record.vendor}}
+                                    </td>
+                                    <td style="width: 200px">
+                                        {{record.contractType}}
+                                    </td>
+                                    <td style="width: 200px">
+                                        {{record.contractCategory}}
+                                    </td>
+                                    <td style="width: 200px">
+                                        {{record.contractTitle}}
+                                    </td>
+                                    <td style="width: 200px">
+                                        {{record.contractReference}}
+                                    </td>
+                                    <td style="width: 150px">
+                                        {{record.startDate  | momentFormat:'L'}}
+                                    </td>
+                                    <td style="width: 150px">
+                                        {{record.endDate  | momentFormat:'L'}}
+                                    </td>
+                                    <td style="width: 150px">
+                                        {{record.contractValue}}
+                                    </td>
+                                    <td style="width: 100px" class="kt-align-center">
+                                        <i *ngIf="!showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="contractEdit(record.id)"></i>
+                                        <i *ngIf="showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="allContractsModals.show()"></i>
+                                        <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google" (click)="contractRemove(record.id)"></i>
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+
+                        <div class="primeng-paging-container">
+                            <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator
+                                         (onPageChange)="getAllContract($event)"
+                                         [totalRecords]="primengTableHelper.totalRecordsCount"
+                                         [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+
+                            </p-paginator>
+                            <span class="total-records-count">
+                                {{'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount}}
+                            </span>
+                        </div>
+                    </div>
+                </div>      
+<allContractsModals #allContractsModals></allContractsModals>

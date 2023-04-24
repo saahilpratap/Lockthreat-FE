@@ -1,0 +1,194 @@
+<div class="container kt-content">
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Project Info" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project ID" | localize}}</label>
+                        <input type="text" [(ngModel)]="project.projectId" name="projectId"  class="form-control" disabled placeholder="System Generated">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Company Name" | localize}}</label>
+                        <p-dropdown [showClear]="true" filter="true" [options]="company" placeholder="Select Company" optionLabel="companyName" [(ngModel)]="selectedCompany" name="Companys" (onChange)="companyChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                      
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Parent Program" | localize}}</label>*
+                        <p-dropdown [showClear]="true" filter="true" [options]="parentprogram" placeholder="Select Company" optionLabel="programTitle" [(ngModel)]="selectedParentProgram" name="Program" (onChange)="programChange($event)"  [style]="{'width': '100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Name" | localize}}</label>
+                        <input type="text"  [(ngModel)]="project.projectName" name="projectName" class="form-control" placeholder="Project Name">
+                        <!--<p-dropdown [style]="{'width': '100%'}"></p-dropdown>-->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Industry" | localize}}</label>*
+                        <p-dropdown [showClear]="true" filter="true" [options]="industrysector" placeholder="Select Industry" optionLabel="name" [(ngModel)]="selectIndustrSector" name="Companys" (onChange)="industryChange($event)"  [style]="{'width': '100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Applicable Country" | localize}}</label>
+                        <p-multiSelect  [options]="country" [maxSelectedLabels]="1" placeholder="Select Country" optionLabel="name" [(ngModel)]="selectedCountry" (onChange)="countryChange($event)" name="Countrys" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Description" | localize}}</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="project.description" name="Description" placeholder="Description" style="height:100px !important"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Logo" | localize}}</label>
+                        <div class="col-2">
+                            <div class="form-group">
+                                <div class="form-group m-form__group" (click)="fileimageUpload()">
+                                    <div class="input-group m-input-group imgBorder">
+                                        <img [src]="projectlogo" id="projectlogo" class="ImageOnDialog imgUpload" height="100" width="150" onError="this.src='../../../../../assets/common/images/upload.svg';" alt="..." />
+                                        <input hidden type="file" id="fileimageUpload" name="fileimageUpload" accept="{{accept}}">
+                                    </div>
+                                </div>
+                                <!--<div class="form-group m-form__group" (click)="fileimageUpload()">
+                                   <div class="input-group m-input-group imgBorder">
+                                      <img [src]="projectlogo" id="projectlogo" class="ImageOnDialog imgUpload" height="150" width="150" onError="this.src='../../../../../assets/common/images/default-profile-picture.png';" alt="..." />
+                                     <input hidden type="file" id="fileimageUpload" name="fileimageUpload" accept="{{accept}}">
+                                   </div>
+                                </div>-->
+                            </div>
+                        </div>
+
+                        <!--<div id="startDate" class="kt-input-icon">
+        <input type="text" class="form-control" placeholder="Logo Upload">
+        <span typeof="file" class="kt-input-icon__icon kt-input-icon__icon--right border-left">
+            <span><i class="la la-upload"></i></span>
+        </span>
+    </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Address" | localize}}</label>
+                        <input type="text" [(ngModel)]="project.address" name="address"  class="form-control" placeholder="Address">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"City / District" | localize}}</label>
+                        <input type="text" class="form-control" [(ngModel)]="project.city" name="city" placeholder="City / District">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"State / Province" | localize}}</label>
+                        <input type="text" class="form-control" name="state" placeholder="State / Province">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Postal Code" | localize}}</label>
+                        <input type="text" class="form-control" [(ngModel)]="project.postalCode" name="postal" placeholder="Postal Code">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <!--<div class="form-group">
+                        <label>{{"Country" | localize}}</label>
+                        <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Project Scope" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Scope (Statement)" | localize}}</label>
+                        <textarea type="text" class="form-control" [(ngModel)]="project.projectScope" placeholder="Scope" style="height:100px !important"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Team Structure" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Sponsor*" | localize}}</label>
+                        <p-dropdown [showClear]="true" filter="true" [options]="projectSponsors" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedProjectSponsors" name="Sponsor" (onChange)="sponsorChange($event)"  [style]="{'width': '100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Director*" | localize}}</label>
+                        <p-dropdown [showClear]="true" filter="true" [options]="projectDirectors" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedprojectDirectors" name="Director" (onChange)="projectDirectorsChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Team Members (Project)" | localize}}</label>
+                        <p-multiSelect [options]="projectTeamMembers" [maxSelectedLabels]="1" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedprojectTeamMembers" name="Members" (onChange)="teamMembersChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Team Members (Internal Audit)" | localize}}</label>
+                        <p-multiSelect [options]="projectTeamMembersInternal" [maxSelectedLabels]="1" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedprojectTeamMembersInternal" name="Internal" (onChange)="teamMembersInternalChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Team Members (External Entities)" | localize}}</label>
+                        <p-multiSelect [options]="projectTeamMembersExternal" [maxSelectedLabels]="1" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedprojectTeamMembersExternal" name="External" (onChange)="teamMembersExternalChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Applicable Authorative Documents" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Authoratative Document" | localize}}</label>
+                        <p-multiSelect [options]="authoratativeDocuments" [maxSelectedLabels]="1" placeholder="Select Document" optionLabel="authoratativeDocumentTitle" [(ngModel)]="selectedAuthoratativeDocuments" name="documents" (onChange)="authoratativeDocumentsChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="kt-section kt-section--first">
+        <div class="kt-section__body">
+            <h5 class="kt-section__title kt-section__title-sm">{{"Project Modules" | localize}}</h5>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 co-sm-12">
+                    <div class="form-group">
+                        <label>{{"Project Components" | localize}}</label>
+                        <p-multiSelect [options]="projectComponents" [maxSelectedLabels]="1" placeholder="Select Components" optionLabel="name" [(ngModel)]="selectedprojectComponents" name="documents" (onChange)="projectComponentsChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

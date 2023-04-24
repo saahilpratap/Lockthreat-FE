@@ -1,0 +1,193 @@
+<div appBsModal #bulkEditOrganizationEntitiesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditOrganizationEntitiesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Organization Entities' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditOrganizationEntities" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'CompanyId' | localize}}</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'IndustrySector'| localize}}* </label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'OrgLevel' | localize}} / {{'Type' | localize}} * </label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'CompanyName' | localize}} *</label>
+                                <input type="text" class="form-control"/>                              
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'ParentOrg' | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'AuditableEntity' | localize}} *</label>
+                                <div class="kt-radio-inline">
+                                    <label class="kt-radio">
+                                        <input type="radio" name="radio2" [value]="true" [checked]="true" > Yes
+                                        <span></span>
+                                    </label>
+                                    <label class="kt-radio">
+                                        <input type="radio" name="radio2" [value]="false" > No
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="form-text text-muted">
+                                    Auditable entities become part of audit universe for individual entity audits
+                                    and reviews.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Description' | localize}}</label>
+                                <textarea class="form-control" rows="3" name="desc"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'RegisteredLegalEntityCountry' | localize}} *</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'EmployeeSize' | localize}}</label>
+                                <input type="text" class="form-control" name="empSize"  />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Website' | localize}}</label>
+                                <input type="text" class="form-control" name="website" />                              
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'AddressLine' | localize}} 1</label>
+                                <input type="text" class="form-control" name="addressLine1"  />                             
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'AddressLine' | localize}} 2</label>
+                                <input type="text" class="form-control" name="addressLine2"  />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'City' | localize}} / {{'District' | localize}}</label>
+                                <input type="text" class="form-control" name="city"  />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'State' | localize}} / {{'Province' | localize}}</label>
+                                <input type="text" class="form-control" name="state" />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'PostalCode' | localize}}</label>
+                                <input type="text" class="form-control" name="postalCode"  />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Country' | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'PrimaryContactName' | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'CompanyAdmin' | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}" filter="true"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'ContactName' | localize}}</label>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="First Name"  />                                       
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" class="form-control" placeholder="Last Name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Phone' | localize}}</label>
+                                <intl-tel-input></intl-tel-input>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'JobTitle' | localize}}</label>
+                                <input type="text" class="form-control"  />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Email' | localize}}</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'Fax' | localize}}</label>
+                                <input type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

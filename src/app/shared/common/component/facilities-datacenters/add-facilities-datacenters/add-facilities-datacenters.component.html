@@ -1,0 +1,246 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Facility Information" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Facility ID" | localize}}</label>
+                    <input type="text" disabled class="form-control" [(ngModel)]="facilitieDatacenter.facilityId" name="facilityId" placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Facility Type" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="facilityType" [filter]="true" placeholder="Select Facility" optionLabel="value" required=true [(ngModel)]="selectedfacilityType" name="facility" (onChange)="facilityChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Facility Name" | localize}}</label>
+                    <input type="text" name="facilityname" class="form-control" [(ngModel)]="facilitieDatacenter.facilityName" placeholder="Facility Name">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Address" | localize}}</label>
+                    <input type="text" name="address" class="form-control" [(ngModel)]="facilitieDatacenter.facilityAddressOne" placeholder="Address">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"City / District" | localize}}</label>
+                    <input type="text" name="city" class="form-control" [(ngModel)]="facilitieDatacenter.city" placeholder="City / District">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"State / Province" | localize}}</label>
+                    <input type="text" class="form-control" name="state" [(ngModel)]="facilitieDatacenter.state" placeholder="State / Province">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Postal Code" | localize}}</label>
+                    <input type="text" class="form-control" name="postalcode" [(ngModel)]="facilitieDatacenter.postalCode" placeholder="Postal Code">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Country" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="country" [filter]="true" placeholder="Select country" optionLabel="name" required=true [(ngModel)]="selectedCountry" name="country" (onChange)="countryChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+     <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+           <h5 class="kt-section__title kt-section__title-sm">{{"Management & Dependencies" | localize}}</h5>
+            <hr/>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Name" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="organization" [filter]="true" placeholder="Select Company" optionLabel="companyName"  [(ngModel)]="selectedOrganization" name="oraganization" (onChange)="oraganizationChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Unit - Owner" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitOwner" [filter]="true" placeholder="Select Business Unit" optionLabel="businessUnitTitle"  [(ngModel)]="selectedbusinessUnitOwner" name="businessUnitowneres " (onChange)="businessUnitOwnerChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Unit - Gaurdian" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitGaurdian" [filter]="true" placeholder="Select Business Unit" optionLabel="businessUnitTitle"  [(ngModel)]="selectedbusinessUnitGaurdian" name="businessUnit" (onChange)="businessUnitGaurdianChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Services" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="businessService" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Service" optionLabel="businessServiceName"  [(ngModel)]="selectedBusinessService" name="businessServices" (onChange)="businessServiceChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Process" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="businessProcess" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business process" optionLabel="businessProcessName" [(ngModel)]="selectedbusinessProcess" name="businessProcess" (onChange)="businessProcessChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"IT Services" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="itservice" [maxSelectedLabels]="1" [filter]="true" placeholder="Select ITService Name" optionLabel="itServiceName"  [(ngModel)]="selectedItservice" name="itservicesname" (onChange)="itserviceChange($event)"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+     <div class="kt-section kt-section--first">
+         <div class="kt-section__body">
+             <h5 class="kt-section__title kt-section__title-sm">{{"Ownership" | localize}}</h5>
+             <hr />
+             <div class="row">
+
+                 <div class="col-lg-4 col-md-4 co-sm-12">
+                     <div class="form-group">
+                         <label>{{"Asset Owner" | localize}}</label>
+                         <p-dropdown [style]="{'width': '100%'}" [options]="assetOwner" [filter]="true" placeholder="Select Owner" optionLabel="employeeName"  [(ngModel)]="selectedAssetOwner" name="assetowner" (onChange)="assetOwnerChange($event)"></p-dropdown>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Classification" | localize}}</h5>
+        <hr/>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Confidentiality" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Confidentiality" [filter]="true" placeholder="Select Confidentiality" optionLabel="value"  [(ngModel)]="selectedConfidentiality" name="Confidentiality" (onChange)="confidentialityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Integrity" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="integrity" [filter]="true" placeholder="Select integrity" optionLabel="value"  [(ngModel)]="selectedintegrity" name="integrity" (onChange)="integrityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Availibility" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="availibility" [filter]="true" placeholder="Select Availibility" optionLabel="value"  [(ngModel)]="selectedAvailibility" name="availibility" (onChange)="availibilityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Others" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="others" [filter]="true" placeholder="Select others" optionLabel="value"  [(ngModel)]="selectedothers" name="others" (onChange)="othersChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="isEdit">
+    <div class="col-12">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-padding-b-10">{{"Related Information" | localize}}</h5>
+                <p-accordion>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Hardware Assets" | localize}}
+                                </div>
+                                <div class="col-5">
+
+
+                                </div>
+                            </div>
+                        </p-header>
+
+                    </p-accordionTab>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Related Contracts" | localize}}
+                                </div>
+                                <div class="col-5">
+
+
+                                </div>
+                            </div>
+                        </p-header>
+
+                    </p-accordionTab>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Related Findings" | localize}}
+                                </div>
+                                <div class="col-5">
+
+
+                                </div>
+                            </div>
+                        </p-header>
+
+                    </p-accordionTab>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Related Incidents" | localize}}
+                                </div>
+                                <div class="col-5">
+
+
+                                </div>
+                            </div>
+                        </p-header>
+
+                    </p-accordionTab>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Authoratative Source(s)" | localize}}
+                                </div>
+                                <div class="col-5">
+
+
+                                </div>
+                            </div>
+                        </p-header>
+
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+</div>

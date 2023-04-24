@@ -1,0 +1,91 @@
+<div appBsModal #bulkEditSystemsApplicationsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditSystemsApplicationsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #bulkEditSystemsApplicationsForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Systems Applications' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect (onChange)="setEventTypeLabel($event)" [maxSelectedLabels]="1" [options]="bulkEditSystemsApplications" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"System (Application )Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="System (Application )Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown placeholder="Company Name" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Unit (Owner)" | localize}}</label>
+                                <p-dropdown placeholder="Company Name" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Owner" | localize}}</label>
+                                <p-dropdown placeholder="Business Owner" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Services" | localize}}</label>
+                                <p-multiSelect placeholder="Select Country" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"IT Services" | localize}}</label>
+                                <p-multiSelect placeholder="Select Country" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Confidentiality" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Intergrity" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Availibility" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Others" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+           
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

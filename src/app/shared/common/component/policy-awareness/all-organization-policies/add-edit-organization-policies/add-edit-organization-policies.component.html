@@ -1,0 +1,660 @@
+<p-tabView>
+  <p-tabPanel header="Step 1">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Information" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy ID" | localize}}</label>
+              <input
+                type="text"
+                disabled
+                class="form-control"
+                [(ngModel)]="policy.policyId"
+                name="policyId"
+                placeholder="System Generated"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Distribution Method" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Distribution Method"
+                optionLabel="businessServiceName"
+                [(ngModel)]="policy.distributionMethod"
+                name="businessServices"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Type" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Policy Type"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.PolicyType"
+                name="PolicyType"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Status" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Policy Status"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.PolicyStatus"
+                name="PolicyStatus"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Ownership and Mangement" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Owner" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Policy Owner"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.PolicyOwner"
+                name="PolicyOwner"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Manager" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Policy Manager"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.PolicyManager"
+                name="PolicyManager"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Impacted Entities" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Impacted Entities"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.ImpactedEntities"
+                name="ImpactedEntities"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Related Policies" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Related Policies"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.RelatedPolicies"
+                name="PolicyStatus"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 2">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Authoratative Document Section" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Authoratative Documents" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Authoratative Documents"
+                optionLabel="AuthoratativeDocuments"
+                [(ngModel)]="policy.AuthoratativeDocuments"
+                name="AuthoratativeDocuments"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Related Control Standards" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Related Control Standards"
+                optionLabel="RelatedControlStandards"
+                [(ngModel)]="policy.RelatedControlStandards"
+                name="RelatedControlStandards"
+              ></p-multiSelect>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Information" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Name" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.PolicyName"
+                name="PolicyName"
+                placeholder="Policy Name"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Date" | localize}}</label>
+              <div id="dateTime" class="kt-input-icon">
+                <input
+                  id="dateTime"
+                  type="text"
+                  #Date
+                  name="Date"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="policy.Date"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Version" | localize}}</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.Version"
+                name="Version"
+                placeholder="Version"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Author" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Policy Author"
+                optionLabel="value"
+                required="true"
+                [(ngModel)]="policy.PolicyAuthor"
+                name="adversary"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Step 3">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Content Details" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <label>Policy Content Type</label> <br />
+            <p-radioButton
+              name="groupname"
+              value="Content Based"
+              label="Content Based"
+              [(ngModel)]="policy.PolicyContentType"
+            ></p-radioButton>
+            &nbsp;&nbsp;
+            <p-radioButton
+              name="groupname"
+              value="Attachment Based"
+              label="Attachment Based"
+              [(ngModel)]="policy.PolicyContentType"
+            ></p-radioButton
+            >&nbsp;&nbsp;
+            <p-radioButton
+              name="groupname"
+              value="System Based"
+              label="System Based"
+              [(ngModel)]="policy.PolicyContentType"
+            ></p-radioButton>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="kt-section kt-section--first"
+      *ngIf="policy.PolicyContentType === 'Content Based'"
+    >
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Content Based Section" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Purpose" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.Purpose"
+                placeholder="Purpose"
+                name="Purpose"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Scope" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.PolicyScope"
+                placeholder="Policy Scope"
+                name="PolicyScope"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Content" | localize}}</label>
+              <p-editor
+                id="PolicyContentEditor"
+                name="PolicyContentEditor"
+                #PolicyContentEditor="ngModel"
+                [(ngModel)]="text"
+                [style]="{'height':'200px'}"
+              ></p-editor>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="kt-section kt-section--first"
+      *ngIf="policy.PolicyContentType === 'Attachment Based'"
+    >
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Policy Attachment" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label
+                >Policy Document Attachment &nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Please attach any evidence or reports related to incident"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                (onUpload)="onUpload($event)"
+                accept=".docx, .doc, .txt, .pdf, .jpg, .jpeg, .bmp, .gif, .png"
+                maxFileSize="1000000"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="policy.attachmentDocument !== null">
+                    <li>
+                      {{policy.attachmentDocument.name}} -
+                      {{policy.attachmentDocument.size}} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="form-group">
+              <label
+                >Original Policy (If Any) &nbsp;<span
+                  class="la la-info-circle float-right pt-1"
+                  pTooltip="Please attach any evidence or reports related to incident"
+                  tooltipPosition="bottom"
+                ></span
+              ></label>
+              <p-fileUpload
+                name="demo[]"
+                url="./upload.php"
+                (onUpload)="uploadOriginalPolicyDocument($event)"
+                accept=".docx, .doc, .txt, .pdf, .jpg, .jpeg, .bmp, .gif, .png"
+                maxFileSize="1000000"
+              >
+                <ng-template pTemplate="content">
+                  <ul *ngIf="policy.OriginalPolicyDocument !== null">
+                    <li>
+                      {{policy.OriginalPolicyDocument.name}} -
+                      {{policy.OriginalPolicyDocument.size}} bytes
+                    </li>
+                  </ul>
+                </ng-template>
+              </p-fileUpload>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-policy-content-data-modal
+      *ngIf="policy.PolicyContentType === 'System Based'"
+    ></app-policy-content-data-modal>
+  </p-tabPanel>
+  <p-tabPanel header="Step 4">
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Review and Approval" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Policy Reviewers" | localize}}</label>
+              <p-multiSelect
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [maxSelectedLabels]="1"
+                [filter]="true"
+                placeholder="Select Policy Reviewers"
+                optionLabel="PolicyReviewers"
+                [(ngModel)]="policy.PolicyReviewers"
+                name="PolicyReviewers"
+                #PolicyReviewers="ngModel"
+              ></p-multiSelect>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Approval By" | localize}}</label> <br />
+              <div class="p-field-checkbox">
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Approval By"
+                  optionLabel="ApprovalBy"
+                  [(ngModel)]="policy.ApprovalBy"
+                  name="ApprovalBy"
+                  #ApprovalBy="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Final Reviewer" | localize}}</label>
+              <p-dropdown
+                [style]="{'width': '100%'}"
+                [options]="null"
+                [filter]="true"
+                placeholder="Select Final Reviewer"
+                optionLabel="FinalReviewer"
+                [(ngModel)]="policy.FinalReviewer"
+                name="FinalReviewer"
+                #FinalReviewer="ngModel"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Approver Comments" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.ApproverComments"
+                placeholder="Approver Comments"
+                name="ApproverComments"
+                #ApproverComments="ngModel"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Reviewer Notes" | localize}}</label>
+              <textarea
+                type="text"
+                class="form-control"
+                [(ngModel)]="policy.ReviewerNotes"
+                placeholder="Reviewer Notes"
+                name="ReviewerNotes"
+                #ReviewerNotes="ngModel"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Final Reviewer (Signature)" | localize}}</label>
+              <div class="border">
+                <signature-pad
+                  #signaturen
+                  [options]="signaturePadOptions"
+                ></signature-pad>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-submit btn-pill kt-margin-t-5 pull-right"
+                  (click)="signaturen.clear()"
+                >
+                  Signature Clear
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Approved By (Signature)" | localize}}</label>
+              <div class="border">
+                <signature-pad
+                  #signaturen1
+                  [options]="signaturePadOptions"
+                ></signature-pad>
+                <button
+                  type="button"
+                  class="btn btn-sm btn-submit btn-pill kt-margin-t-5 pull-right"
+                  (click)="signaturen1.clear()"
+                >
+                  Signature Clear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Effectiveness and Review Schedule" | localize}}
+        </h5>
+        <hr />
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group p-field">
+              <label>{{"Effective From" | localize}}</label>
+              <div id="EffectiveFrom" class="kt-input-icon">
+                <!-- <input
+                  id="EffectiveFrom"
+                  type="text"
+                  #EffectiveFrom
+                  name="EffectiveFrom"
+                  class="form-control"
+                  showTime="true"
+                  hourFormat="12"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="policy.EffectiveFrom"
+                  [bsConfig]="{ adaptivePosition: true }"
+                /> -->
+                <p-calendar
+                  id="EffectiveFrom"
+                  type="text"
+                  #EffectiveFrom
+                  name="EffectiveFrom"
+                  [(ngModel)]="policy.EffectiveFrom"
+                  showTime="true"
+                  hourFormat="12"
+                  class="width-100"
+                ></p-calendar>
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Effective To" | localize}}</label>
+              <div id="EffectiveTo" class="kt-input-icon">
+                <!-- <input
+                  id="EffectiveTo"
+                  type="text"
+                  #EffectiveTo
+                  name="EffectiveTo"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="policy.EffectiveTo"
+                  [bsConfig]="{ adaptivePosition: true }"
+                /> -->
+                <p-calendar
+                  id="EffectiveTo"
+                  type="text"
+                  #EffectiveTo
+                  name="EffectiveTo"
+                  [(ngModel)]="policy.EffectiveTo"
+                  showTime="true"
+                  hourFormat="12"
+                  class="width-100"
+                ></p-calendar>
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Upcoming Review" | localize}}</label>
+              <div id="UpcomingReview" class="kt-input-icon">
+                <input
+                  id="UpcomingReview"
+                  type="text"
+                  #UpcomingReview
+                  name="UpcomingReview"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="policy.UpcomingReview"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="form-group">
+              <label>{{"Scheduled Review" | localize}}</label>
+              <div id="ScheduledReview" class="kt-input-icon">
+                <input
+                  id="ScheduledReview"
+                  type="text"
+                  #ScheduledReview
+                  name="ScheduledReview"
+                  class="form-control"
+                  bsDatepicker
+                  datePickerMomentModifier
+                  [(date)]="policy.ScheduledReview"
+                  [bsConfig]="{ adaptivePosition: true }"
+                />
+                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                  <span><i class="flaticon-calendar-1"></i></span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>

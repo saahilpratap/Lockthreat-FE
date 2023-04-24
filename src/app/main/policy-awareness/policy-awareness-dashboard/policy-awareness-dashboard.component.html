@@ -1,0 +1,199 @@
+<div id="form_business_management" class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader kt-grid__item">  
+        <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+    </div>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">      
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__body">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="kt-portlet kt-portlet--height-fluid">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                {{"My Review Questionnaire" | localize}}
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <div id="generalSearch" class="kt-input-icon kt-input-icon--left kt-padding-r-5">
+                                <input type="text" class="form-control" placeholder="Search..." style="width:200px;">
+                                <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                                    <span><i class="flaticon2-search-1"></i></span>
+                                </span>
+                            </div>
+                            <button (click)="addNewQuestionnaire()"
+                                    class="btn btn-widget btn-sm w-100 kt-margin-r-5">
+                                +{{"Add New Review Questionnaire" | localize}}
+                            </button>
+                            <div class="btn-group dropdown" dropdown container="body">
+                                <button dropdownToggle class="btn btn-sm border shadow">
+                                    <i class="fa fa-bars no-padding"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu" *dropdownMenu style="left: -10rem !important;">
+                                    <li>
+                                        <a (click)="showGrid()">{{'Grid' | localize}}</a>
+                                    </li>
+                                    <li>
+                                        <a (click)="showList()">{{'List' | localize}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <div *ngIf="list">
+                            <div class="primeng-datatable-container"
+                                 [busyIf]="primengTableHelper.isLoading">
+                                <p-table #dataTable
+                                         (onLazyLoad)="getAllProject($event)"
+                                         [value]="primengTableHelper.records"
+                                         [lazy]="true"
+                                         [scrollable]="true"
+                                         ScrollWidth="100%">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th style="width: 35px">
+                                                <p-checkbox></p-checkbox>
+                                            </th>
+                                            <th style="width: 100px">
+                                                {{'Project ID' |localize}}
+                                            </th>
+                                            <th style="width: 150px">
+                                                {{'Parent Program' |localize}}
+                                                <p-sortIcon></p-sortIcon>
+                                            </th>
+                                            <th style="width: 150px">
+                                                {{'Project Name' |localize}}
+                                                <p-sortIcon></p-sortIcon>
+                                            </th>
+                                            <th style="width: 150px">
+                                                {{'Company Name' |localize}}
+                                                <p-sortIcon></p-sortIcon>
+                                            </th>
+                                            <th style="width: 200px">
+                                                {{'Project Sponsor' |localize}}
+                                                <p-sortIcon></p-sortIcon>
+                                            </th>
+                                            <th style="width: 100px">
+                                                {{'Action' |localize}}
+                                            </th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-record="$implicit">
+                                        <tr>
+                                            <th style="width: 35px">
+                                                <p-checkbox></p-checkbox>
+                                            </th>
+                                            <td style="width: 100px">
+                                                {{record.id}}
+                                            </td>
+                                            <td style="width: 150px">
+                                                {{record.parentProgram}}
+                                            </td>
+                                            <td style="width: 150px">
+                                                {{record.projectName}}
+                                            </td>
+                                            <td style="width: 150px">
+                                                {{record.companyName}}
+                                            </td>
+                                            <td style="width: 200px">
+                                                {{record.projectSponsor}}
+                                            </td>
+                                            <td style="width: 100px">
+                                                <i class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info"></i>
+                                                <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"></i>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                        <div *ngIf="grid">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class=" kt-portlet kt-portlet__body--fullheight portlet-card-color">
+                                        <div class="kt-padding-15">
+                                            <span class="kt-font-bold kt-padding-10">{{'Open' |localize}}</span>
+                                        </div>
+                                        <div class="kt-portlet__body kt-padding-10">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class=" kt-portlet kt-portlet__body--fullheight portlet-card-color">
+                                        <div class="kt-padding-15">
+                                            <span class="kt-font-bold kt-padding-10">{{'In Progress' |localize}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class=" kt-portlet kt-portlet__body--fullheight portlet-card-color">
+                                        <div class="kt-padding-15">
+                                            <span class="kt-font-bold  kt-padding-10">{{'Completed' |localize}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class=" kt-portlet kt-portlet__body--fullheight portlet-card-color">
+                                        <div class="kt-padding-15">
+                                            <span class="kt-font-bold kt-padding-10">{{'On Hold' |localize}}</span>
+                                            <span class="kt-padding-5">{{'0' |localize}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

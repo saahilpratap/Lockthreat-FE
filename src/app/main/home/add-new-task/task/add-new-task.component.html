@@ -1,0 +1,301 @@
+<div>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader kt-grid__item">
+            <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+        </div>
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <form #tasksForm="ngForm" novalidate (ngSubmit)="save()">
+
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                {{"Add New Task" | localize}}
+                            </h3>
+                        </div>
+                        <div class="kt-portlet__head-toolbar">
+                            <button class="btn btn-sm kt-margin-l-5" (click)="goBack()">
+                                <i class="la la-arrow-left"></i>
+                                {{"Back" | localize}}
+                            </button>
+                            <button class="btn btn-submit btn-sm">
+                                <i class="la la-check"></i>
+                                {{"Save" | localize}}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="kt-portlet__body kt-padding-0">
+                        <div class="container kt-content">
+
+                            <div id="basicInfoView">
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <h5 class="kt-section__title kt-section__title-sm">{{"Task Information" | localize}}</h5>
+                                        <hr/>
+                                        <div class="row">
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Task ID" | localize}}</label>
+                                                    <input type="text" disabled class="form-control" [(ngModel)]="taskItem.taskId" name="Services" placeholder="System Generated">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Task Title" | localize}}</label>
+                                                    <input type="text" class="form-control" placeholder="Task Title" name="TaskTitle" [(ngModel)]="taskItem.taskTitle">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Task Type" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="tasktype" [filter]="true" placeholder="Select Task Type" optionLabel="value" required=true [(ngModel)]="selectedTaskType" name="tasktype" (onChange)="tasktypeChange($event)"></p-dropdown>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{" Linked To" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="linked" [filter]="true" placeholder="Select LInked To" optionLabel="value" required=true [(ngModel)]="selectedLinked" name="kinkedto" (onChange)="linkedChange($event)"></p-dropdown>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Frequency" | localize}}</label>
+                                                    <div class="kt-radio-inline">
+                                                        <label class="kt-radio" *ngFor="let radiobutton of taskFrequencyList">
+                                                            <input type="radio" name="frequencyoptions" [value]="radiobutton.id" [(ngModel)]="taskItem.frequencys"
+                                                                   [checked]="radiobutton.name === 'OneTime'">{{radiobutton.name}}
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group" *ngIf="taskItem.frequencys === 3">
+                                                    <label>{{"Days" | localize}}</label>
+                                                    <input type="number" class="form-control" placeholder="0" min="0" name="Days" [(ngModel)]="taskItem.days">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Tags" | localize}}</label>
+                                                    <textarea type="text" class="form-control" placeholder="Tags" style="height:100px !important" name="tags" [(ngModel)]="taskItem.tags"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Task Description" | localize}}</label>
+                                                    <textarea type="text" class="form-control" placeholder="Task Description" name="description" [(ngModel)]="taskItem.taskDescription" style="height:100px !important"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <h5 class="kt-section__title kt-section__title-sm">{{"Classification" | localize}}</h5>
+                                        <hr/>
+                                        <div class="row">
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Priority" | localize}}</label>
+                                                    <div class="kt-radio-inline">
+                                                        <label class="kt-radio" *ngFor="let radioPriorityButton of taskPriorityList">
+                                                            <input type="radio" name="PriorityOptions" [value]="radioPriorityButton.id" [(ngModel)]="taskItem.prioritys"
+                                                                   [checked]="radioPriorityButton.name === 'High'">{{radioPriorityButton.name}}
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Risk Level" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="riskLevel" [filter]="true" placeholder="Select Risk Level" optionLabel="value" required=true [(ngModel)]="selectedRiskLevel" name="risklevel" (onChange)="risklevelChange($event)"></p-dropdown>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <h5 class="kt-section__title kt-section__title-sm">{{" Task Assignment" | localize}}</h5>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Requested By" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="requesteduser" [filter]="true" placeholder="Select Requested" optionLabel="employeeName" required=true [(ngModel)]="selectedRequesteduser" name="requestedby" (onChange)="requestedByChange($event)"></p-dropdown>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Assigned User" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="assignedUser" [filter]="true" placeholder="Select Assigned User" optionLabel="employeeName" required=true [(ngModel)]="selectedAssignedUser" name="Companys" (onChange)="assignedUserChange($event)"></p-dropdown>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Assigned To" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="assignedTo" [filter]="true" placeholder="Select Assigned To" optionLabel="employeeName" required=true [(ngModel)]="selectedAssignedTo" name="assigned" (onChange)="assignedToChange($event)"></p-dropdown>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <h5 class="kt-section__title kt-section__title-sm">{{"Task Review and Completion" | localize}}</h5>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Start Date" | localize}}</label>
+                                                    <div id="startDate" class="kt-input-icon">
+                                                        <input id="startDatePicker"
+                                                               type="text"
+                                                               #startDatePicker
+                                                               name="startDatePicker"
+                                                               class="form-control"
+                                                               bsDatepicker
+                                                               datePickerMomentModifier
+                                                               [(date)]="taskItem.startDate"
+                                                               [bsConfig]="{ adaptivePosition: true }" />
+                                                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                            <span><i class="flaticon-calendar-1"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"End Date" | localize}}</label>
+                                                    <div id="endDate" class="kt-input-icon">
+                                                        <input id="endDatePicker"
+                                                               type="text"
+                                                               #endDatePicker
+                                                               name="endDatePicker"
+                                                               class="form-control"
+                                                               bsDatepicker
+                                                               datePickerMomentModifier
+                                                               [(date)]="taskItem.endDate"
+                                                               [bsConfig]="{ adaptivePosition: true }" />
+                                                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                            <span><i class="flaticon-calendar-1"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Status" | localize}}</label>
+                                                    <p-dropdown [style]="{'width': '100%'}" [options]="status" [filter]="true" placeholder="Select status" optionLabel="value" required=true [(ngModel)]="selectedstatus" name="status" (onChange)="statusChange($event)"></p-dropdown>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Actual Complete" | localize}}</label>
+                                                    <div id="endDate" class="kt-input-icon">
+                                                        <input id="actualCompletedDatePicker"
+                                                               type="text"
+                                                               #actualCompletedDatePicker
+                                                               name="actualCompletedDatePicker"
+                                                               class="form-control"
+                                                               bsDatepicker
+                                                               datePickerMomentModifier
+                                                               [(date)]="taskItem.actualCompleted"
+                                                               [bsConfig]="{ adaptivePosition: true }" />
+                                                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                            <span><i class="flaticon-calendar-1"></i></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Completion Notification" | localize}}</label>
+                                                    <p-multiSelect [options]="notificationUser" [filter]="true" [maxSelectedLabels]="1" placeholder="Select  Notification User" optionLabel="employeeName" [(ngModel)]="selectedNotificationUser" (onChange)="notificationUserChange($event)" name="notification" [style]="{'width': '100%'}"></p-multiSelect>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="advancedView">
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <h5 class="kt-section__title kt-section__title-sm">{{"Related Info" | localize}}</h5>
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Associated Project" | localize}}</label>
+                                                    <p-multiSelect [options]="project" [filter]="true" placeholder="Select  Project" [maxSelectedLabels]="1" optionLabel="projectName" [(ngModel)]="selectedProject" (onChange)="projectChange($event)" name="projects" [style]="{'width': '100%'}"></p-multiSelect>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Related Members" | localize}}</label>
+                                                    <p-multiSelect name="relatedMembers" [options]="relatedMembers" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Related Members" optionLabel="employeeName" [(ngModel)]="selectedRelatedMembers" (onChange)="membersChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Related Meeting" | localize}}</label>
+                                                    <p-multiSelect name="Meeting" [options]="meeting" [filter]="true" [maxSelectedLabels]="1" placeholder="Select Meeting" optionLabel="meetingTitle" [(ngModel)]="selectedMeeting" (onChange)="meetingChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"External Contacts" | localize}}</label>
+                                                    <p-multiSelect name="Contacts" [options]="contacts" [filter]="true" [maxSelectedLabels]="1" placeholder="Select External Contacts" optionLabel="employeeName" [(ngModel)]="selectedContacts" (onChange)="externalChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Task Attachments" | localize}}</h5>
+                                    <hr/>
+                                    <div class="input-group" (click)="fileUpload()">
+                                        <input hidden type="file" id="fileUpload" name="fileUpload" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps">
+                                        <label class="custom-file-label" for="labelImport">Choose file</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" *ngFor="let file of myFiles">
+                                <div class="col-md-12" >
+                                    <span class="text-danger">{{file.fileName}}</span>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

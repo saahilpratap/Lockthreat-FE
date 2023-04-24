@@ -1,0 +1,77 @@
+<div appBsModal #bulkEditKeyPerformanceIndicatorsModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditKeyPerformanceIndicatorsModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Business Process' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                            <p-multiSelect [options]="bulkEditKeyPerformanceIndicators" [maxSelectedLabels]="1" [style]="{'width': '100%'}" ></p-multiSelect>
+                        </div>
+                    </div>
+                    <div class="row">                      
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Status" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"KPI Title" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="KPI Title">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Frequency (Measurement)" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Description" | localize}}</label>
+                                <textarea type="text" class="form-control" placeholder="Description" style="height:100px !important"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Business Units" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"KPI Owner" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"KPI Administrators" | localize}}</label>
+                                <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

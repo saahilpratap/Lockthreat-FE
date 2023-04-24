@@ -1,0 +1,201 @@
+<div [@routerTransition]>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader kt-grid__item">
+            <!--<div [class]="containerClass">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                <span>{{"Policy & Awareness" | localize}}</span>
+            </h3>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <span class="kt-subheader__desc">
+                {{"Policy & Awareness  Dashboard" | localize}}
+            </span>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <span class="kt-subheader__desc">
+                {{"Add Review Questionnaire" | localize}}
+            </span>
+        </div>
+        <div class="kt-subheader__toolbar">
+        </div>
+    </div>-->
+            <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+        </div>
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{"Add Review Questionnaire" | localize}}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <button class="btn btn-sm kt-margin-l-5" (click)="goBack()">
+                            <i class="la la-arrow-left"></i>
+                            {{"Back" | localize}}
+                        </button>
+                        <button class="btn btn-submit btn-sm">
+                            <i class="la la-check"></i>
+                            {{"Save" | localize}}
+                        </button>
+                    </div>
+                </div>
+                <div class="kt-portlet__body kt-padding-0">
+                    <div class="container kt-content">
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Review Data Section" | localize}}</h5>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Review ID" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Company Name" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Review Lead" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Business Units" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Cyber Awareness Score" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Vendors" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Contacts" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Question Info" | localize}}</h5>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Questions ID" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Question Assigned To" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Questions Library" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Response Area" | localize}}</h5>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Responded By" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Answer Points" | localize}}</label>
+                                            <input type="text" class="form-control" placeholder="Answer Points">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Selected Answer" | localize}}</label>
+                                            <input type="text" class="form-control" placeholder="Selected Answer">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Response Time" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input type="text" class="form-control" placeholder="">
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Remarks" | localize}}</label>
+                                            <textarea type="text" class="form-control" placeholder="Remarks" style="height:100px !important"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Response Review" | localize}}</h5>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Verifier" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Verfied Time" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input type="text" class="form-control" placeholder="">
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Review Question Status" | localize}}</label>*
+                                            <input type="text" class="form-control" placeholder="Review Question Status">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Review Feedback" | localize}}</label>
+                                            <textarea type="text" class="form-control" placeholder="Review Feedback" style="height:100px !important"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

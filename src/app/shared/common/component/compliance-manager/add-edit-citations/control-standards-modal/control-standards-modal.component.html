@@ -1,0 +1,549 @@
+<div class="kt-section kt-section--first">
+  <div class="kt-section__body">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <h5 class="kt-section__title kt-section__title-sm">
+          {{"Control Standards" | localize}}
+        </h5>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <span class="pull-right" (click)="show()"
+          ><button type="submit" class="btn btn-sm btn-submit">
+            <span><i class="fa fa-plus"></i> {{"Add New" | localize}}</span>
+          </button></span
+        >
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="primeng-datatable-container">
+          <p-table
+            [value]="controlStandardList"
+            #dataTable
+            [lazy]="true"
+            [scrollable]="true"
+            ScrollWidth="100%"
+          >
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 150px;">Source</th>
+                <th style="width: 200px;">Source Version</th>
+                <th style="width: 200px;">UCF CID</th>
+                <th style="width: 200px;">Control Standard ID</th>
+                <th style="width: 200px;">Control Name</th>
+                <th style="width: 200px;">Framework Objectives</th>
+                <th style="width: 200px;">Control Classification</th>
+                <th style="width: 200px;">Type</th>
+                <th style="width: 200px;">Control Area</th>
+                <th style="width: 200px;">Control Category</th>
+                <th style="width: 200px;">Control Objective</th>
+                <th style="width: 200px;">Control Description</th>
+                <th style="width: 200px;">Control Requirements</th>
+                <th style="width: 200px;">Custom Applicability</th>
+                <th style="width: 200px;">Frequency Type</th>
+                <th style="width: 200px;">Control Frequency</th>
+                <th style="width: 200px;">Testing Procedure</th>
+                <th style="width: 200px;">Sample Size</th>
+                <th style="width: 200px;">Risk Drivers</th>
+                <th style="width: 100px;">Actions</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-controlStandard let-ri="rowIndex">
+              <tr>
+                <td style="width: 150px;">{{controlStandard.Source}}</td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.SourceVersion"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.SourceVersion !== null ? controlStandard.SourceVersion : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.UCFCID"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.UCFCID !== null ? controlStandard.UCFCID : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlStandardID"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlStandardID !== null ? controlStandard.ControlStandardID : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlName"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlName !== null ? controlStandard.ControlName : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.FrameworkObjectives"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.FrameworkObjectives !== null ? controlStandard.FrameworkObjectives : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlClassification"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlClassification !== null ? controlStandard.ControlClassification : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.Type"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.Type !== null ? controlStandard.Type : '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlArea"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlArea !== null ? controlStandard.ControlArea : '--'"
+                  ></div>
+                </td>
+                <td
+                  style="width: 200px;"
+                  [pTooltip]="controlStandard.ControlCategory"
+                  tooltipPosition="bottom"
+                  [innerHTML]="controlStandard.ControlCategory !== null ? controlStandard.ControlCategory: '--'"
+                >
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlCategory"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlCategory !== null ? controlStandard.ControlCategory: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlObjective"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlObjective !== null ? controlStandard.ControlObjective: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="stripHtml(controlStandard.ControlDescription)"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlDescription !== null ? controlStandard.ControlDescription: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlRequirements"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlRequirements !== null ? controlStandard.ControlRequirements: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.CustomApplicability"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.CustomApplicability !== null ? controlStandard.CustomApplicability: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.ControlFrequency"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.ControlFrequency !== null ? controlStandard.ControlFrequency: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.TestingProcedure"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.TestingProcedure !== null ? controlStandard.TestingProcedure: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.SampleSize"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.SampleSize !== null ? controlStandard.SampleSize: '--'"
+                  ></div>
+                </td>
+                <td style="width: 200px;">
+                  <div
+                    class="table-text-wrap"
+                    [pTooltip]="controlStandard.RiskDrivers"
+                    tooltipPosition="bottom"
+                    [innerHTML]="controlStandard.RiskDrivers !== null ? controlStandard.RiskDrivers: '--'"
+                  ></div>
+                </td>
+                <td style="width: 100px;">
+                  <i
+                    class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info"
+                    (click)="editControlStandard(controlStandard)"
+                    title="Edit"
+                  ></i>
+                  <i
+                    class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"
+                    title="Delete"
+                    (click)="deleteControlStandard(ri)"
+                  ></i>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <div class="primeng-no-data" *ngIf="controlStandardList.length == 0">
+            No control standards data added
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  appBsModal
+  #AddControlStandardModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="AddControlStandardModal"
+  aria-hidden="true"
+  [config]="{backdrop: 'static'}"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <form
+        #ControlStandardForm="ngForm"
+        (ngSubmit)="saveControlStandards(ControlStandardForm)"
+      >
+        <div class="modal-header">
+          <h4 class="modal-title">
+            {{'Control Standards' | localize}}
+          </h4>
+        </div>
+        <div class="modal-body" style="min-height: 350px;">
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Source" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.Source"
+                  name="SourceField"
+                  placeholder="Source"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Source Version" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.SourceVersion"
+                  name="SourceVersionField"
+                  #SourceVersionField="ngModel"
+                  placeholder="Source Version"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"UCF CID" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.UCFCID"
+                  name="UCFCIDField"
+                  #UCFCIDField="ngModel"
+                  placeholder="UCF CID"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Standard ID" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.ControlStandardID"
+                  name="ControlStandardID"
+                  #ControlStandardID="ngModel"
+                  placeholder="Control Standard ID"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Name" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.ControlName"
+                  name="ControlName"
+                  #ControlName="ngModel"
+                  placeholder="Control Name"
+                />
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Framework Objectives" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Framework Objectives"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.FrameworkObjectives"
+                  name="FrameworkObjectivesField"
+                  #SecurityEnvironments="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label class="required"
+                  >{{"Control Classification" | localize}}</label
+                >
+                <p-dropdown
+                  required
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Control Classification"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.ControlClassification"
+                  name="ControlClassificationField"
+                  #ControlClassificationField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Type" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Type"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.Type"
+                  name="TypeField"
+                  #TypeField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Area" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Control Area"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.ControlArea"
+                  name="ControlAreaField"
+                  #ControlAreaField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Category" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Control Category"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.ControlCategory"
+                  name="ControlCategoryField"
+                  #ControlCategoryField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Objective" | localize}}</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.ControlObjective"
+                  placeholder="Control Objective"
+                  name="ControlObjectiveField"
+                  #ControlObjectiveField="ngModel"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Description" | localize}}</label>
+                <p-editor
+                  id="ControlDescriptionEditor"
+                  name="ControlDescriptionEditor"
+                  #ControlDescriptionEditor="ngModel"
+                  [(ngModel)]="controlStandard.ControlDescription"
+                  [style]="{'height':'200px'}"
+                ></p-editor>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Requirements" | localize}}</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.ControlRequirements"
+                  placeholder="Control Requirements"
+                  name="ControlRequirementsField"
+                  #ControlRequirementsField="ngModel"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Custom Applicability" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.CustomApplicability"
+                  name="CustomApplicabilityField"
+                  #CustomApplicabilityField="ngModel"
+                  placeholder="Custom Applicability"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Frequency Type" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Custom Applicability"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.CustomApplicability"
+                  name="CustomApplicabilityField"
+                  #CustomApplicabilityField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Frequency" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Control Frequency"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.ControlFrequency"
+                  name="ControlFrequencyField"
+                  #ControlFrequencyField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Testing Procedure" | localize}}</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.TestingProcedure"
+                  placeholder="Testing Procedure"
+                  name="TestingProcedureField"
+                  #TestingProcedureField="ngModel"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Control Area" | localize}}</label>
+                <p-dropdown
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [filter]="true"
+                  placeholder="Select Control Area"
+                  optionLabel="value"
+                  [(ngModel)]="controlStandard.ControlArea"
+                  name="ControlAreaField"
+                  #ControlAreaField="ngModel"
+                ></p-dropdown>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Sample Size" | localize}}</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="controlStandard.SampleSize"
+                  name="SampleSizeField"
+                  #SampleSizeField="ngModel"
+                  placeholder="Sample Size"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12">
+              <div class="form-group">
+                <label>{{"Risk Drivers" | localize}}</label>
+                <p-multiSelect
+                  [style]="{'width': '100%'}"
+                  [options]="null"
+                  [maxSelectedLabels]="1"
+                  [filter]="true"
+                  placeholder="Select Risk Drivers"
+                  optionLabel="businessServiceName"
+                  [(ngModel)]="controlStandard.RiskDrivers"
+                  name="RiskDriversField"
+                  #RiskDriversField="ngModel"
+                ></p-multiSelect>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-cancel"
+            (click)="close(ControlStandardForm)"
+          >
+            {{"Cancel" | localize}}
+          </button>
+          <button type="submit" class="btn btn-sm btn-submit">
+            <span>{{"Save" | localize}}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

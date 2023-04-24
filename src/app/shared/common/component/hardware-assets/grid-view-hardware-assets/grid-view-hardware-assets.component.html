@@ -1,0 +1,91 @@
+<div class="row align-items-center no-margin">
+    <div class="primeng-datatable-container"
+         [busyIf]="primengTableHelper.isLoading">
+        <p-table #dataTable
+                 (onLazyLoad)="getHardwareAsset($event)"
+                 [value]="primengTableHelper.records"
+                 [lazy]="true"
+                 [scrollable]="true"
+                 [selection]="selectedRowData" (selectionChange)="onSelectionChange($event)"
+                 ScrollWidth="100%">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 20px" *ngIf="!showPopupBtn">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th style="width: 150px" pSortableColumn="assetId">
+                        {{'Hardware AssetID' |localize}}
+                        <p-sortIcon field="assetId"></p-sortIcon>
+                    </th>   
+                    <th style="width: 250px" pSortableColumn="hardwareAssetName">
+                        {{'Hardware Asset Name' |localize}}
+                        <p-sortIcon field="hardwareAssetName"></p-sortIcon>
+                    </th>
+                    <th style="width: 150px"  pSortableColumn="assetId">
+                        {{'Description' |localize}}
+                        <p-sortIcon field="assetId"></p-sortIcon>
+                    </th>
+                    <th style="width: 250px" pSortableColumn="assetId">
+                        {{'Asset Hardware ID' |localize}}
+                        <p-sortIcon field="assetId"></p-sortIcon>
+                    </th>
+                    <th style="width: 200px" pSortableColumn="assetId">
+                        {{'Location' |localize}}
+                        <p-sortIcon field="assetId"></p-sortIcon>
+                    </th>
+                    <th style="width: 200px" pSortableColumn="assetId">
+                        {{'Company (Owner)' |localize}}
+                        <p-sortIcon field="assetId"></p-sortIcon>
+                    </th>                    
+                    <th style="width: 100px" class="kt-align-center">
+                        {{'Action' |localize}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body"  let-rowData let-record="$implicit">
+                <tr [pSelectableRow]="rowData">
+                    <td style="width: 20px" *ngIf="!showPopupBtn">
+                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                    </td>
+                    <td style="width: 150px">
+                        {{record.assetId}}
+                    </td>
+                    <td style="width: 250px">
+                        {{record.hardwareAssetName}}
+                    </td>
+                    <td style="width: 150px">
+                        {{record.description}}
+                    </td>
+                    <td style="width: 250px">
+                        {{record.assetHardwareId}}
+                    </td>
+                    <td style="width: 200px">
+                        <span *ngIf="record.locations">{{record.locations.facilityName}}</span>  
+                    </td>
+                    <td style="width: 200px">
+                        <span *ngIf="record.lockThreatOrganization"></span> {{record.lockThreatOrganization.companyName}}
+                    </td>                    
+                    <td style="width: 100px" class="kt-align-center">
+                        <i *ngIf="!showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="hardWareAssetEdit(record.id)"></i>
+                        <i *ngIf="showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="facilitiesDatacentersModals.show()"></i>
+                        <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"  (click)="hardWareAssetDelete(record.id)"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!--<div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+        {{'NoData' | localize}}
+    </div>-->
+    <div class="primeng-paging-container">
+        <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator
+                     (onPageChange)="getHardwareAsset($event)"
+                     [totalRecords]="primengTableHelper.totalRecordsCount"
+                     [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+        </p-paginator>
+        <span class="total-records-count">
+            {{'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount}}
+        </span>
+    </div>
+    </div>
+</div>
+<facilitiesDatacentersModals #facilitiesDatacentersModals></facilitiesDatacentersModals>

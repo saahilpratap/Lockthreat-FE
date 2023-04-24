@@ -1,0 +1,35 @@
+<div
+  appBsModal
+  #bulkEditIncidentModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="bulkEditIncidentModal"
+  aria-hidden="true"
+  [config]="{backdrop: 'static'}"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form #bulkEditIncidentForm="ngForm">
+        <div class="modal-header">
+          <h4 class="modal-title">
+            {{'Bulk Edit Incident' | localize}}
+          </h4>
+        </div>
+        <div class="modal-body" style="min-height: 350px;"></div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-cancel"
+            (click)="close()"
+          >
+            {{"Cancel" | localize}}
+          </button>
+          <button type="submit" class="btn btn-sm btn-submit">
+            <span>{{"Apply" | localize}}</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

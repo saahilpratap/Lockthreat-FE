@@ -1,0 +1,192 @@
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader kt-grid__item">
+        <div [class]="containerClass">
+            <div class="kt-subheader__main">
+                <h3 class="kt-subheader__title">
+                    <span>{{"Organization" | localize}}</span>
+                </h3>
+                <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                <span class="kt-subheader__desc">
+                    {{"Organization Dashboard" | localize}}
+                </span>
+            </div>
+            <div class="kt-subheader__toolbar">
+                <button (click)="openWidget()"
+                        class="btn btn-widget btn-sm" style="border: none;">
+                    {{"Add Widget" | localize}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet kt-portlet--fit kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--skin-solid kt-portlet--height-fluid">
+                <div class="kt-portlet__head kt-portlet__head--noborder kt-portlet__space-x">
+                </div>
+                <div class="kt-portlet__body kt-portlet__body--fit">
+                    <div class="kt-widget17">
+                        <div class="kt-widget17__visual kt-widget17__visual--chart kt-portlet-fit--top kt-portlet-fit--sides background-color">
+                            <div class="kt-widget17__chart" style="height:320px;">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-2 col-sm-12"></div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12">
+                                        <div class="kt-widget4">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__pic1 kt-widget4__pic--pic kt-padding-r-20 border-right" style="border:1px #976289">
+                                                    <img src="../assets/common/icon/organization-dashboard/tab-8.svg" height="70" width="70">
+                                                </div>
+                                                <div class="kt-widget4__info kt-align-left kt-padding-l-20">
+                                                    <span class="h1 kt-font-bold">
+                                                        {{organization}}
+                                                    </span>
+                                                    <p class="" style="color:#976289; font-size:15px; font-weight:900">
+                                                        {{ 'All Organization'| localize}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 kt-align-center">
+                                        <div class="kt-widget4">
+                                            <div class="kt-widget4__item">
+                                                <div class="kt-widget4__pic1 kt-widget4__pic--pic kt-padding-r-20 border-right" style="border:1px #976289">
+                                                    <img src="../assets/common/icon/organization-dashboard/tab-9.svg" height="70" width="70">
+                                                </div>
+                                                <div class="kt-widget4__info kt-align-left kt-padding-l-20">
+                                                    <span class="h1 kt-font-bold">
+                                                        {{businessUnit}}
+                                                    </span>
+                                                    <p class="" style="color:#976289; font-size:15px; font-weight:900">
+                                                        {{ 'Business Units'| localize}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-12"></div>
+                                </div>
+                                <canvas id="kt_chart_activities" width="485" height="270" class="chartjs-render-monitor" style="display: block; height: 216px; width: 388px;"></canvas>
+                            </div>
+                        </div>
+                        <div class="kt-widget17__stats">
+                            <div class="kt-widget17__items">
+                                <div class="kt-widget17__item" style="border-radius:10px">
+                                    <div class="row">
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(0)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-1.svg" height="50" width="50" />
+
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{StrategicObjectives}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ 'Strategic Objectives'| localize}}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(1)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-2.svg" height="50" width="50" />
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{businessService}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ 'Business Service'| localize}}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(2)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-3.svg" height="50" width="50" />
+
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{businessProcess}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ 'Business Process'| localize}}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(3)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-4.svg" height="50" width="50" />
+
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{itService}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ 'IT Service'| localize}}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(4)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-5.svg" height="50" width="50" />
+
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{KRI}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ 'KRI'| localize}}
+                                            </span>
+                                        </div>
+
+                                        <div class="col-3 border-bottom kt-padding-t-20 kt-padding-b-20" (click)="clickTabMenu(5)">
+                                            <span class="kt-widget17__icon">
+                                                <img class="kt-padding-b-10" src="../assets/common/icon/organization-dashboard/tab-6.svg" height="50" width="50" />
+
+                                            </span>
+                                            <span class="kt-widget17__subtitle">
+                                                {{KPI}}
+                                            </span>
+                                            <span class="kt-widget17__desc">
+                                                {{ ' KPI'| localize}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Add Widget" [(visible)]="display" [modal]="true" [baseZIndex]="10000" [style]="{width: '25vw'}"
+          [draggable]="false" [resizable]="false">
+    <form #widgetForm="ngForm" class="kt-form" novalidate>
+        <div class="form-group">
+            <label for="Image">{{"Image" | localize}}</label>
+            <div class="row">
+                <div class="col-8">
+                    <input id="Image" class="form-control" type="text" name="Name" maxlength="64">
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-widget" style="border: none;">
+                        {{"Select Image" | localize}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Count">{{"Count" | localize}}</label>
+            <input id="Count" class="form-control" type="text" name="Count" maxlength="64">
+        </div>
+        <div class="form-group">
+            <label for="Detail">{{"Detail" | localize}}</label>
+            <input id="Detail" class="form-control" type="text" name="Detail" maxlength="64">
+        </div>
+        <div class="kt-login__actions kt-align-right">
+            <button type="submit" class="btn btn-outline-dark btn-sm" (click)="close()">{{"Cancel" | localize}}</button>
+            <button type="submit" class="btn btn-widget btn-sm" [disabled]="!widgetForm.form.valid">{{"Save" | localize}}</button>
+        </div>
+    </form>
+</p-dialog>

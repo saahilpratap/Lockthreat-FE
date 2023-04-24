@@ -1,0 +1,104 @@
+<div appBsModal #bulkEditBusinessUnitModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditBusinessUnitModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #multipleEditForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Business Unit' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditBusinessUnit" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>                        
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'UnitType' | localize}}</label>
+                                <ng-select [searchable]="true"
+                                           placeholder="Selected"
+                                           bindLabel=""
+                                           bindValue=""
+                                           name="UnitType">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'ParentOrganization' | localize}}  </label>
+                                <ng-select 
+                                           [searchable]="true"
+                                           placeholder="Selected"
+                                           bindLabel=""
+                                           bindValue=""
+                                           name="orgLevel"                                        
+                                          [virtualScroll]="true">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'EntityHead' | localize}}</label>
+                                <ng-select [searchable]="true"
+                                           placeholder="Selected"
+                                           bindLabel=""
+                                           bindValue=""                                          
+                                           name="emp">
+                                </ng-select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'ParentCompanyName' | localize}}</label>
+                                <input type="text" class="form-control" required name="companyName" />                               
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'AuditableEntity' | localize}}</label>
+                                <div class="kt-radio-inline">
+                                    <label class="kt-radio">
+                                        <input type="radio" name="radio2" [value]="true" [checked]="true" > Yes
+                                        <span></span>
+                                    </label>
+                                    <label class="kt-radio">
+                                        <input type="radio" name="radio2" [value]="false"> No
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="form-text text-muted">
+                                    Auditable entities become part of audit universe for individual entity audits
+                                    and reviews.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'BusinessUnitTitle' | localize}}</label>
+                                <input type="text" class="form-control"  required name="businessUnitName"  />                                
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{'ParentUnit'| localize}} </label>
+                                <ng-select [searchable]="true"
+                                           placeholder="Selected"
+                                           bindLabel=""
+                                           bindValue=""
+                                           name="oraganizationUnitName" >
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

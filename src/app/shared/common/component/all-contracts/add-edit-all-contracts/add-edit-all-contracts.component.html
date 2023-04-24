@@ -1,0 +1,171 @@
+<div>
+    <form #addEditContracts.componentForm="ngForm" novalidate (ngSubmit)="saveContracts()">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Contract Info" | localize}}</h5>
+                <hr/>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract ID" | localize}}</label>
+                            <input type="text" disabled class="form-control" [(ngModel)]="contract.contractId" name="contractId" placeholder="System Generated">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Vendor Name" | localize}}</label>
+                            <p-dropdown [style]="{'width': '100%'}" [options]="vendor" [filter]="true" placeholder="Select Vendor " optionLabel="vendorName" [(ngModel)]="selectedVendor" name="vendor" (onChange)="vendorChange($event)"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract Title" | localize}}</label>
+                            <input type="text" class="form-control" name="title" [(ngModel)]="contract.contractTitle" placeholder="Contract Title">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Type" | localize}}</label> *
+                            <p-dropdown [style]="{'width': '100%'}" [options]="contractType" [filter]="true" placeholder="Select Type " optionLabel="value" [(ngModel)]="selectedContractType" name="Type" (onChange)="contractTypeChange($event)"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract Category" | localize}}</label>
+                            <p-dropdown [style]="{'width': '100%'}" [options]="contractCategorys" [filter]="true" placeholder="Select Contract Category " optionLabel="value" [(ngModel)]="selectedcontractCategorys" name="contratctcategory" (onChange)="ContractCategoryChange($event)"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract Reference" | localize}}</label>
+                            <input type="text" class="form-control" name="contractrefarance" [(ngModel)]="contract.contractReference" placeholder="Contract Reference">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract Value" | localize}}</label>
+                            <input type="text" class="form-control" [(ngModel)]="contract.contractValue" name="Contractvalue"  placeholder="Contract Value">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Description" | localize}}</label>
+                            <textarea type="text" class="form-control" name="description" [(ngModel)]="contract.description" placeholder="Description..." style="height:100px !important"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Contract Administration" | localize}}</h5>
+                <hr/>                    
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Start Date" | localize}}</label>
+                            <div id="startDatePicker" class="kt-input-icon">
+                                <input id="startDatePicker"
+                                       type="text"
+                                       #SampleDatePicker
+                                       name="startDatePicker"
+                                       class="form-control"
+                                       bsDatepicker
+                                       datePickerMomentModifier
+                                       [(date)]="contract.startDate"   
+                                       [bsConfig]="{ adaptivePosition: true }" />
+                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                    <span><i class="flaticon-calendar-1"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"End Date" | localize}}</label>
+                            <div id="endDateDatePicker" class="kt-input-icon">
+                                <input id="endDateDatePicker"
+                                       type="text"
+                                       #endDateDatePicker
+                                       name="endDateDatePicker"
+                                       class="form-control"
+                                       bsDatepicker
+                                       datePickerMomentModifier
+                                       [(date)]="contract.endDate"   
+                                       [bsConfig]="{ adaptivePosition: true }" />
+                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                    <span><i class="flaticon-calendar-1"></i></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Company Name (Entity Ownership)" | localize}}</label>
+                            <p-dropdown [style]="{'width': '100%'}" [options]="organization" [filter]="true" placeholder="Select Company " optionLabel="companyName" [(ngModel)]="selectedOrganization" name="companyName" (onChange)="organizationChange($event)"></p-dropdown>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Contract Owner" | localize}}</label>
+                            <p-dropdown [style]="{'width': '100%'}" [options]="employee" [filter]="true" placeholder="Select Contract Owner" optionLabel="employeeName" [(ngModel)]="selectedEmployee" name="contactowner" (onChange)="ContractOwnerChange($event)"></p-dropdown>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Dependent IT Services" | localize}}</label>
+                            <p-multiSelect [style]="{'width': '100%'}" [options]="businessItService" [maxSelectedLabels]="1" [filter]="true" placeholder="Select ITservice " optionLabel="itServiceName" [(ngModel)]="selectedBusinessItservice" name="itServiceName" (onChange)="itServiceChange($event)"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Dependent Business Services" | localize}}</label>
+                            <p-multiSelect [style]="{'width': '100%'}" [options]="businessService" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Service" optionLabel="businessServiceName" [(ngModel)]="selectedBusinessService" name="businessservice" (onChange)="businessserviceChange($event)"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Dependent Business Process" | localize}}</label>
+                            <p-multiSelect [style]="{'width': '100%'}" [options]="businessProcess" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Process" optionLabel="businessProcessName" [(ngModel)]="selectedBusinessProcess" name="businessProcessName" (onChange)="businessProcessChange($event)"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Notifications" | localize}}</label>
+                            <p-multiSelect [style]="{'width': '100%'}" [options]="employeeNotification" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Notifications" optionLabel="employeeName" [(ngModel)]="selectedemployeeNotification" name="notifications" (onChange)="notificationsChange($event)"></p-multiSelect>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Risk Treatment Plans-ID" | localize}}</label>
+                            <!--<p-multiSelect [style]="{'width': '100%'}" [options]="" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Risk Treatment" optionLabel="" [(ngModel)]="" name="risktritment" ></p-multiSelect>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="kt-section kt-section--first" >
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Contract Attachments" | localize}}</h5>
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 co-sm-12">
+                        <upload-file></upload-file>
+                    </div>                   
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

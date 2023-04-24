@@ -1,0 +1,109 @@
+<div class="row align-items-center no-margin">
+    <div class="primeng-datatable-container"
+         [busyIf]="primengTableHelper.isLoading">
+        <p-table #dataTable
+                 (onLazyLoad)="getAllBusinessServices($event)"
+                 [value]="primengTableHelper.records"
+                 [lazy]="true"
+                 [scrollable]="true"
+                 [selection]="selectedRowData" (selectionChange)="onSelectionChange($event)"
+                 ScrollWidth="100%">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 20px" *ngIf="!showPopupBtn">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th style="width: 150px">
+                        {{'Business Process ID' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 200px">
+                        {{'Business Process Name' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 150px">
+                        {{'Process Owner' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 150px">
+                        {{'Company Name' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 100px">
+                        {{'Status' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 100px">
+                        {{'Process Type' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 100px">
+                        {{'Description' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 200px">
+                        {{'Process Priority (Criticality)' |localize}}
+                        <p-sortIcon></p-sortIcon>
+                    </th>
+                    <th style="width: 100px" class="kt-align-center">
+                        {{'Action' |localize}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-record="$implicit">
+                <tr [pSelectableRow]="rowData">
+                    <td style="width: 20px" *ngIf="!showPopupBtn">
+                        <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                    </td>
+                    <td style="width: 150px">
+                        {{record.id}}
+                    </td>
+                    <td style="width: 200px">
+                        {{record.name}}
+                    </td>
+                    <td style="width: 150px">
+                        {{record.owner}}
+                    </td>
+                    <td style="width: 150px">
+                        {{record.comName}}
+                    </td>
+                    <td style="width: 100px">
+                        {{record.status}}
+                    </td>
+                    <td style="width: 100px">
+                        {{record.processType}}
+                    </td>
+                    <td style="width: 100px">
+                        <span class="kt-font-info" *ngIf="record.description =='1'">{{'Very High' |localize}}</span>
+                        <span class="kt-font-success" *ngIf="record.description =='2'">{{'Medium' |localize}}</span>
+                        <span class="kt-font-youtube" *ngIf="record.description =='3'">{{'High' |localize}}</span>
+
+                    </td>
+                    <td style="width: 200px">
+                        <span class="kt-font-info" *ngIf="record.ProcessPriority =='1'">{{'Very High' |localize}}</span>
+                        <span class="kt-font-success" *ngIf="record.ProcessPriority =='2'">{{'Medium' |localize}}</span>
+                        <span class="kt-font-youtube" *ngIf="record.ProcessPriority =='3'">{{'High' |localize}}</span>
+                    </td>
+                    <td style="width: 100px" class="kt-align-center">
+                        <i *ngIf="!showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="addEditPage()"></i>
+                        <i *ngIf="showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="associatedProjectsModals.show()"></i>
+                        <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <!--<div class="primeng-no-data" *ngIf="primengTableHelper.totalRecordsCount == 0">
+        {{'NoData' | localize}}
+    </div>-->
+        <div class="primeng-paging-container">
+            <p-paginator [rows]="10" #paginator
+                         [totalRecords]="10"
+                         [rowsPerPageOptions]="[5,10,20,50]">
+
+            </p-paginator>
+            <span class="total-records-count">
+            </span>
+        </div>
+    </div>
+</div>
+<associatedProjectsModals #associatedProjectsModals></associatedProjectsModals>

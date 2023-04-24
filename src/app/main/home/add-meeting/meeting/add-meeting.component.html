@@ -1,0 +1,406 @@
+<div>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader kt-grid__item">   
+            <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+        </div>
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{"Meetings Management" | localize}}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <button class="btn btn-sm kt-margin-l-5" (click)="goBack()">
+                            <i class="la la-arrow-left"></i>
+                            {{"Back" | localize}}
+                        </button>
+                        <button class="btn btn-submit btn-sm" (click)="CreateorUpdateMeeting()">
+                            <i class="la la-check"></i>
+                            {{"Save" | localize}}
+                        </button>
+                    </div>
+                </div>
+                <div class="kt-portlet__body kt-padding-0">
+                    <div class="container kt-content">
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Meeting Information" | localize}}</h5>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting ID" | localize}}</label>
+                                            <input type="text" disabled class="form-control" [(ngModel)]="meetinginfo.meetingId" name="Services" placeholder="System Generated">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Organizer" | localize}}</label>*
+                                            <p-dropdown filter="true" [options]="Organizer" placeholder="Select Organizer " optionLabel="employeeName" [(ngModel)]="selectedOrganizer" name="organizer" (onChange)="organizerChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Title" | localize}}</label>
+                                            <input type="text" class="form-control" [(ngModel)]="meetinginfo.meetingTitle" name="Title" placeholder="Meeting Title">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Type" | localize}}</label>*
+                                            <p-dropdown filter="true" [options]="meetingType" placeholder="Select Meeting Type " optionLabel="value" [(ngModel)]="selectedMeetingType" name="Type" (onChange)="meetingTypeChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Classification" | localize}}</label>
+                                            <p-dropdown filter="true" [options]="meetingClassFication" placeholder="Select Meeting Classification " optionLabel="value" [(ngModel)]="selectedmeetingClassFication" name="Classification" (onChange)="meetingClassFicationChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Date-Time(Start)" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input id="SampleDatePicker"
+                                                       type="text"
+                                                       #SampleDatePicker
+                                                       name="Start"
+                                                       class="form-control"
+                                                       bsDatepicker
+                                                       datePickerMomentModifier
+                                                       [(date)]="meetinginfo.meetingStartDate"          
+                                                       [bsConfig]="{ adaptivePosition: true }" />
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Date-Time(End)" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input id="SampleDatePicker"
+                                                       type="text"
+                                                       #SampleDatePicker
+                                                       name="End"
+                                                       class="form-control"
+                                                       bsDatepicker
+                                                       datePickerMomentModifier
+                                                       [(date)]="meetinginfo.meetingEndDate"          
+                                                       [bsConfig]="{ adaptivePosition: true }" />
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Attendees (Invited)" | localize}}</label>
+                                            <p-multiSelect [options]="attendeesUser" name="Attendees" [maxSelectedLabels]="1" placeholder="Select AttendeesUser" optionLabel="employeeName" [(ngModel)]="selectedAttendeesUser" (onChange)="attendeesUserChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Absentees" | localize}}</label>
+                                            <p-multiSelect  [options]="absenteesUser" name="Absenteesuser" [maxSelectedLabels]="1" placeholder="Select AbsenteesUser" optionLabel="employeeName" [(ngModel)]="selectedAbsenteesUser" (onChange)="absenteesUserChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Venue" | localize}}</label>*
+                                            <p-dropdown filter="true" [options]="meetingVenue" placeholder="Select Meeting Venue " optionLabel="facilityName" [(ngModel)]="selectedMeetingVenue" name="facilityName"  (onChange)="meetingvenue($event)" [style]="{'width': '100%'}"></p-dropdown>           
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Description" | localize}}</label>
+                                            <textarea type="text" class="form-control" [(ngModel)]="meetinginfo.meetingDescription" name="MeetingDescription" placeholder="Description"></textarea>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Meeting Location" | localize}}</h5>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Address" | localize}}</label>
+                                            <input type="text" class="form-control" [(ngModel)]="meetinginfo.meetingLocation" name="Address" placeholder="Address">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"City/District" | localize}}</label>
+                                            <input type="text" class="form-control" [(ngModel)]="meetinginfo.city" name="city" placeholder="City">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Country" | localize}}</label>
+                                            <p-dropdown filter="true" [options]="country" placeholder="Select country " optionLabel="name" [(ngModel)]="selectedCountry" name="country" (onChange)="countryChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Meeting Agenda" | localize}}</h5>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Agenda" | localize}}</label>*
+                                            <p-editor  name="Agenda" [(ngModel)]="meetinginfo.meetingAgenda" [style]="{'height':'200px'}"></p-editor>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Minutes of Meeting Details" | localize}}</h5>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"MoM Prepared By" | localize}}</label>
+                                         <p-dropdown filter="true" [options]="moMPrepared" placeholder="Select MoM " optionLabel="employeeName" [(ngModel)]="selectedmoMPrepared" name="mom" (onChange)="moMPreparedChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <!--<div class="form-group">
+                                            <label>{{"MoM Attachedment (If Any)" | localize}}</label>
+                                            <input type="text" class="form-control" placeholder="Attachedment">
+                                        </div>-->
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Minutes of Meeting" | localize}}</label>
+                                            <p-editor name="MinutesofMeeting" [(ngModel)]="meetinginfo.minutesofMeeting" [style]="{'height':'200px'}"></p-editor>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Meeting Conclusion" | localize}}</label>
+                                            <textarea type="text" name="Conclusion" class="form-control" [(ngModel)]="meetinginfo.meetingConclusion" placeholder="Meeting Conclusion" style="height:100px !important"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"View / Add Related Information" | localize}}</h5>
+                                <hr/>
+                                <div class="form-group">
+                                    <div class="kt-checkbox-inline row">
+                                        <label class="kt-checkbox col-2">
+                                            <input type="checkbox" [(ngModel)]="task">
+                                            <label style="padding-top: 3px;">{{'Tasks/Actions'| localize}}</label>
+                                            <span></span>
+                                        </label>
+                                        <label class="kt-checkbox col-2">
+                                            <input type="checkbox" [(ngModel)]="issues">
+                                            <label style="padding-top: 3px;">{{'Issues'| localize}}</label>
+                                            <span></span>
+                                        </label>
+                                        <label class="kt-checkbox col-2">
+                                            <input type="checkbox" [(ngModel)]="finding">
+                                            <label style="padding-top: 3px;">{{'Findings'| localize}}</label>
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first" *ngIf="task">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Tasks/Actions" | localize}}</h5>
+                                <hr />
+                                <div id="task">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="background-color:#f9fafa">
+                                                <th style="width:21%">{{"Sub" | localize}}</th>
+                                                <th style="width:21%">{{"Task ID" | localize}}</th>
+                                                <th style="width:21%">{{"Task Title" | localize}}</th>
+                                                <th style="width:21%">{{"Frequency" | localize}}</th>
+                                                <th style="width:5%">
+                                                    <i class="fa fa-plus kt-padding-5 mouse-hover kt-font-success" style="font-size:1.5rem" (click)="taskModal()"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first" *ngIf="issues">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Issues Identified" | localize}}</h5>
+                                <hr/>
+                                <div id="issues">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="background-color:#f9fafa">
+                                                <th style="width:21%">{{"Issue ID" | localize}}</th>
+                                                <th style="width:21%">{{"Issue Title" | localize}}</th>
+                                                <th style="width:21%">{{"Issue Details" | localize}}</th>
+                                                <th style="width:21%">{{"Occurance Date" | localize}}</th>
+                                                <th style="width:5%">
+                                                    <i class="fa fa-plus kt-padding-5 mouse-hover kt-font-success" style="font-size:1.5rem" (click)="issuesModal()"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first" *ngIf="finding">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Findings" | localize}}</h5>
+                                <hr/>
+                                <div id="finding">
+                                    <table class="table">
+                                        <thead>
+                                            <tr style="background-color:#f9fafa">
+                                                <th style="width:21%">{{"Finding ID" | localize}}</th>
+                                                <th style="width:21%">{{"Finding Title" | localize}}</th>
+                                                <th style="width:21%">{{"Finding Details" | localize}}</th>
+                                                <th style="width:21%">{{"Date Created" | localize}}</th>
+                                                <th style="width:5%">
+                                                    <i class="fa fa-plus kt-padding-5 mouse-hover kt-font-success" style="font-size:1.5rem" (click)="findingsModal()"></i>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p-dialog header="Task" [(visible)]="displayTask" [modal]="true" [style]="{width: '70vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+    <div class="form-group">
+        <label for="Name">{{"Sub" | localize}}</label>
+        <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Task ID" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Task ID" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Task Title" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Task Title" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Frequency" | localize}}</label>
+        <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+    </div>
+    <add-new-task></add-new-task>
+    <p-footer>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="displayTask=false">{{"Cancel" | localize}}</button>
+        <button type="button" class="btn btn-sm btn-submit" (click)="displayTask=false">{{"Save" | localize}}</button>
+    </p-footer>
+</p-dialog>
+<p-dialog header="Issues" [(visible)]="displayIssues" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+    <div class="form-group">
+        <label for="Name">{{"Issue ID" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Issue ID" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Issue Title" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Issue Title" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Issue Detail" | localize}}</label>
+        <textarea type="text" class="form-control" placeholder="Issue Detail" style="height:100px !important"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Occurance Date" | localize}}</label>
+        <div id="generalSearch" class="kt-input-icon">
+            <input id="SampleDatePicker"
+                   type="text"
+                   #SampleDatePicker
+                   name="SampleDatePicker"
+                   class="form-control"
+                   bsDatepicker
+                   datePickerMomentModifier
+                   [(date)]="sampleDate"
+                   [bsConfig]="{ adaptivePosition: true }" />
+            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                <span><i class="flaticon-calendar-1"></i></span>
+            </span>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="displayIssues=false">{{"Cancel" | localize}}</button>
+        <button type="button" class="btn btn-sm btn-submit" (click)="displayIssues=false">{{"Save" | localize}}</button>
+    </p-footer>
+</p-dialog>
+
+        
+<p-dialog header="Findings" [(visible)]="displayFindings" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+    <div class="form-group">
+        <label for="Name">{{"Finding ID" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Finding ID" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Finding Title" | localize}}</label>
+        <input id="Name" class="form-control" placeholder="Finding Title" type="text" name="Name">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Finding Details" | localize}}</label>
+        <textarea type="text" class="form-control" placeholder="Finding Detail" style="height:100px !important"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Date Created" | localize}}</label>
+        <div id="generalSearch" class="kt-input-icon">
+            <input id="SampleDatePicker"
+                   type="text"
+                   #SampleDatePicker
+                   name="SampleDatePicker"
+                   class="form-control"
+                   bsDatepicker
+                   datePickerMomentModifier
+                   [(date)]="sampleDate"
+                   [bsConfig]="{ adaptivePosition: true }" />
+            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                <span><i class="flaticon-calendar-1"></i></span>
+            </span>
+        </div>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="displayFindings=false">{{"Cancel" | localize}}</button>
+        <button type="button" class="btn btn-sm btn-submit" (click)="displayFindings=false">{{"Save" | localize}}</button>
+    </p-footer>
+</p-dialog>

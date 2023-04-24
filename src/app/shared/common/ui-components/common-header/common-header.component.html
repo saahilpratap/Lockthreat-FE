@@ -1,0 +1,91 @@
+<div class="kt-subheader kt-grid__item">
+    <div class="kt-container kt-container--fluid">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                <span>{{ title }}</span>
+            </h3>
+            <span class="kt-subheader__separator kt-subheader__separator--v" *ngIf="subTitle"></span>
+            <span class="kt-subheader__desc" *ngIf="subTitle">
+                {{ subTitle }}
+            </span>
+        </div>
+        <div class="kt-subheader__toolbar">
+            <div class="kt-subheader__wrapper">
+                <div *ngIf="pageMenuHome">
+
+                </div>
+                <div *ngIf="pageMenu">
+                </div>
+                <div *ngIf="pageMenuOrg">
+                    <div class="btn-group" *ngFor="let item of orgPageMenu; let i = index">
+                        <button (click)="clickOrganization(i)"
+                                class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="pageMenuBus">
+                    <div class="btn-group" *ngFor="let item of busPageMenu; let i = index">
+                        <button (click)="clickBusiness(i)"
+                                class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="pageMenuIRM">
+                    <div class="btn-group" *ngFor="let item of irm; let i = index">
+                        <button (click)="clickIrm(i)"
+                                class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+
+                <div *ngIf="pageMenuPro">
+                    <div class="btn-group" *ngFor="let item of proPageMenu; let i = index">
+                        <button (click)="clickProjectProgram(i)"
+                                class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="pageMenuAsset">
+                    <div class="btn-group" *ngFor="let item of assetPageMenu; let i = index">
+                        <button (click)="clickAssetManagement(i)"
+                                class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="enterpriseRiskMenu">
+                    <div class="btn-group" *ngFor="let item of enterPriseRiskMenu; let i = index">
+                        <button class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="thirdpartyDashoard">
+                    <div class="btn-group" *ngFor="let item of thirdPartyDashoard; let i = index">
+                        <button (click)="clickThirdpartyDashoard(i)" class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="pageMenuIncident">
+                    <div class="btn-group" *ngFor="let item of incidentManagementMenu; let i = index">
+                        <button (click)="clickIncidents(i)" class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="complianceManager">
+                    <div class="btn-group" *ngFor="let item of complainceManagerMenu; let i = index">
+                        <button (click)="clickComplianceManager(i)" class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            {{item.title}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

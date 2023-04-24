@@ -1,0 +1,148 @@
+<div id="kt_header_quikc_menu" class="kt-header-menu-mobile kt-header-menu--layout-tab  form-check-inline">
+    <div class="kt-header__topbar-item kt-header__topbar-item--user ng-star-inserted dropdown kt-header-menu-quick" dropdown
+         placement="bottom-left">
+        <div class="kt-header__topbar-wrapper mouse-hover" data-toggle="dropdown" style="padding:18px"
+             aria-expanded="false" aria-haspopup="true" dropdownToggle>
+            <div class="kt-header__topbar-user">
+                <span class="kt-header__topbar-username kt-hidden-mobile kt-font-light kt-font-bold">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                    <span class="tenancy-name kt-padding-l-5">{{'Quick Action' | localize}}</span>
+                    <i class="la la-angle-down kt-padding-l-5"></i>
+                </span>
+            </div>
+        </div>
+        <div *dropdownMenu
+             class="dropdown-menu dropdown-menu-fit dropdown-menu-left dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl w-100"
+             x-placement="bottom-left"
+             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1253px, 64px, 0px);">
+
+            <div class="kt-notification user-profile-menu">
+                <ul class="kt-nav">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let item of actionMenu; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="goToMenuPage(i)">
+                            <i class="la {{item.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{item.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="kt-header__topbar-item kt-header__topbar-item--user ng-star-inserted dropdown kt-header-menu-quick" dropdown
+         placement="bottom-left">
+        <div class="kt-header__topbar-wrapper mouse-hover" data-toggle="dropdown" style="padding:18px"
+             aria-expanded="false" aria-haspopup="true" dropdownToggle>
+            <div class="kt-header__topbar-user">
+                <span class="kt-header__topbar-username kt-hidden-mobile kt-font-light kt-font-bold">
+                    <i class="flaticon-squares-1" aria-hidden="true"></i>
+                    <span class="tenancy-name kt-padding-l-5">{{'Quick Menu' | localize}}</span>
+                    <!--<span *ngIf="!mID" class="tenancy-name kt-padding-l-5">{{mID}}</span>-->
+                    <i class="la la-angle-down kt-padding-l-5"></i>
+                </span>
+            </div>
+        </div>
+        <div *dropdownMenu
+             class="dropdown-menu dropdown-menu-fit dropdown-menu-left dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-lg"
+             x-placement="bottom-left"
+             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(1253px, 64px, 0px);">
+            <div class="kt-notification user-profile-menu w-100">
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Home'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of home; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickHome(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Organization'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of organization; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickOrganization(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Programs & Projects'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of programsProjects; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickProgramsProjects(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Asset Management'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of assetManagement; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickAssetManagement(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Policy & Awareness'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of policyAwareness; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickPolicyAwareness(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Compliance Manager'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of complianceManager; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickComplianceManager(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Third Party Risk'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of thirdPartyRisk; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickThirdPartyRisk(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Audit Management'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of auditManagement; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickAuditManagement(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Enterprise Risk Manager'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of enterpriseRiskManager; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickEnterpriseRiskManager(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Incident Management'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of incidentManagement; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickIncidentManagement(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'IRM Operations'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of iRMOperations; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickIRMOperations(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="kt-nav" style="list-style-type:none;" *ngIf="mID== 'Administration'">
+                    <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-padding-10 mouse-hover kt-nav__item" *ngFor="let itemMenu of administration; let i = index">
+                        <a class="kt-menu__link1 kt-menu__toggle kt-header__topbar-username " (click)="clickAdministration(i)">
+                            <i class="la {{itemMenu.icon}} kt-padding-r-5"></i>
+                            <span class="kt-menu__link-text kt-header__topbar-username">{{itemMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

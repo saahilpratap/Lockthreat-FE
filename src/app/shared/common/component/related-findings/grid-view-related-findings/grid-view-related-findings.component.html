@@ -1,0 +1,100 @@
+<form class="m-form" autocomplete="off">
+    <div class="row align-items-center mb-4">
+        <div class="col-xl-12">
+            <div class="form-group m-form__group align-items-center">
+                <div class="input-group">
+                    <input [(ngModel)]="filterText" name="filterText" autoFocus
+                           class="form-control m-input" [placeholder]="l('SearchWithThreeDot')"
+                           type="text">
+                    <span class="input-group-btn">
+                        <button (click)="getAllFinding()" class="btn btn-primary" type="submit">
+                            <i class="flaticon-search-1"
+                               [attr.aria-label]="l('Search')"></i>
+                        </button>
+                    </span>
+                    <button (click)="exportToExcel()" class="btn btn-outline-success" style="margin-left:5px !important"><i class="fa fa-file-excel"></i> {{l("ExportToExcel")}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="primeng-datatable-container"
+     [busyIf]="primengTableHelper.isLoading">
+    <p-table #dataTable
+             (onLazyLoad)="getAllFinding($event)"
+             [value]="primengTableHelper.records"
+             [lazy]="true"
+             [scrollable]="true"
+             [selection]="selectedRowData" (selectionChange)="onSelectionChange($event)"
+             ScrollWidth="100%">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 20px" *ngIf="!showPopupBtn">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="width: 100px">
+                    {{' Finding ID' |localize}}
+                    <p-sortIcon></p-sortIcon>
+                </th>
+                <th style="width: 100px">
+                    {{'Finding Title' |localize}}
+                    <p-sortIcon></p-sortIcon>
+                </th>
+                <th style="width: 100px">
+                    {{'Finding Details' |localize}}
+                    <p-sortIcon></p-sortIcon>
+                </th>
+                <th style="width: 100px">
+                    {{'Category' |localize}}
+                    <p-sortIcon></p-sortIcon>
+                </th>
+                <th style="width: 100px">
+                    {{'Finding Status' |localize}}
+                    <p-sortIcon></p-sortIcon>
+                </th>
+                <th style="width: 100px">
+                    {{'Action' |localize}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-record="$implicit">
+            <tr [pSelectableRow]="rowData">
+                <td style="width: 20px" *ngIf="!showPopupBtn">
+                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                </td>
+                <td style="width: 100px">
+                    {{record.findingId}}
+                </td>
+                <td style="width: 100px">
+                    {{record.findingTitle}}
+                </td>
+                <td style="width: 100px">
+                    {{record.findingDetails}}
+                </td>
+                <td style="width: 100px">
+                    {{record.category}}
+                </td>
+                <td style="width: 100px">
+                    <span *ngIf="record.findingStatus">{{record.findingStatus.value}}</span>
+                </td>
+                <td style="width: 100px">
+                    <i *ngIf="!showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="editFinding(record.id)"></i>
+                    <i *ngIf="showPopupBtn" class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="relatedFindingsModals.show()"></i>
+                    <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google" (click)="DeleteFinding(record.id)"></i>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <div class="primeng-paging-container">
+        <p-paginator [rows]="primengTableHelper.defaultRecordsCountPerPage" #paginator
+                     (onPageChange)="getAllFinding($event)"
+                     [totalRecords]="primengTableHelper.totalRecordsCount"
+                     [rowsPerPageOptions]="primengTableHelper.predefinedRecordsCountPerPage">
+        </p-paginator>
+        <span class="total-records-count">
+            {{'TotalRecordsCount' | localize:primengTableHelper.totalRecordsCount}}
+        </span>
+    </div>
+</div>
+<relatedFindingsModals #relatedFindingsModals></relatedFindingsModals>

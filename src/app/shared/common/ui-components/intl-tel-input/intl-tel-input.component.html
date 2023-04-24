@@ -1,0 +1,7 @@
+<ngx-intl-tel-input  [(ngModel)]="phoneNumber" (ngModelChange)="onChange(phoneNumber)" [cssClass]="'custom'"
+    class="form-control" [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="false"
+    [enablePlaceholder]="true" [searchCountryFlag]="true"
+    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+    [selectedCountryISO]="CountryISO.India" [maxLength]="15" [tooltipField]="TooltipLabel.Name" [phoneValidation]="true"
+    [separateDialCode]="true" name="phone">
+</ngx-intl-tel-input>

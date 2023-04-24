@@ -1,0 +1,129 @@
+<div>
+    <form #addEditControlProceduresForm="ngForm">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Control Procedure Information" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Control Procedure ID" | localize}}</label>
+                            <input type="text" class="form-control" disabled placeholder="System Generated">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Procedure Name" | localize}}</label>
+                            <input type="text" class="form-control" placeholder="Procedure Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Type" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Procedure Category" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Activity Cycle" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Operational Frequency" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Description" | localize}}</label>
+                            <textarea type="text" class="form-control" placeholder="Description..." style="height:100px !important"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Control Procedure Management" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Unit" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Procedure Owner" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Procedure Manager" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Test Section" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Test Type" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Tester" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Related Business Process" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Business Process" | localize}}</label>
+                            <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1"></p-multiSelect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-section__title-sm">{{"Related Control Standards" | localize}}</h5>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Common Controls" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 co-sm-12">
+                        <div class="form-group">
+                            <label>{{"Control Standards" | localize}}</label>
+                            <p-dropdown [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

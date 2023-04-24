@@ -1,0 +1,71 @@
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"KPI Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"KPI ID" | localize}}</label>
+                    <input type="text" class="form-control" disabled  [(ngModel)]="keyperformance.keyPerformanceIndicatorId" placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Status" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [options]="status" placeholder="Select Status" optionLabel="value" [(ngModel)]="selectedStatus"  (onChange)="statusChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"KPI Title" | localize}}</label>
+                    <input type="text" class="form-control" name="title" [(ngModel)]="keyperformance.keyPerformanceIndicatorTitle" placeholder="KPI Title">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Frequency (Measurement)" | localize}}</label>
+                    <p-dropdown [showClear]="true" name="Frequency" filter="true" [options]="frequancy" placeholder="Select Frequency" optionLabel="value" [(ngModel)]="selectedfrequancy" (onChange)="frequencyChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Description" | localize}}</label>
+                    <textarea type="text" name="Description" class="form-control" [(ngModel)]="keyperformance.description" placeholder="Description" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Company Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Name" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [options]="oraganization" placeholder="Select Company Name" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="company" (onChange)="oragnizationChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Units" | localize}}</label>
+                    <p-multiSelect [options]="businessUnit" name="Units" [maxSelectedLabels]="1" placeholder="Select Business Unit" optionLabel="businessUnitTitle" [(ngModel)]="selectedBusinessUnit" (onChange)="businessunitChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"KPI Owner" | localize}}</label>
+                    <p-dropdown [options]="Owner" name="Owner"  placeholder="Select Business Unit" optionLabel="employeeName" [(ngModel)]="selectedOwner" (onChange)="ownerChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"KPI Administrators" | localize}}</label>
+                    <p-multiSelect [options]="administrators" [maxSelectedLabels]="1" name="Administrators" placeholder="Select Administrators" optionLabel="employeeName" [(ngModel)]="selectedadministrators" (onChange)="administratorChange($event)" [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

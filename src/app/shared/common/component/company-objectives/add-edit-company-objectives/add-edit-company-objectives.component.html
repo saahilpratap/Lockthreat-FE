@@ -1,0 +1,92 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Company Objectives" | localize}}</h5>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"SOB ID" | localize}}</label>
+                    <input type="text" class="form-control" readonly [(ngModel)]="strategicObjective.strategicObjectiveId" disabled placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Name" | localize}}</label>*
+                    <p-dropdown [showClear]="true" filter="true" required="true"  [options]="organizationList" placeholder="Select Company" optionLabel="companyName" [(ngModel)]="selectedCompany" name="Companys" (onChange)="companyChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="input-group form-group mb-4" *ngIf="organizationGoal.length > 0 && goalhideshow==true" style="margin-top:20px !important">
+                    <!--<label>{{"Goal" | localize}}</label>-->
+                    <p-dropdown filter="true" [options]="organizationGoal" placeholder="Select Goal" optionLabel="goal" [(ngModel)]="selectedorganizationGoal" name="Goal" (onChange)="goalChange($event)" [style]="{'width': '320px'}"></p-dropdown>
+                    <div class="input-group-append">
+                        <span class="input-group-text default">
+                            <i class="fas fa-plus" (click)="hideandShowgoal()"></i>
+                        </span>
+                    </div>
+                </div> 
+                 <div class="form-group" *ngIf="goalhideshow==false">
+                        <label>{{"Goal" | localize}}</label>
+                        <input type="text" name="goals" class="form-control" [(ngModel)]="strategicObjective.goal" placeholder="No existing goal please add">
+                 </div>           
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Strategic Objective Title" | localize}}</label>
+                    <input type="text" name="title" class="form-control" [(ngModel)]="strategicObjective.strategicObjectiveTitle" placeholder=" Program Title">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Executive Sponsor" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true"  [options]="sponser" placeholder="Select Sponsor" optionLabel="employeeName" [(ngModel)]="selectedSponser" name="Sponsor" (onChange)="sponsorChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Effective Date" | localize}}</label>
+                    <div id="startDate" class="kt-input-icon">
+                        <input id="startDatePicker"
+                               type="text"
+                                #startDatePicker                                                           
+                               name="startDatePicker"
+                               class="form-control"
+                               bsDatepicker
+                               datePickerMomentModifier
+                               [(date)]="strategicObjective.effectiveDate"                              
+                               [bsConfig]="{ adaptivePosition: true }" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-calendar-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Status" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true"  [options]="status" placeholder="Select Status" optionLabel="value" [(ngModel)]="selectedStatus" name="Status" (onChange)="statusChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Type" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true"  [options]="type" placeholder="Select Type" optionLabel="value" [(ngModel)]="selectedtype" name="Type" (onChange)="typeChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12"></div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Description" | localize}}</label>
+                    <textarea type="text" class="form-control" name="description"  required [(ngModel)]="strategicObjective.description" placeholder="Description" style="height:100px !important"></textarea>
+                </div>
+            </div>
+
+        </div>
+        </div>
+</div>

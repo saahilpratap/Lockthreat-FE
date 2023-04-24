@@ -1,0 +1,164 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Hardware Asset Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Asset ID" | localize}}</label>
+                    <input type="text" disabled class="form-control" [(ngModel)]="hardwareAsset.assetId" name="AssetId" placeholder="System Generated">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Hardware Asset Name" | localize}}</label>
+                    <input type="text" class="form-control" required [(ngModel)]="hardwareAsset.hardwareAssetName" name="Assetname" placeholder="Hardware Asset Name">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Asset Hardware ID" | localize}}</label>
+                    <input type="text" class="form-control" required [(ngModel)]="hardwareAsset.assetHardwareId" name="HardwareId" placeholder="Asset Hardware ID">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Description" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="hardwareAsset.description" name="description" style="height:100px !important"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Location" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="location" [filter]="true" placeholder="Select location" optionLabel="facilityName" required=true [(ngModel)]="selectedLocation" name="facilityName" (onChange)="locationChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Management & Dependencies" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Name" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="organization" [filter]="true" placeholder="Select Company" optionLabel="companyName"  [(ngModel)]="selectedOrganization" name="oraganization" (onChange)="oraganizationChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Unit - Owner" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitOwner" [filter]="true" placeholder="Select Business Unit" optionLabel="businessUnitTitle"  [(ngModel)]="selectedbusinessUnitOwner" name="businessUnitowner" (onChange)="businessUnitOwnerChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Unit - Gaurdian" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitGaurdian" [filter]="true" placeholder="Select Business Unit" optionLabel="businessUnitTitle" [(ngModel)]="selectedbusinessUnitGaurdian" name="businessUnit" (onChange)="businessUnitGaurdianChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Services" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="businessService" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Service" optionLabel="businessServiceName" [(ngModel)]="selectedBusinessService" name="businessServices" (onChange)="businessServiceChange($event)"></p-multiSelect>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Process" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="businessProcess" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business process" optionLabel="businessProcessName" [(ngModel)]="selectedbusinessProcess" name="businessProcess" (onChange)="businessProcessChange($event)"></p-multiSelect>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"IT Services" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="itservice" [maxSelectedLabels]="1" [filter]="true" placeholder="Select ITService Name" optionLabel="itServiceName"  [(ngModel)]="selectedItservice" name="itservicesname" (onChange)="itserviceChange($event)"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="kt-section kt-section--first">
+      <div class="kt-section__body">
+          <h5 class="kt-section__title kt-section__title-sm">{{"Ownership" | localize}}</h5>
+          <hr />
+          <div class="row">             
+              <div class="col-lg-4 col-md-4 co-sm-12">
+                  <div class="form-group">
+                      <label>{{"Asset Owner" | localize}}</label>
+                      <p-dropdown [style]="{'width': '100%'}" [options]="assetOwner" [filter]="true" placeholder="Select Owner" optionLabel="employeeName"  [(ngModel)]="selectedAssetOwner" name="assetowner" (onChange)="assetOwnerChange($event)"></p-dropdown>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Classification" | localize}}</h5>
+        <hr />
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Confidentiality" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Confidentiality" [filter]="true" placeholder="Select Confidentiality" optionLabel="value"  [(ngModel)]="selectedConfidentiality" name="Confidentiality" (onChange)="confidentialityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Integrity" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="integrity" [filter]="true" placeholder="Select integrity" optionLabel="value"  [(ngModel)]="selectedintegrity" name="integrity" (onChange)="integrityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Availibility" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="availibility" [filter]="true" placeholder="Select Availibility" optionLabel="value"  [(ngModel)]="selectedAvailibility" name="availibility" (onChange)="availibilityChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Others" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="others" [filter]="true" placeholder="Select others" optionLabel="value"  [(ngModel)]="selectedothers" name="others" (onChange)="othersChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="isEdit">
+    <div class="col-12">
+        <div class="kt-section kt-section--first">
+            <div class="kt-section__body">
+                <h5 class="kt-section__title kt-padding-b-10">{{"Related Information" | localize}}</h5>
+                <p-accordion>
+                    <p-accordionTab>
+                        <p-header>
+                            <div class="row">
+                                <div class="col-3">
+                                    {{"Virtual Hosts & Machines" | localize}}
+                                </div>
+                                <div class="col-5">
+                                </div>
+                            </div>
+                        </p-header>
+                    </p-accordionTab>
+                </p-accordion>
+            </div>
+        </div>
+    </div>
+</div>

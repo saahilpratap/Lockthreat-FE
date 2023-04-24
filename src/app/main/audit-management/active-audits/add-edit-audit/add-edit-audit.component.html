@@ -1,0 +1,471 @@
+<div>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+        <div class="kt-subheader kt-grid__item">
+            <div [class]="containerClass">
+                <div class="kt-subheader__main">
+                    <h3 class="kt-subheader__title">
+                        <span>{{"Audit Management" | localize}}</span> 
+                    </h3>
+                    <span class="kt-subheader__separator kt-subheader__separator--v"></span> 
+                    <span class="kt-subheader__desc">
+                        {{"Active Audits" | localize}}
+                    </span>
+                    <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+                    <span class="kt-subheader__desc">
+                        {{"Add Audit" | localize}}
+                    </span>
+                </div>
+                <div class="kt-subheader__toolbar">  
+                </div>
+            </div>
+        </div>
+
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{"Add Audit" | localize}}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <button class="btn btn-sm kt-margin-l-5" (click)="goBack()">
+                            <i class="la la-arrow-left"></i>
+                            {{"Back" | localize}}
+                        </button>
+                        <button class="btn btn-submit btn-sm" (click)="Save()">
+                            <i class="la la-check"></i>
+                            {{"Save" | localize}}
+                        </button>
+                    </div>
+                </div>
+                <div class="kt-portlet__body kt-padding-0">
+                    <div class="container kt-content">
+                        <div>
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Audit Information" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit ID" | localize}}</label>
+                                                <input type="text" disabled class="form-control" [(ngModel)]="auditdetail.auditId" name="auditId" placeholder="System Generated">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Fiscal  Year" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="year" [filter]="true" placeholder="Select Year" optionLabel="value"  [(ngModel)]="selectedYear" name="facility" (onChange)="fanacialYearChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Title" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.auditTitle" name="title" placeholder="Audit Title">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="col-lg-12 col-md-12 co-sm-12">
+                                                <div class="form-group">
+                                                    <label>{{"Audit Type" | localize}}</label>
+                                                    <div class="kt-radio-inline row" >
+                                                        <label class="kt-radio col-lg-5" *ngFor="let item of audittypeList; let idx = index" >
+                                                            <input type="radio" name="radiogroup"  [checked]="idx === 0" [(ngModel)]="auditdetail.auditTypes"   [value]="item.id"  (change)="auditTypeSelect($event,item.id)"> {{item.name}}
+                                                            <span></span>
+                                                        </label>
+
+                                                        <!--<label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3" [(ngModel)]="auditdetail.auditTypes"> {{"Internal Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"External Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Regulatory Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-6">
+                                                            <input type="radio" name="radio3"> {{"Certification Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Customer Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Supplier Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Investigation" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-6">
+                                                            <input type="radio" name="radio3"> {{"Compliance Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Special Reviews" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-6">
+                                                            <input type="radio" name="radio3"> {{" Operational Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Financial Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-6">
+                                                            <input type="radio" name="radio3"> {{"Performance Audit" | localize}}
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="kt-radio col-lg-5">
+                                                            <input type="radio" name="radio3"> {{"Other" | localize}}
+                                                            <span></span>
+                                                        </label>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 co-sm-12">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-6 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"Start Date" | localize}}</label>
+                                                        <div id="generalSearch" class="kt-input-icon">
+                                                            <input id="startDatePicker"
+                                                                   type="text"
+                                                                   #startDatePicker
+                                                                   name="startDatePicker"
+                                                                   class="form-control"
+                                                                   bsDatepicker
+                                                                   datePickerMomentModifier
+                                                                   [(date)]="auditdetail.startDate"
+                                                                   [bsConfig]="{ adaptivePosition: true }" />
+                                                            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                                <span><i class="flaticon-calendar-1"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"End Date" | localize}}</label>
+                                                        <div id="generalSearch" class="kt-input-icon">
+                                                            <input id="endDatePicker"
+                                                                   type="text"
+                                                                   #startDatePicker
+                                                                   name="startDatePicker"
+                                                                   class="form-control"
+                                                                   bsDatepicker
+                                                                   datePickerMomentModifier
+                                                                   [(date)]="auditdetail.endDate"
+                                                                   [bsConfig]="{ adaptivePosition: true }" />
+                                                            <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                                <span><i class="flaticon-calendar-1"></i></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"Audit Duration (Days)" | localize}}</label>
+                                                        <input type="text" class="form-control" [(ngModel)]="auditdetail.auditDuration" placeholder="Audit Duration">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"Status" | localize}}</label>
+                                                        <p-dropdown [style]="{'width': '100%'}" [options]="status" [filter]="true" placeholder="Select Status" optionLabel="value" [(ngModel)]="selectedStaus" name="selectstatus" (onChange)="statusChange($event)"></p-dropdown>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                </div>
+                                            </div>
+                                                <div class="col-lg-4 col-md-4 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"Audit Area" | localize}}</label>
+                                                        <p-dropdown [style]="{'width': '100%'}" [options]="auditArea" [filter]="true" placeholder="Select Audit Area" optionLabel="value" [(ngModel)]="selectedAuditArea" name="selectstatus" (onChange)="auditAreaChange($event)"></p-dropdown>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 co-sm-12">
+                                                    <div class="form-group">
+                                                        <label>{{"Audit Reference" | localize}}</label>
+                                                        <input type="text" class="form-control" [(ngModel)]="auditdetail.auditReference" name="auditrefreance" placeholder="Audit Reference">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Address" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Address" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.auditLocationAddressOne" name="address" placeholder="Address">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            
+                                            <div class="form-group">
+                                                <label>{{"Address Line" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.auditLocationAddressTwo" placeholder="Audit Location">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"City / District" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.city" name="city" placeholder="City / District">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"State / Province" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.state" name="state" placeholder="State / Province">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Postal Code" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.postalCode" name="postalcode" placeholder="Postal Code">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Country" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="country" [filter]="true" placeholder="Select country" optionLabel="name" [(ngModel)]="selectedCountry" name="country" (onChange)="countryChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Internal Audit Team" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Lead Auditor" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="leadAuditor" [filter]="true" placeholder="Select Auditor" optionLabel="employeeName" [(ngModel)]="selectedLeadAuditor" name="country" (onChange)="auditorChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Contact (Auditee Team)" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="auditContact" [filter]="true" placeholder="Select AuditContact" optionLabel="employeeName" [(ngModel)]="selectedAuditContact" name="auditcontact" (onChange)="auditcontactChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Third Party Audit Services" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Services Provider" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="auditServicesProvider" [filter]="true" placeholder="Select Audit service Provider" optionLabel="vendorName" [(ngModel)]="selectedauditServicesProvider" name="auditcontactProvider" (onChange)="auditserviceProviderChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Budgeted Hours" | localize}}</label>
+                                                <input type="text" class="form-control" [(ngModel)]="auditdetail.budgetedHours" name="Budgeted" placeholder="Hours">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Related Findings(s)" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Finding" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="finding" [filter]="true" placeholder="Select Finding" optionLabel="findingTitle" [(ngModel)]="selectedfinding" name="selectedfinding" (onChange)="findingChange($event)"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Related Project(s)" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Project Name" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="project" [filter]="true" placeholder="Select Project" optionLabel="projectName" [(ngModel)]="selectedProject" name="Project" (onChange)="projectChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Audit Scope" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Company Name" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="organization" [filter]="true" placeholder="Select Company" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="companyName" (onChange)="organizationChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Facilities & Datacenters" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="facilitiesDatacenter" [filter]="true" placeholder="Select facilities Datacenter" optionLabel="facilityName" [(ngModel)]="selectedFacilitiesDatacenter" name="facilityName" (onChange)="facilityDatacenterChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Related BU's" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitOwner" [filter]="true" placeholder="Select Business Unit Title" optionLabel="businessUnitTitle" [(ngModel)]="selectedbusinessUnitOwner" name="companyName" (onChange)="businessunitChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Systems & Application" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="systemApplication" [filter]="true" placeholder="Select system Application" optionLabel="systemApplicationName" [(ngModel)]="selectedsystemApplication" name="systemApplication" (onChange)="systemApplicationChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Business Services" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="businessService" [filter]="true" placeholder="Select Business Service" optionLabel="businessServiceName" [(ngModel)]="selectedBusinessService" name="businessServices" (onChange)="businessServiceChange()"></p-multiSelect>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Control Standards" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" placeholder="Select Control Standards" ></p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Business Process" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="businessProcess" [filter]="true" placeholder="Select Business ProcessName" optionLabel="businessProcessName" [(ngModel)]="selectedbusinessProcess" name="businessProcessName" (onChange)="businessProcessChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Vendors" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="vendors" [filter]="true" placeholder="Select Vendor" optionLabel="vendorName" [(ngModel)]="selectedVendor" name="vendorName" (onChange)="vendorNameChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Audit Details" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Scope" | localize}}</label>
+                                                <textarea type="text" class="form-control" [(ngModel)]="auditdetail.auditScope" name="auditscope"  placeholder="Audit Scope"  nstyle="height:100px !important"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Background" | localize}}</label>
+                                                <textarea type="text" class="form-control" [(ngModel)]="auditdetail.auditBackground" name="background" placeholder="Audit Background" style="height:100px !important"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Objectives" | localize}}</label>
+                                                <textarea type="text" class="form-control" [(ngModel)]="auditdetail.auditObjectives" name="Objectives" placeholder="Audit Objectives" style="height:100px !important"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Team (Auditors)" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="auditAuditor" [filter]="true"  optionLabel="employeeName" [(ngModel)]="selectedauditAuditor" name="Teames" placeholder="Select" (onChange)="auditAuditorChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Auditees" | localize}}</label>
+                                                <p-multiSelect [style]="{'width': '100%'}" [maxSelectedLabels]="1" [options]="auditees" [filter]="true" optionLabel="employeeName" [(ngModel)]="selectedAuditees" name="auditeeses"  placeholder="Select" (onChange)="auditeesChange()"></p-multiSelect>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kt-section kt-section--first">
+                                <div class="kt-section__body">
+                                    <h5 class="kt-section__title kt-section__title-sm">{{"Related Attachments" | localize}}</h5>
+                                    <hr/>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Audit Memo" | localize}}</label>
+                                                <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Document Checklist" | localize}}</label>
+                                                <input type="text" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Additional Attacments" | localize}}</h5>
+                                <p-fileUpload name="demo[]" url="./upload.php" [showUploadButton]="false" [showCancelButton]="false" (onUpload)="onUpload($event)"
+                                              multiple="multiple" accept="image/*" maxFileSize="1000000">
+                                    <ng-template pTemplate="content">
+                                        <ul *ngIf="uploadedFiles.length">
+                                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                        </ul>
+                                    </ng-template>
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

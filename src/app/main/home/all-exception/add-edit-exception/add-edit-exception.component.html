@@ -1,0 +1,362 @@
+<div [@routerTransition]>
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+        <div class="kt-subheader kt-grid__item">
+            <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+        </div>
+        <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title">
+                            {{"Add Exceptions" | localize}}
+                        </h3>
+                    </div>
+                    <div class="kt-portlet__head-toolbar">
+                        <button class="btn btn-sm kt-margin-l-5" (click)="goBack()">
+                            <i class="la la-arrow-left"></i>
+                            {{"Back" | localize}}
+                        </button>
+                        <button class="btn btn-submit btn-sm" (click)="addEditException()">
+                            <i class="la la-check"></i>
+                            {{"Save" | localize}}
+                        </button>
+                    </div>
+                </div>
+                <div class="kt-portlet__body kt-padding-0">
+                    <div class="container kt-content">
+                     
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Exception Requestor" | localize}}</h5>
+                                
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Company (Requestor)" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="company" [filter]="true" placeholder="Select Company" optionLabel="companyName"  [(ngModel)]="selectedCompany" name="comapny" (onChange)="comapnyChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Exception Requestor" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="exceptionRequestor" [filter]="true" placeholder="Select Exception Requestor" optionLabel="employeeName"  [(ngModel)]="selectExceptionRequestor" name="requestor" (onChange)="exceptionRequestorChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Business Unit (Requested)" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="businessUnitRequested" [filter]="true" placeholder="Select Business Unit" optionLabel="businessUnitTitle"  [(ngModel)]="selectedBusinessUnitRequested" name="businessUnitRequested" (onChange)="businessUnitRequestedChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Exception Status" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="exceptionStatus" [filter]="true" placeholder="Select Status" optionLabel="value"  [(ngModel)]="selectedExceptionStatus" name="exceptionstatus" (onChange)="exceptionStatusChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Exception Information" | localize}}</h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Exception ID" | localize}}</label>*
+                                            <input type="text" disabled class="form-control" [(ngModel)]="exception.exceptionId" name="Exception" placeholder="System Generated">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Critcality" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="critcality" [filter]="true" placeholder="Select Critcality" optionLabel="value" [(ngModel)]="selectedcritcality" name="critcality" (onChange)="critcalityChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Requested Date" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input id="SampleDatePicker"
+                                                       type="text"
+                                                       #SampleDatePicker
+                                                       name="SampleDatePicker"
+                                                       class="form-control"
+                                                       bsDatepicker
+                                                       datePickerMomentModifier
+                                                      [(date)]="exception.requestedDate"
+                                                       [bsConfig]="{ adaptivePosition: true }" />
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Review Priority" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="reviewPriority" [filter]="true" placeholder="Select Priority" optionLabel="value" [(ngModel)]="selectedreviewPriority" name="Priority" (onChange)="priorityChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Requested Till" | localize}}</label>
+                                            <div id="generalSearch" class="kt-input-icon">
+                                                <input id="SampleDatePicker"
+                                                       type="text"
+                                                       #SampleDatePicker
+                                                       name="SampleDatePicker"
+                                                       class="form-control"
+                                                       bsDatepicker
+                                                       datePickerMomentModifier
+                                                       [(date)]="exception.requestedTillDate"
+                                                       [bsConfig]="{ adaptivePosition: true }" />
+                                                <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                    <span><i class="flaticon-calendar-1"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Exception Title" | localize}}</label>
+                                            <input type="text" name="Title" class="form-control" [(ngModel)]="exception.exceptionTitle" placeholder="Title ">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Business Justification" | localize}}</label>
+                                            <textarea type="text" class="form-control" placeholder="Business Justification" [(ngModel)]="exception.businessJustification" style="height:100px !important"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Type" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="types" [filter]="true" placeholder="Select Type" optionLabel="value" [(ngModel)]="selectedTypes" name="Type" (onChange)="typeChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Exception Impact" | localize}}</h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Organization's Impacted" | localize}}</label>*
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="organization" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Organization's" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="organization" (onChange)="organizationceChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Information Assets" | localize}}</label>*
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="assetInformation" [filter]="true" placeholder="Select Asset Information" optionLabel="assetTitle"  [(ngModel)]="selectedAssetInformation" name="Asset" (onChange)="assetinformationChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Business Units (Impacted)" | localize}}</label>
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="businessUnit" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Units" optionLabel="businessUnitTitle" [(ngModel)]="selectedBusinessUnit" name="businessUnits" (onChange)="businessUnitsChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Authoratative Document(s) Impacted" | localize}}</label>*
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="authorativeDocument" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Authoratative Document" optionLabel="authoratativeDocumentTitle" [(ngModel)]="selectedAuthorativeDocument" name="authorativedocument" (onChange)="authoratativeDocumentChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Control(s) Impacted" | localize}}</label>
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="citation" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="authoratativeDocumentTitle" [(ngModel)]="selectedCitation" name="Impacted" (onChange)="citationImpactedChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"System Impacted" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="sytemApplication" [filter]="true" placeholder="Select System Impacted" optionLabel="systemApplicationName"  [(ngModel)]="selectedSytemApplication" name="systemApplicationName" (onChange)="systemApplicationNameChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Comments" | localize}}</label>
+                                            <textarea type="text" class="form-control"  [(ngModel)]="exception.comments" placeholder="comments" style="height:100px !important"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Policy Impacted" | localize}}</label>
+                                            <p-dropdown [style]="{'width': '100%'}" [options]="policy" [filter]="true" placeholder="Select Policy" optionLabel="policyName"  [(ngModel)]="selectedpolicy" name="Policy" (onChange)="policyChange($event)"></p-dropdown>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Support Controls & Remidiation Plans" | localize}}</h5>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Compensating" | localize}}</label>*
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="compensating" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Compensating " optionLabel="citationTitle" [(ngModel)]="selectedcompensating" name="Compensating" (onChange)="compensatingChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Remediation Plans" | localize}}</label>*
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="remediation" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="planTitle" [(ngModel)]="selectedRemediation" name="Remediation" (onChange)="remediationChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 co-sm-12">
+                                        <div class="form-group">
+                                            <label>{{"Monitoring & Auditing Controls" | localize}}</label>
+                                            <p-multiSelect [style]="{'width': '100%'}" [options]="auditingControls" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="planTitle" [(ngModel)]="selectedAuditingControls" name="auditingControl" (onChange)="auditingControlChange($event)"></p-multiSelect>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Review & Approval" | localize}}</h5>
+                                <hr/>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Expert Reviewer" | localize}}</label>*
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="expertReviewer" [filter]="true" placeholder="Select" optionLabel="employeeName" [(ngModel)]="selectedExpertReviewer" name="exportriviwer" (onChange)="expertReviewerChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Review Status" | localize}}</label>*
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="reviewStatus" [filter]="true" placeholder="Select Review Status" optionLabel="value" [(ngModel)]="selectedReviewStatus" name="rivewStatus" (onChange)="reviewStatusChange($event)"></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Business Risks" | localize}}</label>
+                                                <p-dropdown [style]="{'width': '100%'}" [options]="" [filter]="true" placeholder="Select " optionLabel="Businessrisk" [(ngModel)]="selectedpolicy" name="Businessrisk" ></p-dropdown>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Approved Till" | localize}}</label>*
+                                                <div id="generalSearch" class="kt-input-icon">
+                                                    <input id="SampleDatePicker"
+                                                           type="text"
+                                                           #SampleDatePicker
+                                                           name="SampleDatePicker"
+                                                           class="form-control"
+                                                           bsDatepicker
+                                                           datePickerMomentModifier
+                                                          [(date)]="exception.approvedTill"
+                                                           [bsConfig]="{ adaptivePosition: true }" />
+                                                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                        <span><i class="flaticon-calendar-1"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Review Date & Time" | localize}}</label>
+                                                <div id="generalSearch" class="kt-input-icon">
+                                                    <input id="SampleDatePicker"
+                                                           type="text"
+                                                           #SampleDatePicker
+                                                           name="SampleDatePicker"
+                                                           class="form-control"
+                                                           bsDatepicker
+                                                           datePickerMomentModifier   
+                                                           [(date)]="exception.reviewDate"
+                                                           [bsConfig]="{ adaptivePosition: true }" />
+                                                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                        <span><i class="flaticon-calendar-1"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Next Review" | localize}}</label>
+                                                <div id="generalSearch" class="kt-input-icon">
+                                                    <input id="SampleDatePicker"
+                                                           type="text"
+                                                           #SampleDatePicker
+                                                           name="SampleDatePicker"
+                                                           class="form-control"
+                                                           bsDatepicker
+                                                           datePickerMomentModifier
+                                                           [(date)]="exception.nextReview"
+                                                           [bsConfig]="{ adaptivePosition: true }" />
+                                                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                                        <span><i class="flaticon-calendar-1"></i></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 co-sm-12">
+                                            <div class="form-group">
+                                                <label>{{"Risk Details" | localize}}</label>
+                                                <textarea type="text" class="form-control"  [(ngModel)]="exception.riskDetails"  placeholder="Risk Details" style="height:100px !important"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kt-section kt-section--first">
+                            <div class="kt-section__body">
+                                <h5 class="kt-section__title kt-section__title-sm">{{"Attachments / Supporting Documents" | localize}}</h5>
+                                <table class="table">
+                                    <thead>
+                                        <tr style="background-color:#f9fafa">
+                                            <th style="width:31%">{{"File Upload" | localize}}</th>
+                                            <th style="width:31%">{{"Title" | localize}}</th>
+                                            <th style="width:31%">{{"Description" | localize}}</th>
+                                            <th style="width:5%" class="kt-a">
+                                                <i class="fa fa-plus kt-padding-5 mouse-hover kt-font-success" style="font-size:1.5rem" (click)="showDialog()"></i>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog header="File Upload" [(visible)]="display" [modal]="true" [style]="{width: '20vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+    <div class="form-group">
+        <label for="Name">{{"File Upload" | localize}}</label>
+        <input id="Name" class="form-control" type="text" name="Name" placeholder="File Upload">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Title" | localize}}</label>
+        <input id="Name" class="form-control" type="text" name="Name" placeholder="Title">
+    </div>
+    <div class="form-group">
+        <label for="Name">{{"Description" | localize}}</label>
+        <textarea type="text" class="form-control" placeholder="Description" style="height:100px !important"></textarea>
+    </div>
+    <p-footer>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="display=false">{{"Cancel" | localize}}</button>
+        <button type="button" class="btn btn-sm btn-submit" (click)="display=false">{{"Save" | localize}}</button>
+    </p-footer>
+</p-dialog>

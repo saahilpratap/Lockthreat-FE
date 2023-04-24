@@ -1,0 +1,22 @@
+<div appBsModal #companyObjectivesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="companyObjectivesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form #companyObjectivesForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Edit Company Objectives' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <add-edit-company-objectives #addEditcompanyObjective></add-edit-company-objectives>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" (click)="addEditcompanyObjective.saveObjectives()" class="btn btn-sm btn-submit"><i class="fa fa-save"></i> <span>{{"Save" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

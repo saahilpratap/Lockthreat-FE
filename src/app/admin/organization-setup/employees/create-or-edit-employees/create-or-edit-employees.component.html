@@ -1,0 +1,313 @@
+<common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuOrg]="true"></common-header>
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        {{"Add Employee Information" | localize}}
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-subheader__wrapper">
+                        <div class="dropdown dropdown-inline">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    style="background-color: white;border: none;color: gray;" (click)="backToEmployees()">
+                                <i class="fa fa-arrow-left"></i>
+                                {{'Back' | localize}}
+                            </button>
+                        </div> &nbsp;
+                        <button *ngIf="!isEdit" type="submit" (click)="save()" [disabled]="!employeeDetailsForm.form.valid" class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            <i class="fa fa-check"></i>
+                            {{'Save' | localize}}
+                        </button>
+                        <button *ngIf="isEdit" type="submit" (click)="save()" [disabled]="!employeeDetailsForm.form.valid" class="btn btn-primary btn-sm appThemeBgColor" style="border: none;">
+                            <i class="fa fa-check"></i>
+                            {{'Update' | localize}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body kt-padding-0">
+                <div class="container kt-content">
+                    <form #employeeDetailsForm="ngForm" novalidate (ngSubmit)="save()">
+                        <div class="container kt-margin-t-20-desktop">
+                            <div class="row form-group kt-margin-l-0" style="border-bottom: 1px solid #ebedf2;">
+                                <h5>{{'EmpPersonalDetails' | localize}}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-2">
+                                    <div class="form-group">
+                                        <div class="form-group m-form__group" (click)="fileimageUpload()">                                         
+                                            <div class="input-group m-input-group imgBorder">
+                                                <img [src]="filePan" id="PanImage" class="ImageOnDialog imgUpload" height="150" width="150" onError="this.src='../../../../../assets/common/images/default-profile-picture.png';" alt="..." />
+                                                <input hidden type="file" id="fileimageUpload" name="fileimageUpload" accept="{{accept}}">
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>
+                                <div class="col-2"></div>
+                                <div class="col-8">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>{{'EmpId' | localize}}</label>
+                                                <input type="text" class="form-control" required disabled placeholder="System Generated" name="EmployeeId" [(ngModel)]="employeeItem.employeeId" />
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>{{'EmpName' | localize}}<span class="astric">*</span></label>
+                                                <input type="text" class="form-control" required #nameInput="ngModel" name="EmployeeName" placeholder="Enter Name"  [(ngModel)]="employeeItem.name"  (input)="onNamechange($event.target.value)" pattern="[ a-zA-Z ]+" />
+                                            </div>
+                                            <validation-messages [formCtrl]="nameInput"></validation-messages>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>{{'Employee Position' | localize}}<span class="astric">*</span> </label>
+                                                <input type="text" class="form-control" [(ngModel)]="employeeItem.employeePosition" #PositionInput="ngModel"  required name="emppostion"  placeholder="Employee Position" pattern="[ a-zA-Z ]+"  />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label>{{'User Name' | localize}}<span class="astric">*</span>  </label>
+                                                <input type="text" class="form-control kt-font-transform-l" name="username"  required onkeyup="return forceLower(this);" [disabled]="isEdit" (change)="userName($event)"  [(ngModel)]="username" placeholder="User Name" />
+                                            </div>
+                                           <span class="astric"><label *ngIf="checkuser">{{'User Name already exists' | localize}}<span class="astric">*</span> </label></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'EmployeeDOB' | localize}} *</label>
+                                        <input id="DOBDatePicker"
+                                               type="text"
+                                               #DOBDatePicker
+                                               (bsValueChange)="changeDate($event)"
+                                               name="DOBDatePicker"
+                                               class="form-control"
+                                               bsDatepicker
+                                               datePickerMomentModifier
+                                               [(date)]="employeeItem.dateOfBirth"
+                                               [bsConfig]="{ adaptivePosition: true }" />
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'PersonalEmail' | localize}} <span class="astric">*</span> </label>
+                                        <input type="email" class="form-control" required name="personalEmail" placeholder="Enter Personal Email Address" [(ngModel)]="employeeItem.emailAddress" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" />
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'EmpAge' | localize}} <span class="astric">*</span> </label>
+                                        <input type="number" class="form-control" readonly name="empAge" placeholder="Enter Age" [(ngModel)]="employeeItem.age" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'Email' | localize}}</label>
+                                        <input type="email" class="form-control" name="email" required placeholder="Enter Email Address" [(ngModel)]="employeeItem.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  />
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'DirectPhone' | localize}} </label>
+                                        <intl-tel-input [phoneNumber]="employeeItem.directPhone" (getNumber)="getDirectPhone($event)"></intl-tel-input>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'CellPhone' | localize}}</label>
+                                        <intl-tel-input [phoneNumber]="employeeItem.phoneNumber" (getNumber)="getCellPhone($event)"></intl-tel-input>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4" *ngIf="!isEdit">
+                                    <div class="form-group">
+                                        <label>{{'Password' | localize}}<span class="astric">*</span> </label>
+                                        <input id="Password" type="password" name="Password" #Password="ngModel" class="form-control" [(ngModel)]="employeeItem.password" [required]="!employeeItem.id" maxlength="32"
+                                               [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                               [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                               validateEqual="PasswordRepeat" reverse="true"
+                                               autocomplete="new-password">
+                                    </div>
+                                    <div [hidden]="employeeDetailsForm.form.valid || employeeDetailsForm.form.pristine">
+                                        <ul class="help-block text-danger" *ngIf="employeeDetailsForm.controls['Password'] && employeeDetailsForm.controls['Password'].errors">
+                                            <li [hidden]="!employeeDetailsForm.controls['Password'].errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['Password'].errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['Password'].errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['Password'].errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['Password'].errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-4" *ngIf="!isEdit">
+                                    <div class="form-group">
+                                        <label>{{'ConfirmPassword' | localize}} <span class="astric">*</span></label>
+                                        <input id="PasswordRepeat" type="password" name="PasswordRepeat" #PasswordRepeat="ngModel" class="form-control" [(ngModel)]="userPasswordRepeat" [required]="!employeeItem.id" maxlength="32"
+                                               [requireDigit]="passwordComplexitySetting.requireDigit" [requireLowercase]="passwordComplexitySetting.requireLowercase"
+                                               [requireUppercase]="passwordComplexitySetting.requireUppercase" [requireNonAlphanumeric]="passwordComplexitySetting.requireNonAlphanumeric" [requiredLength]="passwordComplexitySetting.requiredLength"
+                                               validateEqual="Password" reverse="false"
+                                               autocomplete="new-password">
+                                    </div>
+
+                                    <div [hidden]="employeeDetailsForm.form.valid || employeeDetailsForm.form.pristine">
+                                        <ul class="help-block text-danger" *ngIf="employeeDetailsForm.controls['PasswordRepeat'] && employeeDetailsForm.controls['PasswordRepeat'].errors">
+                                            <li [hidden]="!employeeDetailsForm.controls['PasswordRepeat'].errors.requireDigit">{{"PasswordComplexity_RequireDigit_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['PasswordRepeat'].errors.requireLowercase">{{"PasswordComplexity_RequireLowercase_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['PasswordRepeat'].errors.requireUppercase">{{"PasswordComplexity_RequireUppercase_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['PasswordRepeat'].errors.requireNonAlphanumeric">{{"PasswordComplexity_RequireNonAlphanumeric_Hint" | localize}}</li>
+                                            <li [hidden]="!employeeDetailsForm.controls['PasswordRepeat'].errors.requiredLength">{{"PasswordComplexity_RequiredLength_Hint" | localize:passwordComplexitySetting.requiredLength}}</li>
+                                            <li [hidden]="employeeDetailsForm.controls['PasswordRepeat'].valid">{{"PasswordsDontMatch" | localize}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group kt-padding-t-25">
+                                        <label for="isNotifiedByEmail" class="kt-checkbox">
+                                            <input id="isNotifiedByEmail" type="checkbox" name="isNotifiedByEmail" [(ngModel)]="employeeItem.isNotifiedByEmail">
+                                            {{"EmailNotificationExclude" | localize}}
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group kt-margin-l-0" style="border-bottom: 1px solid #ebedf2;">
+                                <h5>{{'EmpGeneralInfo' | localize}}</h5>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'EmpType' | localize}}</label>
+                                        <ng-select [items]="userType"
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="value"
+                                                   bindValue="id"                                             
+                                                   name="employeeType"
+                                                   (change)="onEmployeeTypeChange($event)"
+                                                   [(ngModel)]="employeeItem.employeeTypeId">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'EmpGrade' | localize}}</label>
+                                        <ng-select [items]="grade"
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="value"
+                                                   bindValue="id"
+                                                   name="employeeGrade"
+                                                   (change)="onGradeChange($event)"
+                                                   [(ngModel)]="employeeItem.employeeGradeId">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'CompanyName' | localize}}</label>
+                                        <ng-select [items]="organizationList"
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="displayName"
+                                                   bindValue="id"
+                                                   name="CompanyName"
+                                                   (change)="onOrgChange($event)"
+                                                   [(ngModel)]="tempOrganizationId">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'BusinessUnit' | localize}}</label>
+                                        <ng-select [items]="businessUnitList"
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="businessUnitTitle"
+                                                   bindValue="id"
+                                                   name="businessUnit"
+                                                   (change)="onBusinessUnitChnage($event)"
+                                                   [(ngModel)]="employeeItem.businessUnitId">
+                                        </ng-select>
+                                    </div>
+                                </div>                
+                            </div>
+
+
+                            <div class="row form-group kt-margin-l-0" style="border-bottom: 1px solid #ebedf2;">
+                                <h5>{{'IdentityAccessInfo' | localize}}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" *ngIf="portaluser && isEdit">
+                                    <div class="form-group">
+                                        <label>{{'LoginUser' | localize}}</label>
+                                        <ng-select [items]=""
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="name"
+                                                   bindValue="id"
+                                                   name="loginUser">
+                                        </ng-select>
+                                    </div>
+                                </div>
+
+                                <div class="col-4" >
+                                    <div class="form-group">
+                                        <label>{{'RiskGroup' | localize}}</label>
+                                        <ng-select [items]="riskGroup"
+                                                   [searchable]="true"
+                                                   placeholder="Not Selected"
+                                                   bindLabel="value"
+                                                   bindValue="id"
+                                                   [(ngModel)]="employeeItem.riskGroupId"
+                                                   name="riskGroup">
+                                        </ng-select>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'AccessCardId' | localize}}</label>
+                                        <input type="text" class="form-control" required [(ngModel)]="employeeItem.accessCardId" name="accessCardId" />
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label>{{'CompanyIdNumber' | localize}}</label>
+                                        <input type="text" class="form-control" [(ngModel)]="employeeItem.companyId" required name="companyIdNumber" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group kt-margin-l-0" style="border-bottom: 1px solid #ebedf2;">
+                                <h5>{{'RelatedAttachments' | localize}}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <upload-file></upload-file>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

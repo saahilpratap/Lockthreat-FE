@@ -1,0 +1,213 @@
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader kt-grid__item">
+        <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+    </div>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+            <div class="kt-portlet__head kt-padding-15">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        {{"Add Organization" | localize}}
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <button class="btn btn-sm kt-margin-l-5" (click)="goToBack()">
+                        <i class="la la-arrow-left"></i>
+                        {{"Back" | localize}}
+                    </button>
+                    <button class="btn btn-submit btn-sm">
+                        <i class="la la-check"></i>
+                        {{"Save" | localize}}
+                    </button>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                        <h5 class="kt-section__title kt-section__title-sm">{{"Organization Information" | localize}}</h5>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Company ID" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Company ID">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Industry Sector" | localize}}</label>*
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Organization Level / Type" | localize}}</label>*
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Parent Organization" | localize}}</label>*
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Company Name" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Company Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Auditable Entity" | localize}}</label>*
+                                    <input type="text" class="form-control" placeholder="Auditable Entity">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Description" | localize}}</label>
+                                    <textarea _ngcontent-jvu-c26="" class="form-control" placeholder="Description" style="height:100px !important" type="text"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                        <h5 class="kt-section__title kt-section__title-sm">{{"Organization Details" | localize}}</h5>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Country (Registered Legal Entity)" | localize}}</label>*
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Employees (Size)" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Website" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Web Url">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Website" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Web Url">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Company Logo" | localize}}</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                        <h5 class="kt-section__title kt-section__title-sm">{{"Postal Address" | localize}}</h5>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Address" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Address">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"City / District" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="City / District">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"State / Province" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="State / Province">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Postal Code" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Postal Code">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Country" | localize}}</label>
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                        <h5 class="kt-section__title kt-section__title-sm">{{"Primary Contact" | localize}}</h5>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Primary Contact Name" | localize}}</label>*
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Company Administrator" | localize}}</label>
+                                    <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-section kt-section--first">
+                    <div class="kt-section__body">
+                        <h5 class="kt-section__title kt-section__title-sm">{{"External Notification Contacts" | localize}}</h5>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Contact Name" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{" " | localize}}</label>
+                                    <input type="text" class="form-control kt-margin-t-5" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Phone" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Phone No">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Job Title" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Job Title">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Email" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 co-sm-12">
+                                <div class="form-group">
+                                    <label>{{"Fax" | localize}}</label>
+                                    <input type="text" class="form-control" placeholder="Fax">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

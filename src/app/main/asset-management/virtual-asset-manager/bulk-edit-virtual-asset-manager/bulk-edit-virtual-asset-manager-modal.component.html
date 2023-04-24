@@ -1,0 +1,81 @@
+<div appBsModal #bulkEditVirtualAssetManagerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditVirtualAssetManagerModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #BulkEditVirtualAssetManagerForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Virtual Asset Manager' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect (onChange)="setEventTypeLabel($event)" [maxSelectedLabels]="1" [options]="bulkEditVirtualAssetManager" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Virtual Asset Name" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Virtual Asset Name">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Virtual Asset (Unique Identity)" | localize}}</label>
+                                <input type="text" class="form-control" placeholder="Virtual Asset (Unique Identity)">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Virtual Asset Name" | localize}}</label>
+                                <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Virtual Asset (Unique Identity)" | localize}}</label>
+                                <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group kt-padding-t-10">
+                                <label> </label>
+                                <div class="kt-checkbox-list">
+                                    <label class="kt-checkbox kt-checkbox--brand">
+                                        <input type="checkbox">{{"This is a Virtual Machine (VM)" | localize}}
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <span class="form-text text-muted kt-padding-l-30">{{"Virtual Machines or VM are hosted on a virtual host." | localize}}</span>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Description" | localize}}</label>
+                                <textarea type="text" class="form-control" placeholder="Description" style="height:100px !important"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Hosted Server Name (Hardware)" | localize}}</label>
+                                <p-dropdown placeholder="Select" [showClear]="true" filter="true" [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

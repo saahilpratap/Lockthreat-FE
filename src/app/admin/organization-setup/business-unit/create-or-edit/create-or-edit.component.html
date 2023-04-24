@@ -1,0 +1,31 @@
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuOrg]="true"></common-header>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        {{"Add Business Unit" | localize}}
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-subheader__wrapper">
+                        <button class="btn btn-sm kt-margin-l-5" (click)="goToBack()">
+                            <i class="la la-arrow-left"></i>
+                            {{"Back" | localize}}
+                        </button>
+                        <button class="btn btn-submit btn-sm" (click)="businessUnits.saveBbusinessUnit()">
+                            <i class="la la-check"></i>
+                            {{"Save" | localize}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body kt-padding-0">
+                <div class="container kt-content">
+                    <add-edit-business-units #businessUnits></add-edit-business-units>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

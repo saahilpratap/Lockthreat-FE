@@ -1,0 +1,272 @@
+
+<div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+    <div class="kt-subheader kt-grid__item">
+        <!--<div [class]="containerClass">
+        <div class="kt-subheader__main">
+            <h3 class="kt-subheader__title">
+                <span>{{"Organization" | localize}}</span>
+            </h3>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <span class="kt-subheader__desc">
+                {{"Organization Dashboard" | localize}}
+            </span>
+            <span class="kt-subheader__separator kt-subheader__separator--v"></span>
+            <span class="kt-subheader__desc">
+                {{"Organization Setup" | localize}}
+            </span>
+        </div>
+        <div class="kt-subheader__toolbar">
+
+        </div>
+    </div>-->
+        <common-header [title]="title" [subTitle]="subTitle" [pageTitle]="pageTitle" [pageMenuHome]="true"></common-header>
+    </div>
+    <div [class]="containerClass + ' kt-grid__item kt-grid__item--fluid'">
+        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
+            <div class="kt-portlet__head kt-padding-15">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        {{"Organization Setup" | localize}}
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-quick-search kt-quick-search--result-compact kt-padding-r-5" id="kt_quick_search_dropdown">
+                        <form method="get" class="kt-quick-search__form">
+                            <div class="input-group border">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="flaticon2-search-1"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control kt-quick-search__input" placeholder="Search...">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">
+                                        <i class="la la-close kt-quick-search__close">
+                                        </i>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="kt-quick-search__wrapper kt-scroll ps" data-scroll="true" data-height="325" data-mobile-height="200" style="height: 325px; overflow: hidden;">
+
+                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
+                        </div>
+                    </div>
+                    <button (click)="clickAddOrganization()"
+                            class="btn btn-widget btn-sm">
+                        +{{"Add New Organization" | localize}}
+                    </button>
+                    <div class="btn-group dropdown kt-padding-l-5" dropdown container="body">
+                        <button dropdownToggle class="btn btn-sm border shadow">
+                            <i class="fa fa-bars no-padding"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu" *dropdownMenu style="left: -10rem !important;">
+                            <li>
+                                <a (click)="showGrid()">{{'Grid' | localize}}</a>
+                            </li>
+                            <li>
+                                <a (click)="showList()">{{'List' | localize}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div *ngIf="list" class="primeng-datatable-container"
+                     [busyIf]="primengTableHelper.isLoading">
+                    <p-table #dataTable
+                             (onLazyLoad)="getAllOrganization($event)"
+                             [value]="primengTableHelper.records"
+                             [lazy]="true"
+                             [scrollable]="true"
+                             ScrollWidth="100%">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 20px">
+                                    <p-checkbox></p-checkbox>
+                                </th>
+                                <th style="width: 200px">
+                                    {{'Company Name' |localize}}
+                                </th>
+                                <th style="width: 200px">
+                                    {{'Industry Sector' |localize}}
+                                    <p-sortIcon></p-sortIcon>
+                                </th>
+                                <th style="width: 150px">
+                                    {{'Email' |localize}}
+                                    <p-sortIcon></p-sortIcon>
+                                </th>
+                                <th style="width: 100px">
+                                    {{'Phone' |localize}}
+                                    <p-sortIcon></p-sortIcon>
+                                </th>
+                                <th style="width: 100px">
+                                    {{'Company ID' |localize}}
+                                    <p-sortIcon></p-sortIcon>
+                                </th>
+                                <th style="width: 100px">
+                                    {{'Action' |localize}}
+                                    <p-sortIcon></p-sortIcon>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-record="$implicit">
+                            <tr>
+                                <th style="width: 20px">
+                                    <p-checkbox></p-checkbox>
+                                </th>
+                                <td style="width: 200px">
+                                    {{record.companyName}}
+                                </td>
+                                <td style="width: 200px">
+                                    {{record.industrySector}}
+                                </td>
+                                <td style="width: 150px">
+                                    {{record.email}}
+                                </td>
+                                <td style="width: 100px">
+                                    {{record.phone}}
+                                </td>
+                                <td style="width: 100px">
+                                    {{record.companyID}}
+                                </td>
+                                <td class="kt-align-center" style="width: 100px">
+                                    <i class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info" (click)="editRecord()"></i>
+                                    <i class="far fa-trash-alt kt-padding-5 mouse-hover kt-font-google"></i>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+                <div class="row" *ngIf="grid">
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid shadow background-color-test1">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        {{"Group" | localize}}
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body kt-padding-10">
+                                <div class="kt-portlet kt-padding-10 shadow" *ngFor="let item of data; let i = index">
+                                    <div class="kt-widget4">
+                                        <div class="kt-widget4__item">
+                                            <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                <img src="../assets/common/icon/test1.png">
+                                            </div>
+                                            <div class="kt-widget4__info">
+                                                <span class="kt-widget4__username">
+                                                    {{item.name}}
+                                                </span>
+                                                <p class="kt-widget4__text kt-font-sm">
+                                                    {{item.detail}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/phone.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.email}}</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/message.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.phone}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid shadow background-color-test1">
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        {{"Company Names" | localize}}
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body kt-padding-10">
+                                <div class="kt-portlet kt-padding-10 shadow" *ngFor="let item of data; let i = index">
+                                    <div class="kt-widget4">
+                                        <div class="kt-widget4__item">
+                                            <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                <img src="../assets/common/icon/test1.png">
+                                            </div>
+                                            <div class="kt-widget4__info">
+                                                <span class="kt-widget4__username">
+                                                    {{item.name}}
+                                                </span>
+                                                <p class="kt-widget4__text kt-font-sm">
+                                                    {{item.detail}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/phone.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.email}}</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/message.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.phone}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+                        <div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid shadow background-color-test1">
+
+                            <div class="kt-portlet__head">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title">
+                                        {{"Consortium" | localize}}
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="kt-portlet__body kt-padding-10">
+                                <div class="kt-portlet kt-padding-10 shadow" *ngFor="let item of data; let i = index">
+                                    <i class="fas fa-pencil-alt kt-padding-5 mouse-hover kt-font-info kt-align-right " (click)="editRecord()"></i>
+                                    <div class="kt-widget4">
+                                        <div class="kt-widget4__item">
+                                            <div class="kt-widget4__pic kt-widget4__pic--pic">
+                                                <img src="../assets/common/icon/test1.png">
+                                            </div>
+                                            <div class="kt-widget4__info">
+                                                <span class="kt-widget4__username">
+                                                    {{item.name}}
+                                                </span>
+                                                <p class="kt-widget4__text kt-font-sm">
+                                                    {{item.detail}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/phone.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.email}}</span>
+                                            </div>
+                                            <div class="col-6">
+                                                <img src="../assets/common/icon/message.svg">
+                                                <span class="kt-font-sm kt-padding-l-5">{{item.phone}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

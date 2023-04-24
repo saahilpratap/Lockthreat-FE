@@ -1,0 +1,52 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"KRI Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"KRI-ID" | localize}}</label>
+                    <input type="text" class="form-control" name="KRI"  disabled  placeholder="System Generated"   [(ngModel)]="keyRiskIndicator.keyRiskIndicatorsId" >
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Status" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [options]="status" placeholder="Select Status" optionLabel="value" [(ngModel)]="selectedStatus" name="Statuses" (onChange)="statusChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Key Risk Indicator Title" | localize}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="keyRiskIndicator.keyRiskIndicatorTitle" name="title" placeholder="Key Risk Indicator Title">
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Description" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Description" [(ngModel)]="keyRiskIndicator.description" style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Company Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Name" | localize}}</label>
+                    <p-dropdown [showClear]="true" filter="true" [options]="organization" placeholder="Select Company Name" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="company" (onChange)="oragnizationChange($event)" [style]="{'width': '100%'}"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Units" | localize}}</label>
+                    <p-multiSelect [options]="businessUnit" [maxSelectedLabels]="1" placeholder="Select Business Unit" optionLabel="businessUnitTitle" [(ngModel)]="selectedBusinessUnit"  [style]="{'width': '100%'}"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

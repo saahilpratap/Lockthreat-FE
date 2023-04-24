@@ -1,0 +1,292 @@
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Findings Information" | localize}}</h5>
+        <hr/>
+        <div class="row">
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Findings ID" | localize}}</label>
+                    <input type="text" disabled class="form-control" [(ngModel)]="finding.findingId" name="Findings" placeholder="System Generated">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Classification" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Classification" [filter]="true" placeholder="Select Classification" optionLabel="value"  [(ngModel)]="selectedClassification" name="Classification" (onChange)="classificationChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Title" | localize}}</label>
+                    <input type="text"  class="form-control" [(ngModel)]="finding.findingTitle" name="facilityId" placeholder="Title">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Severity/Ranking" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Ranking" [filter]="true" placeholder="Select Ranking" optionLabel="value"  [(ngModel)]="selectedRanking" name="Severity" (onChange)="SeverityChange($event)"></p-dropdown>                 
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Status" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="findingStatus" [filter]="true" placeholder="Select Status" optionLabel="value"  [(ngModel)]="selectedFindingStatus" name="Status" (onChange)="statusChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Date Created" | localize}}</label>
+                    <div id="generalSearch" class="kt-input-icon">
+                        <input id="SampleDatePicker"
+                               type="text"
+                               #SampleDatePicker
+                               name="SampleDatePicker"
+                               class="form-control"
+                               bsDatepicker
+                               datePickerMomentModifier
+                               [(date)]="finding.dateCreated"   
+                               [bsConfig]="{ adaptivePosition: true }" />
+                        <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                            <span><i class="flaticon-calendar-1"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Details" | localize}}</label>
+                    <textarea type="text" class="form-control" placeholder="Finding Details..." [(ngModel)]="finding.findingDetails" style="height:100px !important"></textarea>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Category" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="category" [filter]="true" placeholder="Select Status" optionLabel="value"  [(ngModel)]="selectedCategory" name="Category" (onChange)="categoryChange($event)"></p-dropdown>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Target Organization & Personnel" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company(s)" | localize}}</label>*
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="organization" [maxSelectedLabels]="1" [filter]="true" placeholder="Select organization" optionLabel="companyName" [(ngModel)]="selectedOrganization" name="Company" (onChange)="companyChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Manager" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="findingManager" [filter]="true" placeholder="Select Manager" optionLabel="employeeName" required=true [(ngModel)]="selectedfindingManager" name="Manager" (onChange)="managerChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Business Units" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="businessUnit" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Business Units" optionLabel="businessUnitTitle" [(ngModel)]="selectedBusinessunit" name="businessunit" (onChange)="businessUnitChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Coordinator" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="findingCoordinator" [filter]="true" placeholder="Select Coordinator" optionLabel="employeeName"  [(ngModel)]="selectedFindingCoordinator" name="Coordinator" (onChange)="coordinatorChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Finding Owner" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="findingOwner" [filter]="true" placeholder="Select Owner" optionLabel="employeeName" required=true [(ngModel)]="selectedfindingOwner" name="Owner" (onChange)="OwnerChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Vendor(s)" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="Vendor" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Vendor" optionLabel="vendorName" [(ngModel)]="selectedVendor" name="Vendor" (onChange)="vendorChange($event)"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Finding Details" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Criteria" | localize}}</label>
+                    <textarea type="text" class="form-control" name="Criteria" placeholder="Criteria..." [(ngModel)]="finding.criteria" style="height:100px !important"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Cause" | localize}}</label> 
+                    <textarea type="text" class="form-control" name="Cause" [(ngModel)]="finding.cause" placeholder="Cause..." style="height:100px !important"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Condition" | localize}}</label>
+                    <textarea type="text" class="form-control" name="condition" [(ngModel)]="finding.condition" placeholder="Condition..." style="height:100px !important"></textarea>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Consequence" | localize}}</label>
+                    <textarea type="text" class="form-control" name="consequence"  [(ngModel)]="finding.consequence" placeholder="Consequence..." style="height:100px !important"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Related Info" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Authoratative Source" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="authorativeDocument" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Authoratative" optionLabel="vendorName" [(ngModel)]="SelectedAuthorativeDocument" name="Authoratative" (onChange)="authoratativeChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Control Design Tests" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="controlDesign" [maxSelectedLabels]="1" [filter]="true" placeholder="Select controlDesign" optionLabel="title" [(ngModel)]="selectedControlDesign" name="controlDesign" (onChange)="controlDesignChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Risk Register" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="riskregister" [maxSelectedLabels]="1" [filter]="true" placeholder="Select Risk Register" optionLabel="title" [(ngModel)]="selectedriskRegister" name="Register" (onChange)="riskRegisterChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Control Operating Tests" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="controlOperating" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="title" [(ngModel)]="selectedControlOperating" name="controloperating" (onChange)="controlOperatingChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Internal Controls" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="internalControl" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="icTitle" [(ngModel)]="selectedInternalControl" name="internalControl" (onChange)="internalControlChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Incident Management" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="findingIncident" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="incidentTitle" [(ngModel)]="selectedFindingIncident" name="incident" (onChange)="incidentChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Company Strategic Objectives" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="StrategicObjective" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="strategicObjectiveTitle" [(ngModel)]="selectedStrategicObjective" name="strategicObjectiveTitle" (onChange)="strategicObjectiveTitleChange($event)"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Related Assets" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Facilities & Datacenters" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="facilitiDatacenter" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="facilityName" [(ngModel)]="selectedFacilitiDatacenter" name="facilityName" (onChange)="facilitiDatacenterChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Hardware Assets" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="hardware" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="hardwareAssetName" [(ngModel)]="selectedHardware" name="Hardware" (onChange)="hardwareChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Information Assets" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="assetInformation" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="assetTitle" [(ngModel)]="selectedAssetInformation" name="assetInformation" (onChange)="assetInformationChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Virtual Host Manager" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="VirtualHost" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="virtualAssetName" [(ngModel)]="SelectedVirtualHost" name="virtualinformation" (onChange)="virtualhostChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Systems & Applications (Software)" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="systeamApplication" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="systemApplicationName" [(ngModel)]="selectedSysteamApplication" name="systeamApplication" (onChange)="systeamApplicationChange($event)"></p-multiSelect>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Virtual Machines" | localize}}</label>
+                    <p-multiSelect [style]="{'width': '100%'}" [options]="virtualMachine" [maxSelectedLabels]="1" [filter]="true" placeholder="Select " optionLabel="virtualAssetName" [(ngModel)]="selectedVirtualMachine" name="virtualMachine" (onChange)="virtualMachineChange($event)"></p-multiSelect>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="kt-section kt-section--first">
+    <div class="kt-section__body">
+        <h5 class="kt-section__title kt-section__title-sm">{{"Finding Action" | localize}}</h5>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Action / Response" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Action" [filter]="true" placeholder="Select Action" optionLabel="value" required=true [(ngModel)]="selectedAction" name="action" (onChange)="ActionChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Reviewed By" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="findingReview" [filter]="true" placeholder="Select review" optionLabel="employeeName" required=true [(ngModel)]="selectedfindingReview" name="review" (onChange)="reviewChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Response" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="response" [filter]="true" placeholder="Select Response" optionLabel="value" required=true [(ngModel)]="selectedResponse" name="response" (onChange)="responseChange($event)"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Potential Cost Saving" | localize}}</label>
+                    <input type="text"  class="form-control" [(ngModel)]="finding.potentialCost" name="potentialCost" placeholder="potential Cost">
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 co-sm-12">
+                <div class="form-group">
+                    <label>{{"Assigned To" | localize}}</label>
+                    <p-dropdown [style]="{'width': '100%'}" [options]="Assigned" [filter]="true" placeholder="Select Response" optionLabel="employeeName" required=true [(ngModel)]="selectedAssigned" name="assigned" (onChange)="assignedChange($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

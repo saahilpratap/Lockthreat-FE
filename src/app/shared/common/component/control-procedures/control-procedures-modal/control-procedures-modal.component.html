@@ -1,0 +1,27 @@
+<div appBsModal #controlProceduresModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="controlProceduresModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <form #controlProceduresForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Edit Control Procedure' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <add-edit-control-procedures></add-edit-control-procedures>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><i class="fa fa-save"></i> <span>{{"Save" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,90 @@
+<div appBsModal #bulkEditStrategicObjectivesModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="bulkEditStrategicObjectivesModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form #bulkEditStrategicObjectivesForm="ngForm">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        {{'Bulk Edit Strategic Objectives' | localize}}
+                    </h4>
+                </div>
+                <div class="modal-body" style="min-height:350px">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Bulk edit allows you to apply same value to multiple records." | localize}}</label>
+                                <p-multiSelect [options]="bulkEditStrategicObjectives" [maxSelectedLabels]="1" [style]="{'width': '100%'}"></p-multiSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">               
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Company Name" | localize}}</label>*
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Goal" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Strategic Objective Title" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Executive Sponsor" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Effective Date" | localize}}</label>
+                                <div id="startDate" class="kt-input-icon">
+                                    <input id="startDatePicker"
+                                           type="text"
+                                           #startDatePicker
+                                           name="startDatePicker"
+                                           class="form-control"
+                                           bsDatepicker
+                                           datePickerMomentModifier
+                                           [bsConfig]="{ adaptivePosition: true }" />
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--right">
+                                        <span><i class="flaticon-calendar-1"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Status" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Type" | localize}}</label>
+                                <p-dropdown [style]="{'width': '100%'}"></p-dropdown>
+                            </div>
+                        </div>
+                        <div class="col-12"></div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>{{"Description" | localize}}</label>
+                                <textarea type="text" class="form-control" placeholder="Description" style="height:100px !important"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-cancel" (click)="close()">{{"Cancel" | localize}}</button>
+                    <button type="submit" class="btn btn-sm btn-submit"><span>{{"Apply" | localize}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
